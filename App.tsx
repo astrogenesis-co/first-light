@@ -1,4 +1,6 @@
-// Placeholder root component — replace with the Scene + Hud composition.
+import Scene from './scene/Scene'
+import './scene/scene.css'
+
 export default function App() {
-  return <div>First Light</div>
+  return <main aria-label="An orbit around a black hole"><Scene /></main>
 }
