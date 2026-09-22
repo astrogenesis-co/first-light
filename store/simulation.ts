@@ -69,7 +69,7 @@ export function createSimulation(catalog: readonly CelestialBody[]) {
 
 export const simulation = createSimulation(bodies)
 
-// Only an open map subscribes. Cache immutable snapshots for React at 10 Hz.
+// Maps share cached immutable snapshots for React at 10 Hz.
 const listeners = new Set<() => void>()
 function captureSnapshot() {
   return new Map(bodies.map((body) => [body.id, [...simulation.position(body.id)] as Coordinates]))
