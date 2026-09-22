@@ -6,6 +6,7 @@
 .codex-intro p, .codex-list-heading p { font-size: 11px; color: var(--device-muted); line-height: 1.7; margin: 0; }
 .codex-total { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; font-size: 9px; color: var(--device-muted); }
 .codex-total strong { font-size: 34px; font-weight: 400; color: var(--codex-accent); }
+.codex-total strong small { font-size: 14px; color: var(--device-muted); white-space: nowrap; }
 .codex-types { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .codex-types button { min-width: 0; display: grid; grid-template-columns: 1fr auto; gap: 12px 4px; text-align: left; padding: 13px 11px; border: 1px solid #c6b1ff26; border-radius: 8px; background: #090e1f70; color: var(--device-muted); font-size: 10px; }
 .codex-types button > span:nth-child(2) { grid-row: 2; }

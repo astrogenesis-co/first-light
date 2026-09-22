@@ -34,7 +34,10 @@ export default function Hud() {
 
   return (
     <>
-      <JourneyHud mapOpen={isOpen && activeApp === 'map'} onOpenMap={() => {
+      <JourneyHud mapOpen={isOpen && activeApp === 'map'} onOpenCodex={() => {
+        setActiveApp('codex')
+        openDevice()
+      }} onOpenMap={() => {
         setActiveApp('map')
         useAppStore.getState().selectBody(getStage(useJourneyStore.getState().journey.stage).bodyId)
         openDevice()

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { z } from 'zod'
 import './codex.css'
+import { discoveredCatalog, validateCodexSchedule } from '../store/codexUnlocks'
+import { useCodexProgress } from './useCodexProgress'
 
 const collections = [
   { group: 'albums', label: 'Albums', mark: '◉', description: 'Collections that hold the larger story.' },
@@ -23,7 +25,8 @@ const entrySchema = z.object({
 type Entry = z.infer<typeof entrySchema>
 
 export default function Codex() {
-  const [entries, setEntries] = useState<Entry[] | null>(null)
+  const unlockedKeys = useCodexProgress()
+  const [catalog, setEntries] = useState<Entry[] | null>(null)
   const [error, setError] = useState(false)
   const [attempt, setAttempt] = useState(0)
   const [group, setGroup] = useState<string>('all')
@@ -32,7 +35,10 @@ export default function Codex() {
   const heading = useRef<HTMLHeadingElement>(null)
   const returnKey = useRef<string | null>(null)
   const list = useRef<HTMLDivElement>(null)
-  const selectedKey = history.at(-1)
+  const entries = catalog ? discoveredCatalog(catalog, unlockedKeys) : null
+  const availableKeys = new Set(entries?.map(entry => entry.key))
+  const availableHistory = history.filter(key => availableKeys.has(key))
+  const selectedKey = availableHistory.at(-1)
   const selected = entries?.find(entry => entry.key === selectedKey)
 
   useEffect(() => {
@@ -46,6 +52,7 @@ export default function Codex() {
         if (keys.size !== parsed.length || parsed.some(entry => entry.links.some(link => !keys.has(link.key)))) {
           throw new Error('Invalid catalog relationships')
         }
+        validateCodexSchedule(parsed.map(entry => entry.key))
         setEntries(parsed)
       })
       .catch(() => { if (!controller.signal.aborted) setError(true) })
@@ -62,8 +69,13 @@ export default function Codex() {
     }
   }, [selectedKey])
 
+  useEffect(() => {
+    const unlocked = new Set(unlockedKeys)
+    setHistory(current => current.every(key => unlocked.has(key)) ? current : current.filter(key => unlocked.has(key)))
+  }, [unlockedKeys])
+
   if (error) return <div className="codex-message" role="alert"><h2>Catalog unavailable</h2><p>We couldn’t load your entries.</p><button onClick={() => setAttempt(value => value + 1)}>Try again</button></div>
-  if (!entries) return <div className="codex-message" role="status">Opening the Codex…</div>
+  if (!entries || !catalog) return <div className="codex-message" role="status">Opening the Codex…</div>
 
   const collection = collections.find(item => item.group === group)
   const search = query.trim().toLowerCase()
@@ -72,15 +84,16 @@ export default function Codex() {
     .sort((a, b) => group === 'tracks' ? (a.trackNumber ?? 0) - (b.trackNumber ?? 0) : a.title.localeCompare(b.title))
 
   function openEntry(key: string) {
+    if (!availableKeys.has(key)) return
     if (!selectedKey) returnKey.current = key
-    setHistory(current => [...current, key])
+    setHistory([...availableHistory, key])
   }
 
   return (
     <div className="codex">
       {selected ? (
         <article className="codex-detail">
-          <button className="codex-back" onClick={() => setHistory(current => current.slice(0, -1))}>← {history.length > 1 ? 'Previous entry' : 'Back to entries'}</button>
+          <button className="codex-back" onClick={() => setHistory(availableHistory.slice(0, -1))}>← {availableHistory.length > 1 ? 'Previous entry' : 'Back to entries'}</button>
           <div className="codex-detail-meta"><span className="device-eyebrow">{selected.type === 'AlbumTrack' ? 'Album track' : selected.type}</span><span className="codex-status">{selected.status}</span></div>
           <h2 ref={heading} tabIndex={-1}>{selected.title}</h2>
           {(selected.progress || selected.trackNumber || selected.duration) && <p className="codex-facts">{[
@@ -94,7 +107,7 @@ export default function Codex() {
         </article>
       ) : (
         <>
-          <header className="codex-intro"><div><span className="device-eyebrow">Your collection</span><h2>A record of discovery.</h2><p>Explore the works and the connections between them.</p></div><span className="codex-total"><strong>{entries.length}</strong>entries</span></header>
+          <header className="codex-intro"><div><span className="device-eyebrow">Your collection</span><h2>A record of discovery.</h2><p>Your collection grows as you travel. Reach new worlds and listen for discoveries in transit.</p></div><span className="codex-total"><strong>{entries.length} <small>/ {catalog.length}</small></strong>entries discovered</span></header>
           <nav className="codex-types" aria-label="Entry types">
             <button aria-pressed={group === 'all'} onClick={() => setGroup('all')}><span className="codex-type-mark" aria-hidden="true">✧</span><span>All entries</span><b>{entries.length}</b></button>
             {collections.map(item => <button key={item.group} aria-pressed={group === item.group} onClick={() => setGroup(item.group)}><span className="codex-type-mark" aria-hidden="true">{item.mark}</span><span>{item.label}</span><b>{entries.filter(entry => entry.group === item.group).length}</b></button>)}
@@ -103,7 +116,7 @@ export default function Codex() {
             <div className="codex-list-heading"><div><h3>{collection?.label ?? 'All entries'}</h3><p>{collection?.description ?? 'Every available entry in your Codex.'}</p></div><label className="codex-search"><span className="sr-only">Search entries</span><input type="search" placeholder="Search entries…" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
             <p className="codex-result-count" role="status">{visible.length} {visible.length === 1 ? 'entry' : 'entries'}{search ? ' found' : ' available'}</p>
             <div className="codex-entries" ref={list}>{visible.map(entry => <button data-key={entry.key} className="codex-entry" key={entry.key} onClick={() => openEntry(entry.key)}><span className="codex-entry-mark" aria-hidden="true">{collections.find(item => item.group === entry.group)?.mark}</span><span className="codex-entry-copy"><small>{entry.type === 'AlbumTrack' ? `Album track ${entry.trackNumber}` : entry.type}</small><strong>{entry.title}</strong><span>{entry.excerpt}</span></span><span className="codex-entry-end"><span className="codex-status">{entry.status}</span><span aria-hidden="true">↗</span></span></button>)}</div>
-            {visible.length === 0 && <div className="codex-empty"><h3>{search ? 'No matching entries' : 'Nothing here yet'}</h3><p>{search ? 'Try a different title or search another type.' : 'Entries of this type will appear here when available.'}</p>{search && <button onClick={() => setQuery('')}>Clear search</button>}</div>}
+            {visible.length === 0 && <div className="codex-empty"><h3>{search ? 'No matching entries' : 'Nothing here yet'}</h3><p>{search ? 'Try a different title or search another type.' : 'Continue your journey to discover entries of this type.'}</p>{search && <button onClick={() => setQuery('')}>Clear search</button>}</div>}
           </section>
         </>
       )}
