@@ -1,0 +1,1531 @@
+[
+  {
+    "key": "tracks/3-mock-track",
+    "id": "3-mock-track",
+    "group": "tracks",
+    "type": "AlbumTrack",
+    "title": "A Light Left On",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": "albums/album-1",
+    "narrativeStage": "stages/3-promise",
+    "trackNumber": 3,
+    "sources": [
+      {
+        "song": "songs/mock-home",
+        "part": "Full song"
+      }
+    ],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "Mock arrangement notes for track 3. The source song is reinterpreted to match this chapter.",
+    "html": "<p>Mock arrangement notes for track 3. The source song is reinterpreted to match this chapter.</p>\n",
+    "excerpt": "Mock arrangement notes for track 3. The source song is reinterpreted to match this chapter.",
+    "references": [],
+    "source": "stars/first-star/tracks/3-mock-track.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "stages/3-promise",
+        "title": "Promise",
+        "type": "Stage",
+        "label": "Narrative stage"
+      },
+      {
+        "key": "songs/mock-home",
+        "title": "Home Frequency",
+        "type": "Song",
+        "label": "Source song: Full song"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/3-promise",
+    "id": "3-promise",
+    "group": "essays",
+    "type": "Essay",
+    "title": "A Light Left On",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# A Light Left On\n\nThis fictional essay accompanies the promise stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>A Light Left On</h1>\n<p>This fictional essay accompanies the promise stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "A Light Left On This fictional essay accompanies the promise stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint tone r",
+    "references": [],
+    "source": "stars/first-star/essays/3-promise.md",
+    "links": [
+      {
+        "key": "stages/3-promise",
+        "title": "Promise",
+        "type": "Stage",
+        "label": "Album stage"
+      },
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "tracks/2-mock-track",
+    "id": "2-mock-track",
+    "group": "tracks",
+    "type": "AlbumTrack",
+    "title": "A Map of Missing Things",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": "albums/album-1",
+    "narrativeStage": "stages/2-fall",
+    "trackNumber": 2,
+    "sources": [
+      {
+        "song": "songs/mock-orbit",
+        "part": "Full song"
+      }
+    ],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "Mock arrangement notes for track 2. The source song is reinterpreted to match this chapter.",
+    "html": "<p>Mock arrangement notes for track 2. The source song is reinterpreted to match this chapter.</p>\n",
+    "excerpt": "Mock arrangement notes for track 2. The source song is reinterpreted to match this chapter.",
+    "references": [],
+    "source": "stars/first-star/tracks/2-mock-track.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "stages/2-fall",
+        "title": "Fall",
+        "type": "Stage",
+        "label": "Narrative stage"
+      },
+      {
+        "key": "songs/mock-orbit",
+        "title": "An Orbit Wide Enough to Hold the Things We Cannot Name",
+        "type": "Song",
+        "label": "Source song: Full song"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/2-fall",
+    "id": "2-fall",
+    "group": "essays",
+    "type": "Essay",
+    "title": "A Map of Missing Things",
+    "status": "complete",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# A Map of Missing Things\n\nThis fictional essay accompanies the fall stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>A Map of Missing Things</h1>\n<p>This fictional essay accompanies the fall stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "A Map of Missing Things This fictional essay accompanies the fall stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint t",
+    "references": [],
+    "source": "stars/first-star/essays/2-fall.md",
+    "links": [
+      {
+        "key": "stages/2-fall",
+        "title": "Fall",
+        "type": "Stage",
+        "label": "Album stage"
+      },
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "tracks/7-mock-track",
+    "id": "7-mock-track",
+    "group": "tracks",
+    "type": "AlbumTrack",
+    "title": "A Place for Every Voice",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": "albums/album-1",
+    "narrativeStage": "stages/7-love",
+    "trackNumber": 7,
+    "sources": [
+      {
+        "song": "songs/mock-signal",
+        "part": "Reprise and instrumental motif"
+      }
+    ],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "Mock arrangement notes for track 7. The source song is reinterpreted to match this chapter.",
+    "html": "<p>Mock arrangement notes for track 7. The source song is reinterpreted to match this chapter.</p>\n",
+    "excerpt": "Mock arrangement notes for track 7. The source song is reinterpreted to match this chapter.",
+    "references": [],
+    "source": "stars/first-star/tracks/7-mock-track.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "stages/7-love",
+        "title": "Love",
+        "type": "Stage",
+        "label": "Narrative stage"
+      },
+      {
+        "key": "songs/mock-signal",
+        "title": "Signal in the Static",
+        "type": "Song",
+        "label": "Source song: Reprise and instrumental motif"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/7-love",
+    "id": "7-love",
+    "group": "essays",
+    "type": "Essay",
+    "title": "A Place for Every Voice",
+    "status": "unwritten",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "",
+    "html": "",
+    "excerpt": "A place for work still to come.",
+    "references": [],
+    "source": "stars/first-star/essays/7-love.md",
+    "links": [
+      {
+        "key": "stages/7-love",
+        "title": "Love",
+        "type": "Stage",
+        "label": "Album stage"
+      },
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "songs/mock-orbit",
+    "id": "mock-orbit",
+    "group": "songs",
+    "type": "Song",
+    "title": "An Orbit Wide Enough to Hold the Things We Cannot Name",
+    "status": "draft",
+    "progress": "writing",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "A mock song with a deliberately long title for testing wrapping and list layouts. Its repeating figure changes by one note each time it returns.",
+    "html": "<p>A mock song with a deliberately long title for testing wrapping and list layouts. Its repeating figure changes by one note each time it returns.</p>\n",
+    "excerpt": "A mock song with a deliberately long title for testing wrapping and list layouts. Its repeating figure changes by one note each time it returns.",
+    "references": [],
+    "source": "stars/first-star/songs/mock-orbit.md",
+    "links": [
+      {
+        "key": "tracks/2-mock-track",
+        "title": "A Map of Missing Things",
+        "type": "AlbumTrack",
+        "label": "Used in track"
+      },
+      {
+        "key": "tracks/5-mock-track",
+        "title": "Through the Quiet",
+        "type": "AlbumTrack",
+        "label": "Used in track"
+      },
+      {
+        "key": "songs/mock-signal",
+        "title": "Signal in the Static",
+        "type": "Song",
+        "label": "Related"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stages/1-creation",
+    "id": "1-creation",
+    "group": "stages",
+    "type": "Stage",
+    "title": "Creation",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# The First Signal\n\nMock chapter 1 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.\n\n## Field notes\n\n- Listen before moving on.\n- Keep one small detail from this place.\n- Leave room for another interpretation.",
+    "html": "<h1>The First Signal</h1>\n<p>Mock chapter 1 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
+    "excerpt": "The First Signal Mock chapter 1 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before movin",
+    "references": [],
+    "source": "stars/first-star/stages/1-creation.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "essays/1-creation",
+        "title": "The First Signal",
+        "type": "Essay",
+        "label": "Companion essay"
+      },
+      {
+        "key": "tracks/1-mock-track",
+        "title": "The First Signal",
+        "type": "AlbumTrack",
+        "label": "Album track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stages/5-crucifixion",
+    "id": "5-crucifixion",
+    "group": "stages",
+    "type": "Stage",
+    "title": "Crucifixion",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# Through the Quiet\n\nMock chapter 5 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.\n\n## Field notes\n\n- Listen before moving on.\n- Keep one small detail from this place.\n- Leave room for another interpretation.",
+    "html": "<h1>Through the Quiet</h1>\n<p>Mock chapter 5 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
+    "excerpt": "Through the Quiet Mock chapter 5 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before movi",
+    "references": [],
+    "source": "stars/first-star/stages/5-crucifixion.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "essays/5-crucifixion",
+        "title": "Through the Quiet",
+        "type": "Essay",
+        "label": "Companion essay"
+      },
+      {
+        "key": "tracks/5-mock-track",
+        "title": "Through the Quiet",
+        "type": "AlbumTrack",
+        "label": "Album track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stages/2-fall",
+    "id": "2-fall",
+    "group": "stages",
+    "type": "Stage",
+    "title": "Fall",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# A Map of Missing Things\n\nMock chapter 2 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.\n\n## Field notes\n\n- Listen before moving on.\n- Keep one small detail from this place.\n- Leave room for another interpretation.",
+    "html": "<h1>A Map of Missing Things</h1>\n<p>Mock chapter 2 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
+    "excerpt": "A Map of Missing Things Mock chapter 2 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen befor",
+    "references": [],
+    "source": "stars/first-star/stages/2-fall.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "essays/2-fall",
+        "title": "A Map of Missing Things",
+        "type": "Essay",
+        "label": "Companion essay"
+      },
+      {
+        "key": "tracks/2-mock-track",
+        "title": "A Map of Missing Things",
+        "type": "AlbumTrack",
+        "label": "Album track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "albums/album-1",
+    "id": "album-1",
+    "group": "albums",
+    "type": "Album",
+    "title": "First Light — Mock Album",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# First Light\n\nA fictional collection for exploring the Codex. Seven chapters trace a journey from the first signal to a place of belonging.\n\n**Development fixture:** all prose and musical arrangements in this catalog are invented.",
+    "html": "<h1>First Light</h1>\n<p>A fictional collection for exploring the Codex. Seven chapters trace a journey from the first signal to a place of belonging.</p>\n<p><strong>Development fixture:</strong> all prose and musical arrangements in this catalog are invented.</p>\n",
+    "excerpt": "First Light A fictional collection for exploring the Codex. Seven chapters trace a journey from the first signal to a place of belonging. Development fixture: all prose and musical",
+    "references": [],
+    "source": "stars/first-star/albums/album-1.md",
+    "links": [
+      {
+        "key": "essays/0-what-is-star",
+        "title": "What Is a Star? — Mock Introduction",
+        "type": "Essay",
+        "label": "Introduction"
+      },
+      {
+        "key": "stages/1-creation",
+        "title": "Creation",
+        "type": "Stage",
+        "label": "Stage"
+      },
+      {
+        "key": "essays/1-creation",
+        "title": "The First Signal",
+        "type": "Essay",
+        "label": "Essay"
+      },
+      {
+        "key": "tracks/1-mock-track",
+        "title": "The First Signal",
+        "type": "AlbumTrack",
+        "label": "Track 1"
+      },
+      {
+        "key": "stages/2-fall",
+        "title": "Fall",
+        "type": "Stage",
+        "label": "Stage"
+      },
+      {
+        "key": "essays/2-fall",
+        "title": "A Map of Missing Things",
+        "type": "Essay",
+        "label": "Essay"
+      },
+      {
+        "key": "tracks/2-mock-track",
+        "title": "A Map of Missing Things",
+        "type": "AlbumTrack",
+        "label": "Track 2"
+      },
+      {
+        "key": "stages/3-promise",
+        "title": "Promise",
+        "type": "Stage",
+        "label": "Stage"
+      },
+      {
+        "key": "essays/3-promise",
+        "title": "A Light Left On",
+        "type": "Essay",
+        "label": "Essay"
+      },
+      {
+        "key": "tracks/3-mock-track",
+        "title": "A Light Left On",
+        "type": "AlbumTrack",
+        "label": "Track 3"
+      },
+      {
+        "key": "stages/4-incarnation",
+        "title": "Incarnation",
+        "type": "Stage",
+        "label": "Stage"
+      },
+      {
+        "key": "essays/4-incarnation",
+        "title": "Learning to Land",
+        "type": "Essay",
+        "label": "Essay"
+      },
+      {
+        "key": "tracks/4-mock-track",
+        "title": "Learning to Land",
+        "type": "AlbumTrack",
+        "label": "Track 4"
+      },
+      {
+        "key": "stages/5-crucifixion",
+        "title": "Crucifixion",
+        "type": "Stage",
+        "label": "Stage"
+      },
+      {
+        "key": "essays/5-crucifixion",
+        "title": "Through the Quiet",
+        "type": "Essay",
+        "label": "Essay"
+      },
+      {
+        "key": "tracks/5-mock-track",
+        "title": "Through the Quiet",
+        "type": "AlbumTrack",
+        "label": "Track 5"
+      },
+      {
+        "key": "stages/6-resurrection",
+        "title": "Resurrection",
+        "type": "Stage",
+        "label": "Stage"
+      },
+      {
+        "key": "essays/6-resurrection",
+        "title": "Returning to the Surface",
+        "type": "Essay",
+        "label": "Essay"
+      },
+      {
+        "key": "tracks/6-mock-track",
+        "title": "Returning to the Surface",
+        "type": "AlbumTrack",
+        "label": "Track 6"
+      },
+      {
+        "key": "stages/7-love",
+        "title": "Love",
+        "type": "Stage",
+        "label": "Stage"
+      },
+      {
+        "key": "essays/7-love",
+        "title": "A Place for Every Voice",
+        "type": "Essay",
+        "label": "Essay"
+      },
+      {
+        "key": "tracks/7-mock-track",
+        "title": "A Place for Every Voice",
+        "type": "AlbumTrack",
+        "label": "Track 7"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "songs/mock-home",
+    "id": "mock-home",
+    "group": "songs",
+    "type": "Song",
+    "title": "Home Frequency",
+    "status": "unwritten",
+    "progress": "idea",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "",
+    "html": "",
+    "excerpt": "A place for work still to come.",
+    "references": [],
+    "source": "stars/first-star/songs/mock-home.md",
+    "links": [
+      {
+        "key": "tracks/3-mock-track",
+        "title": "A Light Left On",
+        "type": "AlbumTrack",
+        "label": "Used in track"
+      },
+      {
+        "key": "tracks/6-mock-track",
+        "title": "Returning to the Surface",
+        "type": "AlbumTrack",
+        "label": "Used in track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stages/4-incarnation",
+    "id": "4-incarnation",
+    "group": "stages",
+    "type": "Stage",
+    "title": "Incarnation",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# Learning to Land\n\nMock chapter 4 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.\n\n## Field notes\n\n- Listen before moving on.\n- Keep one small detail from this place.\n- Leave room for another interpretation.",
+    "html": "<h1>Learning to Land</h1>\n<p>Mock chapter 4 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
+    "excerpt": "Learning to Land Mock chapter 4 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before movin",
+    "references": [],
+    "source": "stars/first-star/stages/4-incarnation.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "essays/4-incarnation",
+        "title": "Learning to Land",
+        "type": "Essay",
+        "label": "Companion essay"
+      },
+      {
+        "key": "tracks/4-mock-track",
+        "title": "Learning to Land",
+        "type": "AlbumTrack",
+        "label": "Album track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "tracks/4-mock-track",
+    "id": "4-mock-track",
+    "group": "tracks",
+    "type": "AlbumTrack",
+    "title": "Learning to Land",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": "albums/album-1",
+    "narrativeStage": "stages/4-incarnation",
+    "trackNumber": 4,
+    "sources": [
+      {
+        "song": "songs/mock-signal",
+        "part": "Reprise and instrumental motif"
+      }
+    ],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "Mock arrangement notes for track 4. The source song is reinterpreted to match this chapter.",
+    "html": "<p>Mock arrangement notes for track 4. The source song is reinterpreted to match this chapter.</p>\n",
+    "excerpt": "Mock arrangement notes for track 4. The source song is reinterpreted to match this chapter.",
+    "references": [],
+    "source": "stars/first-star/tracks/4-mock-track.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "stages/4-incarnation",
+        "title": "Incarnation",
+        "type": "Stage",
+        "label": "Narrative stage"
+      },
+      {
+        "key": "songs/mock-signal",
+        "title": "Signal in the Static",
+        "type": "Song",
+        "label": "Source song: Reprise and instrumental motif"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/4-incarnation",
+    "id": "4-incarnation",
+    "group": "essays",
+    "type": "Essay",
+    "title": "Learning to Land",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# Learning to Land\n\nThis fictional essay accompanies the incarnation stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>Learning to Land</h1>\n<p>This fictional essay accompanies the incarnation stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "Learning to Land This fictional essay accompanies the incarnation stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint t",
+    "references": [],
+    "source": "stars/first-star/essays/4-incarnation.md",
+    "links": [
+      {
+        "key": "stages/4-incarnation",
+        "title": "Incarnation",
+        "type": "Stage",
+        "label": "Album stage"
+      },
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stages/7-love",
+    "id": "7-love",
+    "group": "stages",
+    "type": "Stage",
+    "title": "Love",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# A Place for Every Voice\n\nMock chapter 7 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.\n\n## Field notes\n\n- Listen before moving on.\n- Keep one small detail from this place.\n- Leave room for another interpretation.",
+    "html": "<h1>A Place for Every Voice</h1>\n<p>Mock chapter 7 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
+    "excerpt": "A Place for Every Voice Mock chapter 7 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen befor",
+    "references": [],
+    "source": "stars/first-star/stages/7-love.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "essays/7-love",
+        "title": "A Place for Every Voice",
+        "type": "Essay",
+        "label": "Companion essay"
+      },
+      {
+        "key": "tracks/7-mock-track",
+        "title": "A Place for Every Voice",
+        "type": "AlbumTrack",
+        "label": "Album track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stages/3-promise",
+    "id": "3-promise",
+    "group": "stages",
+    "type": "Stage",
+    "title": "Promise",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# A Light Left On\n\nMock chapter 3 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.\n\n## Field notes\n\n- Listen before moving on.\n- Keep one small detail from this place.\n- Leave room for another interpretation.",
+    "html": "<h1>A Light Left On</h1>\n<p>Mock chapter 3 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
+    "excerpt": "A Light Left On Mock chapter 3 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before moving",
+    "references": [],
+    "source": "stars/first-star/stages/3-promise.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "essays/3-promise",
+        "title": "A Light Left On",
+        "type": "Essay",
+        "label": "Companion essay"
+      },
+      {
+        "key": "tracks/3-mock-track",
+        "title": "A Light Left On",
+        "type": "AlbumTrack",
+        "label": "Album track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stages/6-resurrection",
+    "id": "6-resurrection",
+    "group": "stages",
+    "type": "Stage",
+    "title": "Resurrection",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# Returning to the Surface\n\nMock chapter 6 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.\n\n## Field notes\n\n- Listen before moving on.\n- Keep one small detail from this place.\n- Leave room for another interpretation.",
+    "html": "<h1>Returning to the Surface</h1>\n<p>Mock chapter 6 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
+    "excerpt": "Returning to the Surface Mock chapter 6 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen befo",
+    "references": [],
+    "source": "stars/first-star/stages/6-resurrection.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "essays/6-resurrection",
+        "title": "Returning to the Surface",
+        "type": "Essay",
+        "label": "Companion essay"
+      },
+      {
+        "key": "tracks/6-mock-track",
+        "title": "Returning to the Surface",
+        "type": "AlbumTrack",
+        "label": "Album track"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "tracks/6-mock-track",
+    "id": "6-mock-track",
+    "group": "tracks",
+    "type": "AlbumTrack",
+    "title": "Returning to the Surface",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": "albums/album-1",
+    "narrativeStage": "stages/6-resurrection",
+    "trackNumber": 6,
+    "sources": [
+      {
+        "song": "songs/mock-home",
+        "part": "Reprise and instrumental motif"
+      }
+    ],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "Mock arrangement notes for track 6. The source song is reinterpreted to match this chapter.",
+    "html": "<p>Mock arrangement notes for track 6. The source song is reinterpreted to match this chapter.</p>\n",
+    "excerpt": "Mock arrangement notes for track 6. The source song is reinterpreted to match this chapter.",
+    "references": [],
+    "source": "stars/first-star/tracks/6-mock-track.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "stages/6-resurrection",
+        "title": "Resurrection",
+        "type": "Stage",
+        "label": "Narrative stage"
+      },
+      {
+        "key": "songs/mock-home",
+        "title": "Home Frequency",
+        "type": "Song",
+        "label": "Source song: Reprise and instrumental motif"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/6-resurrection",
+    "id": "6-resurrection",
+    "group": "essays",
+    "type": "Essay",
+    "title": "Returning to the Surface",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# Returning to the Surface\n\nThis fictional essay accompanies the resurrection stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>Returning to the Surface</h1>\n<p>This fictional essay accompanies the resurrection stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "Returning to the Surface This fictional essay accompanies the resurrection stage. The journey is measured in what the traveler notices, as much as in distance. A small observation ",
+    "references": [],
+    "source": "stars/first-star/essays/6-resurrection.md",
+    "links": [
+      {
+        "key": "stages/6-resurrection",
+        "title": "Resurrection",
+        "type": "Stage",
+        "label": "Album stage"
+      },
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "mixes/mock-signal-demo",
+    "id": "mock-signal-demo",
+    "group": "mixes",
+    "type": "Mix",
+    "title": "Signal — Demo Mix",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": "songs/mock-signal",
+    "channels": [],
+    "file": "mock-signal-demo.mp3",
+    "audio": "/audio/mixes/mock-signal-demo.mp3",
+    "normalized": true,
+    "duration": 187,
+    "mixDate": "2026-01-02T00:00:00.000Z",
+    "body": "Mock mix notes: a dry vocal, a soft pulse, and an unfinished ending. Audio is a placeholder and is not included.",
+    "html": "<p>Mock mix notes: a dry vocal, a soft pulse, and an unfinished ending. Audio is a placeholder and is not included.</p>\n",
+    "excerpt": "Mock mix notes: a dry vocal, a soft pulse, and an unfinished ending. Audio is a placeholder and is not included.",
+    "references": [],
+    "source": "stars/first-star/mixes/mock-signal-demo.md",
+    "links": [
+      {
+        "key": "songs/mock-signal",
+        "title": "Signal in the Static",
+        "type": "Song",
+        "label": "Song"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "stems/mock-signal-stems",
+    "id": "mock-signal-stems",
+    "group": "stems",
+    "type": "Stems",
+    "title": "Signal — Stem Session",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": "songs/mock-signal",
+    "channels": [
+      {
+        "label": "Voice",
+        "file": "mock-signal-voice.mp3",
+        "audio": "/audio/stems/mock-signal-voice.mp3"
+      },
+      {
+        "label": "Pulse",
+        "file": "mock-signal-pulse.mp3",
+        "audio": "/audio/stems/mock-signal-pulse.mp3"
+      },
+      {
+        "label": "Atmosphere",
+        "file": "mock-signal-atmosphere.mp3",
+        "audio": "/audio/stems/mock-signal-atmosphere.mp3"
+      }
+    ],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "A mock three-channel session for designing the stem detail view. Audio files are not included.",
+    "html": "<p>A mock three-channel session for designing the stem detail view. Audio files are not included.</p>\n",
+    "excerpt": "A mock three-channel session for designing the stem detail view. Audio files are not included.",
+    "references": [],
+    "source": "stars/first-star/stems/mock-signal-stems.md",
+    "links": [
+      {
+        "key": "songs/mock-signal",
+        "title": "Signal in the Static",
+        "type": "Song",
+        "label": "Song"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "songs/mock-signal",
+    "id": "mock-signal",
+    "group": "songs",
+    "type": "Song",
+    "title": "Signal in the Static",
+    "status": "draft",
+    "progress": "demo",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": "2025-12-10T00:00:00.000Z",
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# Signal in the Static\n\nA fictional song about recognizing a voice in unfamiliar surroundings.\n\n## Lyrics\n\nA light across the water,\na rhythm through the rain.\n\n## Production notes\n\nBegin with a narrow pulse and let the stereo field slowly open.",
+    "html": "<h1>Signal in the Static</h1>\n<p>A fictional song about recognizing a voice in unfamiliar surroundings.</p>\n<h2>Lyrics</h2>\n<p>A light across the water,\na rhythm through the rain.</p>\n<h2>Production notes</h2>\n<p>Begin with a narrow pulse and let the stereo field slowly open.</p>\n",
+    "excerpt": "Signal in the Static A fictional song about recognizing a voice in unfamiliar surroundings. Lyrics A light across the water, a rhythm through the rain. Production notes Begin with ",
+    "references": [
+      "songs/mock-orbit"
+    ],
+    "source": "stars/first-star/songs/mock-signal.md",
+    "links": [
+      {
+        "key": "tracks/1-mock-track",
+        "title": "The First Signal",
+        "type": "AlbumTrack",
+        "label": "Used in track"
+      },
+      {
+        "key": "tracks/4-mock-track",
+        "title": "Learning to Land",
+        "type": "AlbumTrack",
+        "label": "Used in track"
+      },
+      {
+        "key": "tracks/7-mock-track",
+        "title": "A Place for Every Voice",
+        "type": "AlbumTrack",
+        "label": "Used in track"
+      },
+      {
+        "key": "songs/mock-orbit",
+        "title": "An Orbit Wide Enough to Hold the Things We Cannot Name",
+        "type": "Song",
+        "label": "Related"
+      },
+      {
+        "key": "mixes/mock-signal-demo",
+        "title": "Signal — Demo Mix",
+        "type": "Mix",
+        "label": "Mix"
+      },
+      {
+        "key": "stems/mock-signal-stems",
+        "title": "Signal — Stem Session",
+        "type": "Stems",
+        "label": "Stems"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "tracks/1-mock-track",
+    "id": "1-mock-track",
+    "group": "tracks",
+    "type": "AlbumTrack",
+    "title": "The First Signal",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": "albums/album-1",
+    "narrativeStage": "stages/1-creation",
+    "trackNumber": 1,
+    "sources": [
+      {
+        "song": "songs/mock-signal",
+        "part": "Full song"
+      }
+    ],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "Mock arrangement notes for track 1. The source song is reinterpreted to match this chapter.",
+    "html": "<p>Mock arrangement notes for track 1. The source song is reinterpreted to match this chapter.</p>\n",
+    "excerpt": "Mock arrangement notes for track 1. The source song is reinterpreted to match this chapter.",
+    "references": [],
+    "source": "stars/first-star/tracks/1-mock-track.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "stages/1-creation",
+        "title": "Creation",
+        "type": "Stage",
+        "label": "Narrative stage"
+      },
+      {
+        "key": "songs/mock-signal",
+        "title": "Signal in the Static",
+        "type": "Song",
+        "label": "Source song: Full song"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/1-creation",
+    "id": "1-creation",
+    "group": "essays",
+    "type": "Essay",
+    "title": "The First Signal",
+    "status": "complete",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# The First Signal\n\nThis fictional essay accompanies the creation stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>The First Signal</h1>\n<p>This fictional essay accompanies the creation stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "The First Signal This fictional essay accompanies the creation stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint tone",
+    "references": [],
+    "source": "stars/first-star/essays/1-creation.md",
+    "links": [
+      {
+        "key": "stages/1-creation",
+        "title": "Creation",
+        "type": "Stage",
+        "label": "Album stage"
+      },
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "tracks/5-mock-track",
+    "id": "5-mock-track",
+    "group": "tracks",
+    "type": "AlbumTrack",
+    "title": "Through the Quiet",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": "albums/album-1",
+    "narrativeStage": "stages/5-crucifixion",
+    "trackNumber": 5,
+    "sources": [
+      {
+        "song": "songs/mock-orbit",
+        "part": "Reprise and instrumental motif"
+      }
+    ],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "Mock arrangement notes for track 5. The source song is reinterpreted to match this chapter.",
+    "html": "<p>Mock arrangement notes for track 5. The source song is reinterpreted to match this chapter.</p>\n",
+    "excerpt": "Mock arrangement notes for track 5. The source song is reinterpreted to match this chapter.",
+    "references": [],
+    "source": "stars/first-star/tracks/5-mock-track.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      },
+      {
+        "key": "stages/5-crucifixion",
+        "title": "Crucifixion",
+        "type": "Stage",
+        "label": "Narrative stage"
+      },
+      {
+        "key": "songs/mock-orbit",
+        "title": "An Orbit Wide Enough to Hold the Things We Cannot Name",
+        "type": "Song",
+        "label": "Source song: Reprise and instrumental motif"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/5-crucifixion",
+    "id": "5-crucifixion",
+    "group": "essays",
+    "type": "Essay",
+    "title": "Through the Quiet",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# Through the Quiet\n\nThis fictional essay accompanies the crucifixion stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>Through the Quiet</h1>\n<p>This fictional essay accompanies the crucifixion stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "Through the Quiet This fictional essay accompanies the crucifixion stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint ",
+    "references": [],
+    "source": "stars/first-star/essays/5-crucifixion.md",
+    "links": [
+      {
+        "key": "stages/5-crucifixion",
+        "title": "Crucifixion",
+        "type": "Stage",
+        "label": "Album stage"
+      },
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  },
+  {
+    "key": "essays/0-what-is-star",
+    "id": "0-what-is-star",
+    "group": "essays",
+    "type": "Essay",
+    "title": "What Is a Star? — Mock Introduction",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "songCreated": null,
+    "visibility": "public",
+    "album": null,
+    "narrativeStage": null,
+    "trackNumber": null,
+    "sources": [],
+    "song": null,
+    "channels": [],
+    "file": null,
+    "audio": null,
+    "normalized": false,
+    "duration": null,
+    "mixDate": null,
+    "body": "# What is a star?\n\nFrom far away, every light looks like a destination. Up close, each one becomes a question.\n\n> What do we carry with us when we begin?\n\nThis mock introduction belongs to the album as a whole.",
+    "html": "<h1>What is a star?</h1>\n<p>From far away, every light looks like a destination. Up close, each one becomes a question.</p>\n<blockquote>\n<p>What do we carry with us when we begin?</p>\n</blockquote>\n<p>This mock introduction belongs to the album as a whole.</p>\n",
+    "excerpt": "What is a star? From far away, every light looks like a destination. Up close, each one becomes a question. What do we carry with us when we begin? This mock introduction belongs t",
+    "references": [],
+    "source": "stars/first-star/essays/0-what-is-star.md",
+    "links": [
+      {
+        "key": "albums/album-1",
+        "title": "First Light — Mock Album",
+        "type": "Album",
+        "label": "Album"
+      }
+    ],
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null
+  }
+]

@@ -2,6 +2,40 @@
 
 Run `npm run dev` for the local preview and `npm run build` to typecheck and build.
 
+## Codex mock catalog
+
+`public/catalog.json` is a standalone development fixture, served by Vite at
+`/catalog.json` and copied into production builds. It contains 28 mock entries:
+one album, seven stages, eight essays, seven album tracks, three songs, one mix,
+and one stem session. Open **Device → Codex** to browse types and counts,
+search entries within a type, read entry details, and follow connected entries.
+Back navigation preserves the list filter and restores focus to the opened entry.
+The catalog is validated when loaded, with loading, empty, and retry states.
+The reader supports the fixture's basic Markdown headings, paragraphs, bold text,
+quotes, and lists; it does not inject HTML. Audio playback and journey-based
+unlocking are not connected yet; every entry in the catalog is available.
+
+The top-level value is an array matching the output of first-star's
+`src/lib/catalog.mjs` catalog builder. Entries retain its fields and relationship
+labels, including `key`, `group`, `type`, `body` (Markdown), `html`, `excerpt`,
+and `links`. Keys such as `songs/mock-signal` are the relationship identifiers;
+`id` alone is only unique within its group. Tracks reference an `album`, a
+`narrativeStage`, and source songs; stages connect to companion essays; mixes
+and stems connect to songs. `links` includes the reverse relationships for
+detail-page navigation. Multiple tracks intentionally reuse source songs.
+
+The fixture preserves the seven stage IDs from first-star, but all prose,
+song data, and arrangements are invented. It includes long titles, formatted
+essays, draft/complete/unwritten states, and empty bodies. `source` is a logical
+Markdown path, not an existing file; `sourceUrl`, `historyUrl`, and `updated`
+are null because these mock entries have no source history. Media paths are
+placeholders with no audio files behind them; use them for layout, not playback.
+
+`hud/Codex.tsx` fetches it using the configured Vite base URL.
+No external checkout or content generation step is required.
+Edit this JSON directly for UI experiments; a future exporter can replace it
+with real catalog output. This fixture is included in builds until replaced.
+
 The galaxy is defined in `store/galaxy.ts`. Each body has a stable ID, a visual
 kind, a parent-relative position, and optionally a circular orbit. The black
 hole is the galaxy origin; stars orbit it and planets orbit their parent star.
