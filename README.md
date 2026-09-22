@@ -12,8 +12,8 @@ search entries within a type, read entry details, and follow connected entries.
 Back navigation preserves the list filter and restores focus to the opened entry.
 The catalog is validated when loaded, with loading, empty, and retry states.
 The reader supports the fixture's basic Markdown headings, paragraphs, bold text,
-quotes, and lists; it does not inject HTML. Audio playback and journey-based
-unlocking are not connected yet; every entry in the catalog is available.
+quotes, and lists; it does not inject HTML. Audio playback is not connected yet. Entries unlock progressively with the
+journey; only the album overview and introduction are available on a first visit.
 
 The top-level value is an array matching the output of first-star's
 `src/lib/catalog.mjs` catalog builder. Entries retain its fields and relationship
@@ -80,8 +80,9 @@ planet. **Initiate burn** starts a 45-second transfer to Planet 7. Subsequent
 burns travel inward through Planet 6 to Planet 1. Each arrival holds
 in orbit until the visitor initiates the next burn. Planet 1 orbit is the
 endpoint and has no onward burn. All seven worlds share the existing planet visual
-and appear in the star-system map. A sample discovery unlocks at 22.5 seconds
-and remains available after arrival in planet orbit. The black-hole tutorial is
+and appear in the star-system map. A song entry unlocks at 22.5 seconds
+and remains available after arrival in planet orbit. Arrival unlocks the next
+chapter bundle; additional transit discoveries are configured in the Codex schedule. The black-hole tutorial is
 reserved for a later chapter; the body remains available on the map.
 
 `store/journey.ts` contains pure progression rules, stable stage IDs, checkpoint
@@ -95,7 +96,9 @@ In `npm run dev`, open **Journey lab** at the bottom right:
 - **Enter preview** preserves visitor progress and opens a paused sandbox.
 - Choose any of the 15 stages, scrub any transfer, or load the halfway discovery scenario.
 - Use Play/Pause and 1×, 5×, or 20× playback to test transitions.
-- Expand **Discovery component** to preview its card independently of unlocks.
+- Use **Preview Codex milestone** to jump to any configured unlock. Open the Codex
+  to inspect the entries at that point; the lab also shows the discovered count.
+- Expand **Discovery component** to preview the original sample card independently of unlocks.
 - **Return to visitor** restores the preserved journey and pause state.
 - **Reset visitor journey** (outside preview) restarts the first-visit flow.
 
@@ -111,3 +114,40 @@ selector follow that route automatically. Planet and stage IDs retain their iden
 inward journey, leaving previous outward-route checkpoints under their old key. Stage IDs are distinct from body IDs, allowing a later return to the star
 to have different behavior. Run `npm test` for progression, checkpoint, camera
 continuity, and galaxy regressions, and `npm run build` for the production check.
+
+## Codex unlock authoring
+
+Edit `store/codexSchedule.ts` to decide what unlocks when. Each milestone has a
+stable `id`, a lab `label`, a journey `stage`, and a list of catalog entry keys.
+Omit `afterSeconds` to unlock at stage start (use a planet's orbit stage for
+arrival). Add `afterSeconds` on a transfer stage for an in-transit discovery:
+
+```ts
+{ id: 'demo', label: 'Demo transmission in transit',
+  stage: 'planet-6-transfer', afterSeconds: 22.5,
+  entries: ['mixes/mock-signal-demo'] }
+```
+
+The prototype starts with two welcome entries, unlocks chapter bundles at the
+seven arrivals from Planet 7 inward to Planet 1, and places the Signal song,
+demo mix, and stems in transit. Assign each entry once. The reader validates
+milestone IDs, stage IDs, timing, duplicate assignments, and missing catalog
+keys. Unassigned new entries stay locked until scheduled. Connections never
+unlock entries implicitly, so reused songs cannot reveal future tracks.
+
+`store/codexUnlocks.ts` derives cumulative discoveries from the current saved
+journey. Passing a milestone keeps its entries available, including when a
+large clock step skips its exact threshold. Existing saves immediately receive
+all entries due at their position, with no migration or extra storage. Resetting
+the journey resets discoveries. This relies on the current linear, forward-only
+visitor route; revisiting worlds or branching routes would need a persisted
+record of reached milestones. Changing the schedule also changes which entries
+are available at an existing checkpoint.
+
+The Codex counts and searches discovered entries only, strips locked connections,
+and closes inaccessible detail history when resetting or seeking backward in
+preview. Live visitor unlocks show a brief notification with an **Open Codex**
+button. Loading saved progress and entering, seeking, or leaving preview do not
+announce old discoveries. Preview uses the same rules and preserves the visitor
+save. This is presentation-level discovery: the static catalog is still shipped
+in full, not protected content.

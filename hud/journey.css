@@ -48,6 +48,9 @@
 .journey-controls { position: fixed; right: max(28px, env(safe-area-inset-right)); bottom: max(28px, env(safe-area-inset-bottom)); width: min(320px, calc(100vw - 48px)); }
 .journey-travel { padding: 16px; border: 1px solid #68ffe130; border-radius: 8px; background: #071b22e8; backdrop-filter: blur(12px); }
 .journey-controls .discovery-card { margin: 0 0 14px; max-height: 25dvh; overflow-y: auto; }
+.codex-discovery-notice { margin-bottom: 14px; padding: 14px; border: 1px solid #c6b1ff60; border-radius: 8px; background: #11151df5; color: #c6b1ff; }
+.codex-discovery-notice p { margin: 0 0 10px; font-size: 11px; line-height: 1.6; }
+.codex-discovery-notice button { padding: 5px 8px; margin-right: 6px; border: 1px solid #c6b1ff50; border-radius: 4px; background: #c6b1ff10; color: inherit; font-family: inherit; font-size: 10px; cursor: pointer; }
 @media (max-width: 600px) {
   .journey-hud { top: max(20px, env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left)); width: 220px; }
   .journey-map-launcher { padding: 12px; }

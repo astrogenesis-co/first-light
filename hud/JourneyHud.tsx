@@ -2,7 +2,10 @@ import { useSyncExternalStore } from 'react'
 import { bodies, getBody, type Coordinates } from '../store/galaxy'
 import { mapClock } from '../store/simulation'
 import { useJourneyStore } from '../store/useJourneyStore'
-import { destinations, discoveryUnlocked, getStage, stages, TRANSFER_SECONDS, type StageId } from '../store/journey'
+import { destinations, getStage, stages, TRANSFER_SECONDS, type StageId } from '../store/journey'
+import { codexSchedule } from '../store/codexSchedule'
+import { useCodexProgress } from './useCodexProgress'
+import CodexDiscoveryNotice from './CodexDiscoveryNotice'
 import { farOrbitPosition, FAR_ORBIT_RADIUS } from '../store/journeyPose'
 import './journey.css'
 
@@ -38,10 +41,9 @@ function MiniMap({ bodyId, fromBodyId, transfer }: { bodyId: string; fromBodyId:
   </svg>
 }
 
-export default function JourneyHud({ onOpenMap, mapOpen }: { onOpenMap: () => void; mapOpen: boolean }) {
+export default function JourneyHud({ onOpenMap, onOpenCodex, mapOpen }: { onOpenMap: () => void; onOpenCodex: () => void; mapOpen: boolean }) {
   const stage = useJourneyStore(state => state.journey.stage)
   const seconds = useJourneyStore(state => Math.floor(state.journey.elapsed))
-  const unlocked = useJourneyStore(state => discoveryUnlocked(state.journey))
   const paused = useJourneyStore(state => state.paused)
   const current = getStage(stage)
   const transfer = current.kind === 'transfer'
@@ -57,13 +59,14 @@ export default function JourneyHud({ onOpenMap, mapOpen }: { onOpenMap: () => vo
       </button>
     </section>
     <section className="journey-controls" aria-label="Journey controls">
-      <div aria-live="polite" aria-atomic="true">{unlocked && current.stop === 1 && <DiscoveryCard />}</div>
+      <CodexDiscoveryNotice onOpen={onOpenCodex} />
       {!transfer && next && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ {getBody(next.bodyId).name}</span></button>}
       {transfer && <div className="journey-travel"><div className="journey-progress-label"><span>{paused ? 'Travel paused' : 'In transit'}</span><span>{TRANSFER_SECONDS - seconds}s to orbit</span></div><progress aria-label="Travel progress" max={TRANSFER_SECONDS} value={seconds} /><button className="journey-pause" onClick={() => useJourneyStore.getState().setPaused(!paused)}>{paused ? 'Resume travel' : 'Pause travel'}</button></div>}
     </section>
   </>
 }
 export function JourneyDevTools() {
+  const discoveries = useCodexProgress()
   const preview = useJourneyStore(state => state.preview)
   const paused = useJourneyStore(state => state.paused)
   const speed = useJourneyStore(state => state.speed)
@@ -72,12 +75,17 @@ export function JourneyDevTools() {
   const actions = useJourneyStore.getState()
   return <details className="journey-dev"><summary>Journey lab {preview && '· Preview'}</summary><div className="journey-dev-body">
     <p>{preview ? 'Preview is isolated. Your visitor progress is preserved.' : 'Visitor mode · progress saves automatically.'}</p>
+    <p>Codex · {discoveries.length} entries discovered</p>
     <button onClick={actions.togglePreview}>{preview ? 'Return to visitor' : 'Enter preview'}</button>
     {preview && <>
       <label>Stage<select value={stage} onChange={event => actions.seek(event.target.value as StageId)}>{stages.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
       {getStage(stage).kind === 'transfer' && <label>Travel · {elapsed}s<input aria-label="Scrub travel" type="range" min="0" max={TRANSFER_SECONDS} step="0.1" value={elapsed} onChange={event => actions.seek(stage, Number(event.target.value))} /></label>}
       <div className="journey-dev-row"><button onClick={() => actions.setPaused(!paused)}>{paused ? 'Play' : 'Pause'}</button><label>Speed<select value={speed} onChange={event => actions.setSpeed(Number(event.target.value))}>{[1, 5, 20].map(value => <option key={value} value={value}>{value}×</option>)}</select></label></div>
       <button onClick={() => actions.seek(destinations[0].transferId, TRANSFER_SECONDS / 2)}>Load halfway / discovery</button>
+      <label>Preview Codex milestone<select value="" onChange={event => {
+        const milestone = codexSchedule.find(item => item.id === event.target.value)
+        if (milestone) actions.seek(milestone.stage, milestone.afterSeconds ?? 0)
+      }}><option value="" disabled>Jump to an unlock…</option>{codexSchedule.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
       <details><summary>Discovery component</summary><DiscoveryCard /></details>
     </>}
     <button onClick={actions.reset}>{preview ? 'Reset preview' : 'Reset visitor journey'}</button>
