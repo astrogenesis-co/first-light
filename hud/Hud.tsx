@@ -15,6 +15,7 @@ export default function Hud() {
   const device = useRef<HTMLDialogElement>(null)
   const launcher = useRef<HTMLButtonElement>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [activeApp, setActiveApp] = useState<'map' | 'codex'>('map')
 
   function openDevice() {
     device.current?.showModal()
@@ -55,24 +56,45 @@ export default function Hud() {
       >
         <div className="device-shell">
           <header className="device-header">
-            <div className="device-brand"><DeviceGlyph /><span>First light <span className="device-brand-divider">/</span> Field device</span></div>
+            <div className="device-header-heading">
+              <div className="device-brand"><DeviceGlyph /><span>First light <span className="device-brand-divider">/</span> Field device</span></div>
+              <h1 id="device-title">{activeApp === 'map' ? 'Map' : 'Codex'}</h1>
+            </div>
+            <div className="device-header-actions">
+              {activeApp === 'map' && <span className="device-status"><i /> Navigation online</span>}
             <button className="device-close" onClick={closeDevice} aria-label="Close device" autoFocus>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg>
             </button>
+            </div>
           </header>
 
           <div className="device-body">
-            <aside className="device-sidebar" aria-label="Device modules">
-              <span className="device-eyebrow">Workspace</span>
-              <div className="device-module device-module-active" aria-current="page"><span>01</span> Overview <span className="device-module-marker">↗</span></div>
-              <button className="device-module" disabled><span>02</span> Journal <span className="device-module-marker">—</span></button>
-              <button className="device-module" disabled><span>03</span> Archive <span className="device-module-marker">—</span></button>
+            <aside className="device-sidebar" aria-label="Device apps">
+              <span className="device-eyebrow">Apps</span>
+              <div className="device-apps">
+                <button className="device-app" aria-pressed={activeApp === 'map'} aria-controls="device-map" onClick={() => setActiveApp('map')}>
+                  <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5ZM9 3v16M15 5v16" /></svg></span>
+                  <span>Map</span>
+                </button>
+                <button className="device-app device-app-codex" aria-pressed={activeApp === 'codex'} aria-controls="device-codex" onClick={() => setActiveApp('codex')}>
+                  <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5C9 3 5 3 3 4v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1Zm0 0v15M6 8h3M15 8h3M6 12h3M15 12h3" /></svg></span>
+                  <span>Codex</span>
+                </button>
+                <button className="device-app" disabled>
+                  <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="15" height="18" rx="2" /><path d="M3 7h4M3 12h4M3 17h4M10 8h6M10 12h6" /></svg></span>
+                  <span>Journal</span>
+                </button>
+                <button className="device-app" disabled>
+                  <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v11h16V9M9 13h6" /><rect x="3" y="4" width="18" height="5" rx="1" /></svg></span>
+                  <span>Archive</span>
+                </button>
+              </div>
               <div className="device-sidebar-note"><span className="device-eyebrow">Personal terminal</span><p>A place to keep<br />what you discover.</p><span className="device-serial">FL / 001</span></div>
             </aside>
 
-            <section className="device-content">
-              <div className="device-page-heading"><div><span className="device-eyebrow">Your workspace</span><h1 id="device-title">Overview</h1></div><span className="device-status"><i /> Navigation online</span></div>
-              {isOpen && <GalaxyMap />}
+            <section className="device-content" aria-labelledby="device-title">
+              <div id="device-map" hidden={activeApp !== 'map'}>{isOpen && <GalaxyMap />}</div>
+              <div id="device-codex" hidden={activeApp !== 'codex'} />
             </section>
           </div>
 
