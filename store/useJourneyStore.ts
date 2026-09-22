@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { advanceJourney, burn, initialJourney, restoreJourney, scenario, type Journey, type StageId } from './journey'
 
-const SAVE_KEY = 'first-light.journey.v1'
+const SAVE_KEY = 'first-light.journey.v2'
 function readSave() {
   try { return restoreJourney(localStorage.getItem(SAVE_KEY)) } catch { return initialJourney() }
 }
