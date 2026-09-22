@@ -54,6 +54,11 @@ export function createSimulation(catalog: readonly CelestialBody[]) {
       if (!position) throw new Error(`Unknown celestial body: ${id}`)
       return position
     },
+    seek(seconds: number) {
+      if (!Number.isFinite(seconds) || seconds < 0) return
+      elapsedSeconds = seconds
+      update()
+    },
     advance(delta: number) {
       if (!Number.isFinite(delta)) return
       elapsedSeconds += Math.max(0, Math.min(delta, 0.1))
@@ -79,7 +84,7 @@ export const mapClock = {
   },
   getSnapshot: () => snapshot,
   publish() {
-    if (!listeners.size || simulation.elapsedSeconds - lastPublished < 0.1 - 1e-9) return
+    if (!listeners.size || Math.abs(simulation.elapsedSeconds - lastPublished) < 0.1 - 1e-9) return
     lastPublished = simulation.elapsedSeconds
     snapshot = captureSnapshot()
     listeners.forEach((listener) => listener())

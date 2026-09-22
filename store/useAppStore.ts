@@ -7,7 +7,7 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>((set) => ({
-  selectedBodyId: 'galactic-core',
+  selectedBodyId: 'first-star',
   selectBody: (id) => {
     if (id !== useAppStore.getState().selectedBodyId && bodies.some((body) => body.id === id)) {
       set({ selectedBodyId: id })

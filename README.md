@@ -12,13 +12,12 @@ illustrative rather than astronomical. Orbit periods are in simulation seconds.
 The simulation uses the same orbit math, resolving each body once per frame into
 reused coordinate buffers in parent-first order. The scene, camera, field-device
 map, and planet lighting consume those cached positions.
-`store/useAppStore.ts` owns the selected destination; `store/simulation.ts` owns
-the simulation clock, outside React state.
-Selection changes the camera target without remounting bodies or resetting time.
-The clock caps frame steps to avoid jumps after a tab is backgrounded; state is
-session-only and resets on page reload.
+`store/useAppStore.ts` owns the body being inspected on the map. Map selection
+does not change the camera or journey. `store/useJourneyStore.ts` owns visitor
+progress; the simulation follows its clock without remounting the galaxy.
+Hidden tabs pause progress and frame steps are capped to prevent background jumps.
 
-Open **Device** to select destinations and inspect coordinates. **Galaxy** shows
+Open **Device** to inspect bodies and inspect coordinates. **Galaxy** shows
 the core and its stars; **Star system** shows the selected star (or the selected
 planet's parent) and its planets. The map projects the X/Z plane; the coordinate
 readout includes elevation (Y).
@@ -38,3 +37,38 @@ hierarchy-validation, and map-subscription regression checks.
 
 This bounds per-frame work for the current scene; very large populations will
 still need instancing, spatial culling, and loading/unloading of detailed assets.
+
+
+## Journey development
+
+The first visit starts in far orbit around the star. **Initiate burn** starts a
+45-second transfer to the first planet. A sample discovery unlocks at 22.5 seconds
+and remains available after arrival in planet orbit. The black-hole tutorial is
+reserved for a later chapter; the body remains available on the map.
+
+`store/journey.ts` contains pure progression rules, stable stage IDs, checkpoint
+validation, and preview scenarios. `store/journeyPose.ts` defines a continuous
+camera path between moving bodies. This is an authored cinematic trajectory,
+not a physical burn/orbital mechanics simulation. `hud/JourneyHud.tsx` contains
+the visitor HUD, sample content card, and development panel.
+
+In `npm run dev`, open **Journey lab** at the bottom right:
+
+- **Enter preview** preserves visitor progress and opens a paused sandbox.
+- Choose any stage, scrub the transfer, or load the halfway discovery scenario.
+- Use Play/Pause and 1×, 5×, or 20× playback to test transitions.
+- Expand **Discovery component** to preview its card independently of unlocks.
+- **Return to visitor** restores the preserved journey and pause state.
+- **Reset visitor journey** (outside preview) restarts the first-visit flow.
+
+Visitor checkpoints save locally every second and when leaving/hiding the page.
+Reloading resumes the saved position with no offline travel. Preview changes are
+never saved over visitor progress; reloading during preview restores the visitor.
+Unavailable storage falls back to in-memory progress. Invalid or obsolete saves
+reset safely. Development controls are omitted from production builds.
+
+To extend the route, add a stable stage definition and its transition/unlock rules
+in `journey.ts`, extend camera poses in `journeyPose.ts`, then add the corresponding
+content. Stage IDs are distinct from body IDs, allowing a later return to the star
+to have different behavior. Run `npm test` for progression, checkpoint, camera
+continuity, and galaxy regressions, and `npm run build` for the production check.

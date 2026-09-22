@@ -1,24 +1,28 @@
+import { useEffect } from 'react'
 import Scene from './scene/Scene'
 import './scene/scene.css'
 import Hud from './hud/Hud'
-import { bodies, getBody } from './store/galaxy'
-import { useAppStore } from './store/useAppStore'
+import JourneyHud, { JourneyDevTools } from './hud/JourneyHud'
+import { saveJourney } from './store/useJourneyStore'
 
 export default function App() {
-  const selectedBodyId = useAppStore((state) => state.selectedBodyId)
-  const selectBody = useAppStore((state) => state.selectBody)
-
+  useEffect(() => {
+    const interval = window.setInterval(saveJourney, 1000)
+    const onVisibility = () => { if (document.hidden) saveJourney() }
+    window.addEventListener('pagehide', saveJourney)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      window.clearInterval(interval)
+      window.removeEventListener('pagehide', saveJourney)
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [saveJourney])
   return (
-    <main aria-label={`Exploring the galaxy · ${getBody(selectedBodyId).name}`}>
+    <main aria-label="First light · Your journey">
       <Scene />
-      <nav className="scene-switcher" aria-label="Travel to celestial body">
-        {bodies.map((body) => (
-          <button key={body.id} onClick={() => selectBody(body.id)} aria-pressed={selectedBodyId === body.id}>
-            {body.name}
-          </button>
-        ))}
-      </nav>
+      <JourneyHud />
       <Hud />
+      {import.meta.env.DEV && <JourneyDevTools />}
     </main>
   )
 }

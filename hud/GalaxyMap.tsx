@@ -4,7 +4,7 @@ import { useAppStore } from '../store/useAppStore'
 import { mapClock } from '../store/simulation'
 
 export default function GalaxyMap() {
-  const [scope, setScope] = useState<'galaxy' | 'system'>('galaxy')
+  const [scope, setScope] = useState<'galaxy' | 'system'>('system')
   const selectedBodyId = useAppStore((state) => state.selectedBodyId)
   const positions = useSyncExternalStore(mapClock.subscribe, mapClock.getSnapshot)
   const selectBody = useAppStore((state) => state.selectBody)
@@ -28,7 +28,7 @@ export default function GalaxyMap() {
             <button aria-pressed={scope === 'system'} onClick={() => setScope('system')}>Star system</button>
           </div>
         </div>
-        <svg className="galaxy-map" viewBox="0 0 480 260" role="group" aria-label={`${scope === 'galaxy' ? 'Galaxy' : star?.name + ' system'} map. Select a body to travel.`}>
+        <svg className="galaxy-map" viewBox="0 0 480 260" role="group" aria-label={`${scope === 'galaxy' ? 'Galaxy' : star?.name + ' system'} map. Select a body to inspect.`}>
           <path className="device-grid" d="M20 130h440M240 10v240" />
           {visible.map((body) => {
             const point = positions.get(body.id)!
@@ -37,7 +37,7 @@ export default function GalaxyMap() {
             return (
               <g key={body.id}>
                 {body.orbit && body.id !== centerId && <ellipse className="map-orbit" cx="240" cy="130" rx={body.orbit.radius * scale} ry={body.orbit.radius * scale * Math.cos(body.orbit.inclination)} />}
-                <g className="map-body" role="button" tabIndex={0} aria-label={`Travel to ${body.name}`} aria-pressed={selectedBodyId === body.id}
+                <g className="map-body" role="button" tabIndex={0} aria-label={`Inspect ${body.name}`} aria-pressed={selectedBodyId === body.id}
                   onClick={() => selectBody(body.id)} onKeyDown={(event) => {
                     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectBody(body.id) }
                   }}>
@@ -59,10 +59,10 @@ export default function GalaxyMap() {
         }}>{body.name}</button>)}
       </div>
       <div className="device-notes">
-        <span className="device-eyebrow">Selected destination · {selected.id}</span>
+        <span className="device-eyebrow">Selected body · {selected.id}</span>
         <h2>{selected.name}{selected.parentId ? ` / Orbits ${getBody(selected.parentId).name.toLowerCase()}` : ' / Galactic center'}</h2>
         <p className="map-coordinates">X {position[0].toFixed(1)} · Y {position[1].toFixed(1)} · Z {position[2].toFixed(1)}</p>
-        <p>Galaxy coordinates · world units · select a destination to travel.</p>
+        <p>Galaxy coordinates · world units · select a body to inspect. Travel follows your journey.</p>
       </div>
     </>
   )

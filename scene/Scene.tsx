@@ -10,6 +10,7 @@ import Planet from './Planet'
 import { bodies, type CelestialBody } from '../store/galaxy'
 import { useAppStore } from '../store/useAppStore'
 import { simulation, mapClock } from '../store/simulation'
+import { useJourneyStore } from '../store/useJourneyStore'
 
 function Body({ body }: { body: CelestialBody }) {
   const group = useRef<Group>(null)
@@ -43,7 +44,9 @@ function Body({ body }: { body: CelestialBody }) {
 
 function GalaxyClock() {
   useFrame((_, delta) => {
-    simulation.advance(delta)
+    // Hidden tabs do not accumulate travel; cap the first frame after a stall.
+    if (!document.hidden) useJourneyStore.getState().tick(Math.min(delta, 0.1))
+    simulation.seek(useJourneyStore.getState().journey.time)
     mapClock.publish()
   }, -2)
   return null
