@@ -112,3 +112,20 @@
   .device-dialog[open] { animation: none; }
   .device-launcher { transition: none; }
 }
+
+.galaxy-map { display: block; width: 100%; height: auto; }
+.map-scopes, .map-destinations { display: flex; gap: 5px; flex-wrap: wrap; }
+.map-scopes button, .map-destinations button { border: 1px solid var(--device-line); border-radius: 4px; padding: 6px 9px; background: transparent; color: var(--device-muted); font: 10px monospace; cursor: pointer; }
+.map-scopes button[aria-pressed="true"], .map-destinations button[aria-pressed="true"] { color: var(--device-amber); background: #e6b77f18; }
+.map-scopes button:focus-visible, .map-destinations button:focus-visible { outline: 2px solid var(--device-amber); outline-offset: 2px; }
+.map-orbit { fill: none; stroke: #d8c8b140; stroke-width: 1; stroke-dasharray: 3 6; }
+.map-body { cursor: pointer; outline: none; }
+.map-hit { fill: transparent; }
+.map-dot { fill: #e6b77f; }
+.map-dot-blackhole { fill: #020308; stroke: #e6b77f; stroke-width: 2; }
+.map-dot-planet { fill: #87bcd2; }
+.map-selection { fill: none; stroke: #eee8df; stroke-width: 1; }
+.map-body text { fill: var(--device-text); font: 11px monospace; }
+.map-body:hover .map-hit, .map-body:focus-visible .map-hit { fill: #e6b77f25; stroke: #e6b77f; }
+.map-destinations { margin-top: 16px; }
+.map-coordinates { font-family: monospace; padding-bottom: 7px; }

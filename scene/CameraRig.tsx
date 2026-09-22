@@ -1,23 +1,30 @@
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { Vector3 } from 'three'
+import { getBody } from '../store/galaxy'
+import { simulation } from '../store/simulation'
+import { useAppStore } from '../store/useAppStore'
 
-const ORBIT_RADIUS = 18
-const ORBIT_SPEED = 0.035
-
-export default function CameraRig({ speed = ORBIT_SPEED, framing = 0.85 }: { speed?: number; framing?: number }) {
+export default function CameraRig() {
   const angle = useRef(0)
+  const target = useRef(new Vector3())
+  const destination = useRef(new Vector3())
 
   useFrame(({ camera, size }, delta) => {
-    // Cap the step so returning to a backgrounded tab doesn't jump the camera.
-    angle.current += Math.min(delta, 0.1) * speed
-    const distance = ORBIT_RADIUS * Math.max(1, framing / (size.width / size.height))
+    const { selectedBodyId } = useAppStore.getState()
+    const planet = getBody(selectedBodyId).kind === 'planet'
+    const step = Math.min(delta, 0.1)
+    angle.current += step * (planet ? -0.035 : 0.035)
+    destination.current.set(...simulation.position(selectedBodyId))
+    target.current.lerp(destination.current, 1 - Math.exp(-step * 4))
+    const distance = 18 * Math.max(1, (planet ? 1.35 : 0.85) / (size.width / size.height))
     camera.position.set(
-      Math.sin(angle.current) * distance,
-      distance * 0.12,
-      Math.cos(angle.current) * distance,
+      target.current.x + Math.sin(angle.current) * distance,
+      target.current.y + distance * 0.12,
+      target.current.z + Math.cos(angle.current) * distance,
     )
-    camera.lookAt(0, 0, 0)
-  })
+    camera.lookAt(target.current)
+  }, -1)
 
   return null
 }

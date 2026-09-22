@@ -1,18 +1,22 @@
-import { useState } from 'react'
-import Scene, { type SceneKind } from './scene/Scene'
+import Scene from './scene/Scene'
 import './scene/scene.css'
 import Hud from './hud/Hud'
+import { bodies, getBody } from './store/galaxy'
+import { useAppStore } from './store/useAppStore'
 
 export default function App() {
-  const [scene, setScene] = useState<SceneKind>('blackhole')
+  const selectedBodyId = useAppStore((state) => state.selectedBodyId)
+  const selectBody = useAppStore((state) => state.selectBody)
 
   return (
-    <main aria-label={`An orbit around ${scene === 'planet' ? 'a planet' : scene === 'star' ? 'a star' : 'a black hole'}`}>
-      <Scene kind={scene} />
-      <nav className="scene-switcher" aria-label="Scene">
-        <button onClick={() => setScene('blackhole')} aria-pressed={scene === 'blackhole'}>Black hole</button>
-        <button onClick={() => setScene('star')} aria-pressed={scene === 'star'}>Star</button>
-        <button onClick={() => setScene('planet')} aria-pressed={scene === 'planet'}>Planet</button>
+    <main aria-label={`Exploring the galaxy · ${getBody(selectedBodyId).name}`}>
+      <Scene />
+      <nav className="scene-switcher" aria-label="Travel to celestial body">
+        {bodies.map((body) => (
+          <button key={body.id} onClick={() => selectBody(body.id)} aria-pressed={selectedBodyId === body.id}>
+            {body.name}
+          </button>
+        ))}
       </nav>
       <Hud />
     </main>

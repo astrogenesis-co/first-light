@@ -1,7 +1,8 @@
-import { useMemo, useRef } from 'react'
+import { useMemo, useRef, type RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { AdditiveBlending, Group, Vector3 } from 'three'
-import Star from './Star'
+import { getBody } from '../store/galaxy'
+import { simulation } from '../store/simulation'
 
 const noise = /* glsl */ `
   float hash(vec3 p) {
@@ -108,33 +109,24 @@ const atmosphere = /* glsl */ `
   }
 `
 
-export default function Planet() {
+export default function Planet({ bodyId, active }: { bodyId: string; active: RefObject<boolean> }) {
   const surfaceGroup = useRef<Group>(null)
   const cloudGroup = useRef<Group>(null)
-  const starGroup = useRef<Group>(null)
-  const time = useRef(0)
   const uniforms = useMemo(() => ({
     uStarPosition: { value: new Vector3(-15, 5, -38) },
   }), [])
 
-  useFrame((_, delta) => {
-    time.current += Math.min(delta, 0.1)
-    // Planet-centered reference frame: a slow year around the parent star,
-    // independent of the much faster camera orbit and the planet's own spin.
-    const year = time.current * 0.002
-    uniforms.uStarPosition.value.set(
-      -15 * Math.cos(year) - 38 * Math.sin(year),
-      5,
-      15 * Math.sin(year) - 38 * Math.cos(year),
-    )
-    starGroup.current?.position.copy(uniforms.uStarPosition.value)
-    if (surfaceGroup.current) surfaceGroup.current.rotation.y = time.current * 0.018
-    if (cloudGroup.current) cloudGroup.current.rotation.y = time.current * 0.023
+  const parentId = getBody(bodyId).parentId
+  useFrame(() => {
+    if (!active.current) return
+    const time = simulation.elapsedSeconds
+    if (parentId) uniforms.uStarPosition.value.set(...simulation.position(parentId))
+    if (surfaceGroup.current) surfaceGroup.current.rotation.y = time * 0.018
+    if (cloudGroup.current) cloudGroup.current.rotation.y = time * 0.023
   })
 
   return (
     <>
-      <group ref={starGroup} position={[-15, 5, -38]}><Star /></group>
       <group rotation={[0, 0, 0.18]}>
         <group ref={surfaceGroup}>
           <mesh>

@@ -1,4 +1,5 @@
-import { useMemo } from 'react'
+import { simulation } from '../store/simulation'
+import { useMemo, type RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { AdditiveBlending, DoubleSide, Vector3 } from 'three'
 
@@ -99,14 +100,15 @@ const haloFragment = /* glsl */ `
   }
 `
 
-export default function Blackhole() {
+export default function Blackhole({ active }: { active: RefObject<boolean> }) {
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },
     uDiskNormal: { value: new Vector3(Math.sin(0.06), Math.cos(0.06), 0) },
   }), [])
 
-  useFrame((_, delta) => {
-    uniforms.uTime.value += Math.min(delta, 0.1)
+  useFrame(() => {
+    if (!active.current) return
+    uniforms.uTime.value = simulation.elapsedSeconds
   })
 
   return (
