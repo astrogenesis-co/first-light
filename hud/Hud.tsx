@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import './hud.css'
 import GalaxyMap from './GalaxyMap'
+import Codex from './Codex'
 
 function DeviceGlyph() {
   return (
@@ -94,7 +95,7 @@ export default function Hud() {
 
             <section className="device-content" aria-labelledby="device-title">
               <div id="device-map" hidden={activeApp !== 'map'}>{isOpen && <GalaxyMap />}</div>
-              <div id="device-codex" hidden={activeApp !== 'codex'} />
+              <div id="device-codex" hidden={activeApp !== 'codex'}><Codex /></div>
             </section>
           </div>
 
