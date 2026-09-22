@@ -1,7 +1,7 @@
 import { useMemo, useRef, type RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { AdditiveBlending, Group, Vector3 } from 'three'
-import { getBody } from '../store/galaxy'
+import { BODY_RADII, getBody } from '../store/galaxy'
 import { simulation } from '../store/simulation'
 
 const noise = /* glsl */ `
@@ -130,18 +130,18 @@ export default function Planet({ bodyId, active }: { bodyId: string; active: Ref
       <group rotation={[0, 0, 0.18]}>
         <group ref={surfaceGroup}>
           <mesh>
-            <sphereGeometry args={[3.2, 96, 64]} />
+            <sphereGeometry args={[BODY_RADII.planet, 96, 64]} />
             <shaderMaterial uniforms={uniforms} vertexShader={vertex} fragmentShader={surface} />
           </mesh>
         </group>
         <group ref={cloudGroup}>
           <mesh>
-            <sphereGeometry args={[3.23, 96, 64]} />
+            <sphereGeometry args={[BODY_RADII.planet * 1.009375, 96, 64]} />
             <shaderMaterial uniforms={uniforms} vertexShader={vertex} fragmentShader={clouds} transparent depthWrite={false} />
           </mesh>
         </group>
         <mesh>
-          <sphereGeometry args={[3.3, 96, 64]} />
+          <sphereGeometry args={[BODY_RADII.planet * 1.03125, 96, 64]} />
           <shaderMaterial uniforms={uniforms} vertexShader={vertex} fragmentShader={atmosphere}
             transparent blending={AdditiveBlending} depthWrite={false} toneMapped={false} />
         </mesh>

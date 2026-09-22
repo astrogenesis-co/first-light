@@ -1,5 +1,7 @@
 export type Coordinates = [number, number, number]
 export type BodyKind = 'blackhole' | 'star' | 'planet'
+// Compressed astronomical scale, shared by detailed meshes, distant meshes, and camera framing.
+export const BODY_RADII: Record<BodyKind, number> = { blackhole: 1.6, star: 10, planet: 1.6 }
 export interface CelestialBody {
   id: string
   name: string
