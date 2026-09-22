@@ -1,5 +1,5 @@
 import { useJourneyStore } from '../store/useJourneyStore'
-import { discoveryUnlocked, stages, TRANSFER_SECONDS, type StageId } from '../store/journey'
+import { destinations, discoveryUnlocked, getStage, stages, TRANSFER_SECONDS, type StageId } from '../store/journey'
 import './journey.css'
 
 export function DiscoveryCard() {
@@ -10,15 +10,18 @@ export default function JourneyHud() {
   const seconds = useJourneyStore(state => Math.floor(state.journey.elapsed))
   const unlocked = useJourneyStore(state => discoveryUnlocked(state.journey))
   const paused = useJourneyStore(state => state.paused)
-  const transfer = stage === 'planet-transfer'
+  const current = getStage(stage)
+  const transfer = current.kind === 'transfer'
+  const next = destinations[current.stop]
+  const finished = !transfer && !next
   return <section className="journey-hud" aria-label="Your journey">
-    <span className="journey-eyebrow">First light / Chapter 01</span>
-    <h1>{stages.find(item => item.id === stage)!.title}</h1>
-    <p>{stage === 'star-orbit' ? 'A star, a world, and the space between. Begin when you’re ready.' : transfer ? 'Coasting toward your first world. Discoveries arrive along the way.' : 'You’ve reached your first world. Stay a while. There’s more to come.'}</p>
-    {stage === 'star-orbit' && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ Planet</span></button>}
+    <span className="journey-eyebrow">First light / {current.stop === 0 ? 'Seven worlds ahead' : `Planet ${current.stop} of ${destinations.length}`}</span>
+    <h1>{current.title}</h1>
+    <p>{stage === 'star-orbit' ? 'One star. Seven worlds. Begin when you’re ready.' : transfer ? `Coasting toward Planet ${current.stop}. Settle into orbit on arrival.` : finished ? 'Seven worlds visited. Stay in orbit here until the next chapter.' : `Orbit established around Planet ${current.stop}. Stay a while, then continue when you’re ready.`}</p>
+    {!transfer && next && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ Planet {current.stop + 1}</span></button>}
     {transfer && <><div className="journey-progress-label"><span>{paused ? 'Travel paused' : 'In transit'}</span><span>{TRANSFER_SECONDS - seconds}s to orbit</span></div><progress aria-label="Travel progress" max={TRANSFER_SECONDS} value={seconds} /><button className="journey-pause" onClick={() => useJourneyStore.getState().setPaused(!paused)}>{paused ? 'Resume travel' : 'Pause travel'}</button></>}
-    <div aria-live="polite" aria-atomic="true">{unlocked && <DiscoveryCard />}</div>
-    {stage === 'planet-orbit' && <span className="journey-eyebrow">Orbit established · First leg complete</span>}
+    <div aria-live="polite" aria-atomic="true">{unlocked && current.stop === 1 && <DiscoveryCard />}</div>
+    {current.stop > 0 && !transfer && <span className="journey-eyebrow">{finished ? 'Journey complete · Holding final orbit' : `${current.stop} of ${destinations.length} worlds visited`}</span>}
   </section>
 }
 export function JourneyDevTools() {
@@ -33,7 +36,7 @@ export function JourneyDevTools() {
     <button onClick={actions.togglePreview}>{preview ? 'Return to visitor' : 'Enter preview'}</button>
     {preview && <>
       <label>Stage<select value={stage} onChange={event => actions.seek(event.target.value as StageId)}>{stages.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
-      {stage === 'planet-transfer' && <label>Travel · {elapsed}s<input aria-label="Scrub travel" type="range" min="0" max={TRANSFER_SECONDS} step="0.1" value={elapsed} onChange={event => actions.seek('planet-transfer', Number(event.target.value))} /></label>}
+      {getStage(stage).kind === 'transfer' && <label>Travel · {elapsed}s<input aria-label="Scrub travel" type="range" min="0" max={TRANSFER_SECONDS} step="0.1" value={elapsed} onChange={event => actions.seek(stage, Number(event.target.value))} /></label>}
       <div className="journey-dev-row"><button onClick={() => actions.setPaused(!paused)}>{paused ? 'Play' : 'Pause'}</button><label>Speed<select value={speed} onChange={event => actions.setSpeed(Number(event.target.value))}>{[1, 5, 20].map(value => <option key={value} value={value}>{value}×</option>)}</select></label></div>
       <button onClick={() => actions.seek('planet-transfer', TRANSFER_SECONDS / 2)}>Load halfway / discovery</button>
       <details><summary>Discovery component</summary><DiscoveryCard /></details>

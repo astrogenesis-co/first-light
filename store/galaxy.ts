@@ -17,9 +17,15 @@ export const bodies: CelestialBody[] = [
     orbit: { radius: 320, period: 12000, phase: 0.45, inclination: 0 },
   },
   {
-    id: 'first-planet', name: 'Planet', kind: 'planet', parentId: 'first-star', position: [0, 0, 0],
+    id: 'first-planet', name: 'Planet 1', kind: 'planet', parentId: 'first-star', position: [0, 0, 0],
     orbit: { radius: 41, period: 3140, phase: 1.195, inclination: -0.13 },
   },
+  // Shared planet visuals; these stable IDs can receive their own content later.
+  ...Array.from({ length: 6 }, (_, index): CelestialBody => ({
+    id: `planet-${index + 2}`, name: `Planet ${index + 2}`, kind: 'planet',
+    parentId: 'first-star', position: [0, 0, 0],
+    orbit: { radius: 65 + index * 24, period: 4500 + index * 1400, phase: 1.5 + index * 0.32, inclination: -0.08 },
+  })),
 ]
 
 const bodiesById = new Map(bodies.map((body) => [body.id, body]))
