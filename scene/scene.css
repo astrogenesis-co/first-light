@@ -20,3 +20,30 @@ main {
 canvas {
   display: block;
 }
+
+.scene-switcher {
+  position: fixed;
+  top: max(20px, env(safe-area-inset-top));
+  right: max(20px, env(safe-area-inset-right));
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgb(230 216 196 / 22%);
+  border-radius: 9px;
+  background: rgb(23 24 26 / 65%);
+  backdrop-filter: blur(14px);
+}
+
+.scene-switcher button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #a39f98;
+  font: 12px "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.scene-switcher button[aria-pressed="true"] { background: #e6b77f18; color: #e6b77f; }
+.scene-switcher button:hover { color: #eee8df; }
+.scene-switcher button:focus-visible { outline: 2px solid #e6b77f; outline-offset: 2px; }
