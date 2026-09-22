@@ -4,8 +4,9 @@ import Blackhole from './Blackhole'
 import CameraRig from './CameraRig'
 import Bloom from './Bloom'
 import Star from './Star'
+import Planet from './Planet'
 
-export type SceneKind = 'blackhole' | 'star'
+export type SceneKind = 'blackhole' | 'star' | 'planet'
 
 export default function Scene({ kind }: { kind: SceneKind }) {
   return (
@@ -16,8 +17,8 @@ export default function Scene({ kind }: { kind: SceneKind }) {
     >
       <color attach="background" args={['#020308']} />
       <Stars radius={100} depth={80} count={4500} factor={2.5} saturation={0.15} fade speed={0.2} />
-      {kind === 'star' ? <Star /> : <Blackhole />}
-      <CameraRig />
+      {kind === 'planet' ? <Planet /> : kind === 'star' ? <Star /> : <Blackhole />}
+      <CameraRig key={kind} speed={kind === 'planet' ? -0.035 : undefined} framing={kind === 'planet' ? 1.35 : undefined} />
       <Bloom />
     </Canvas>
   )
