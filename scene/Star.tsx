@@ -1,3 +1,4 @@
+import { BODY_RADII } from '../store/galaxy'
 import { simulation } from '../store/simulation'
 import { useMemo, type RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
@@ -72,12 +73,13 @@ const coronaVertex = /* glsl */ `
 
 const coronaFragment = /* glsl */ `
   uniform float uTime;
+  uniform float uRadius;
   varying vec2 vPosition;
   ${noise}
   void main() {
-    float radius = length(vPosition);
+    float radius = length(vPosition) * 2.8 / uRadius;
     float height = max(radius - 2.8, 0.0);
-    vec2 direction = vPosition / max(radius, 0.001);
+    vec2 direction = normalize(vPosition + vec2(0.00001));
     float rays = noise3(vec3(direction * 16.0, uTime * 0.08));
     float wisps = noise3(vec3(direction * 36.0, radius * 2.0 - uTime * 0.15));
     float glow = exp(-height * 4.0) * 0.55
@@ -88,7 +90,7 @@ const coronaFragment = /* glsl */ `
 `
 
 export default function Star({ active }: { active: RefObject<boolean> }) {
-  const uniforms = useMemo(() => ({ uTime: { value: 0 } }), [])
+  const uniforms = useMemo(() => ({ uTime: { value: 0 }, uRadius: { value: BODY_RADII.star } }), [])
 
   useFrame(() => {
     if (!active.current) return
@@ -98,11 +100,11 @@ export default function Star({ active }: { active: RefObject<boolean> }) {
   return (
     <group>
       <mesh>
-        <sphereGeometry args={[2.8, 96, 64]} />
+        <sphereGeometry args={[BODY_RADII.star, 96, 64]} />
         <shaderMaterial uniforms={uniforms} vertexShader={surfaceVertex} fragmentShader={surfaceFragment} toneMapped={false} />
       </mesh>
       <mesh>
-        <planeGeometry args={[11, 11]} />
+        <planeGeometry args={[BODY_RADII.star * 11 / 2.8, BODY_RADII.star * 11 / 2.8]} />
         <shaderMaterial
           uniforms={uniforms}
           vertexShader={coronaVertex}

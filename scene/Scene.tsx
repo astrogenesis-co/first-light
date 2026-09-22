@@ -7,7 +7,7 @@ import CameraRig from './CameraRig'
 import Bloom from './Bloom'
 import Star from './Star'
 import Planet from './Planet'
-import { bodies, type CelestialBody } from '../store/galaxy'
+import { bodies, BODY_RADII, type CelestialBody } from '../store/galaxy'
 import { useAppStore } from '../store/useAppStore'
 import { simulation, mapClock } from '../store/simulation'
 import { useJourneyStore } from '../store/useJourneyStore'
@@ -34,7 +34,7 @@ function Body({ body }: { body: CelestialBody }) {
       </group>
       <group ref={distant} visible={false}>
         <mesh>
-          <sphereGeometry args={[body.kind === 'planet' ? 3.2 : body.kind === 'star' ? 2.8 : 1.6, 12, 8]} />
+          <sphereGeometry args={[BODY_RADII[body.kind], 12, 8]} />
           <meshBasicMaterial color={body.kind === 'star' ? '#ffd49a' : body.kind === 'planet' ? '#203a50' : '#000000'} toneMapped={false} />
         </mesh>
       </group>
