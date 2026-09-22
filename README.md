@@ -42,7 +42,10 @@ still need instancing, spatial culling, and loading/unloading of detailed assets
 ## Journey development
 
 The first visit starts in far orbit around the star. **Initiate burn** starts a
-45-second transfer to the first planet. A sample discovery unlocks at 22.5 seconds
+45-second transfer to the first of seven placeholder planets. Each arrival holds
+in orbit until the visitor initiates the next burn. The seventh orbit is the
+endpoint and has no onward burn. All seven worlds share the existing planet visual
+and appear in the star-system map. A sample discovery unlocks at 22.5 seconds
 and remains available after arrival in planet orbit. The black-hole tutorial is
 reserved for a later chapter; the body remains available on the map.
 
@@ -55,7 +58,7 @@ the visitor HUD, sample content card, and development panel.
 In `npm run dev`, open **Journey lab** at the bottom right:
 
 - **Enter preview** preserves visitor progress and opens a paused sandbox.
-- Choose any stage, scrub the transfer, or load the halfway discovery scenario.
+- Choose any of the 15 stages, scrub any transfer, or load the halfway discovery scenario.
 - Use Play/Pause and 1×, 5×, or 20× playback to test transitions.
 - Expand **Discovery component** to preview its card independently of unlocks.
 - **Return to visitor** restores the preserved journey and pause state.
@@ -67,8 +70,9 @@ never saved over visitor progress; reloading during preview restores the visitor
 Unavailable storage falls back to in-memory progress. Invalid or obsolete saves
 reset safely. Development controls are omitted from production builds.
 
-To extend the route, add a stable stage definition and its transition/unlock rules
-in `journey.ts`, extend camera poses in `journeyPose.ts`, then add the corresponding
-content. Stage IDs are distinct from body IDs, allowing a later return to the star
+To extend the route, add a body in `galaxy.ts` and a destination with stable
+transfer/orbit IDs in `journey.ts`. Progression, camera endpoints, and the preview
+selector follow that route automatically. The original stage IDs and save version
+are preserved so existing visitors can continue from the first planet. Stage IDs are distinct from body IDs, allowing a later return to the star
 to have different behavior. Run `npm test` for progression, checkpoint, camera
 continuity, and galaxy regressions, and `npm run build` for the production check.
