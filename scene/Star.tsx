@@ -1,4 +1,5 @@
-import { useMemo } from 'react'
+import { simulation } from '../store/simulation'
+import { useMemo, type RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { AdditiveBlending } from 'three'
 
@@ -86,11 +87,12 @@ const coronaFragment = /* glsl */ `
   }
 `
 
-export default function Star() {
+export default function Star({ active }: { active: RefObject<boolean> }) {
   const uniforms = useMemo(() => ({ uTime: { value: 0 } }), [])
 
-  useFrame((_, delta) => {
-    uniforms.uTime.value += Math.min(delta, 0.1)
+  useFrame(() => {
+    if (!active.current) return
+    uniforms.uTime.value = simulation.elapsedSeconds
   })
 
   return (

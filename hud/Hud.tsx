@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import './hud.css'
+import GalaxyMap from './GalaxyMap'
 
 function DeviceGlyph() {
   return (
@@ -70,21 +71,8 @@ export default function Hud() {
             </aside>
 
             <section className="device-content">
-              <div className="device-page-heading"><div><span className="device-eyebrow">Your workspace</span><h1 id="device-title">Overview</h1></div><span className="device-status"><i /> Standby</span></div>
-              <div className="device-view">
-                <div className="device-view-heading"><span className="device-eyebrow">Observation field</span><span>001 / —</span></div>
-                <svg className="device-orbit" viewBox="0 0 480 240" fill="none" aria-hidden="true">
-                  <path className="device-grid" d="M0 120h480M240 0v240" />
-                  <circle className="device-grid" cx="240" cy="120" r="98" strokeDasharray="2 7" />
-                  <circle className="device-grid" cx="240" cy="120" r="67" />
-                  <ellipse className="device-orbit-line" cx="240" cy="120" rx="168" ry="43" transform="rotate(-23 240 120)" />
-                  <circle className="device-orbit-core" cx="240" cy="120" r="34" />
-                  <circle className="device-orbit-point" cx="385" cy="62" r="4" />
-                  <path className="device-orbit-line" d="M234 120h12M240 114v12M31 18h12M37 12v12M437 222h12M443 216v12" />
-                </svg>
-                <div className="device-view-caption"><span>Beyond the familiar.</span><span className="device-eyebrow">Field preview</span></div>
-              </div>
-              <div className="device-notes"><span className="device-eyebrow">An open record</span><h2>Every discovery starts with a look.</h2><p>Your observations will find a home here.</p></div>
+              <div className="device-page-heading"><div><span className="device-eyebrow">Your workspace</span><h1 id="device-title">Overview</h1></div><span className="device-status"><i /> Navigation online</span></div>
+              {isOpen && <GalaxyMap />}
             </section>
           </div>
 
