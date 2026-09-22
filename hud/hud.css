@@ -155,10 +155,10 @@
 .map-coordinates { font-family: monospace; padding-bottom: 7px; }
 
 /* The modal owns focus; the surrounding instruments dissolve into the scene. */
-.journey-hud, .journey-dev, .device-launcher {
+.journey-hud, .journey-controls, .journey-dev, .device-launcher {
   transition: opacity .3s ease, border-color .2s, background .2s;
 }
-main:has(.device-dialog[open]) :is(.journey-hud, .journey-dev, .device-launcher) {
+main:has(.device-dialog[open]) :is(.journey-hud, .journey-controls, .journey-dev, .device-launcher) {
   opacity: 0;
   pointer-events: none;
 }
@@ -173,5 +173,5 @@ main:has(.device-dialog[open]) :is(.journey-hud, .journey-dev, .device-launcher)
 .map-dot-planet { fill: #b59aff; }
 .galaxy-map { background-image: linear-gradient(#68ffe106 1px, transparent 1px), linear-gradient(90deg, #68ffe106 1px, transparent 1px); background-size: 24px 24px; }
 @media (prefers-reduced-motion: reduce) {
-  .journey-hud, .journey-dev, .device-launcher { transition: none; }
+  .journey-hud, .journey-controls, .journey-dev, .device-launcher { transition: none; }
 }

@@ -2,6 +2,10 @@ import { useRef, useState } from 'react'
 import './hud.css'
 import GalaxyMap from './GalaxyMap'
 import Codex from './Codex'
+import JourneyHud from './JourneyHud'
+import { useAppStore } from '../store/useAppStore'
+import { useJourneyStore } from '../store/useJourneyStore'
+import { getStage } from '../store/journey'
 
 function DeviceGlyph() {
   return (
@@ -14,11 +18,12 @@ function DeviceGlyph() {
 
 export default function Hud() {
   const device = useRef<HTMLDialogElement>(null)
-  const launcher = useRef<HTMLButtonElement>(null)
+  const opener = useRef<HTMLElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [activeApp, setActiveApp] = useState<'map' | 'codex'>('map')
 
   function openDevice() {
+    opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     device.current?.showModal()
     setIsOpen(true)
   }
@@ -29,8 +34,12 @@ export default function Hud() {
 
   return (
     <>
+      <JourneyHud mapOpen={isOpen && activeApp === 'map'} onOpenMap={() => {
+        setActiveApp('map')
+        useAppStore.getState().selectBody(getStage(useJourneyStore.getState().journey.stage).bodyId)
+        openDevice()
+      }} />
       <button
-        ref={launcher}
         className="device-launcher"
         onClick={openDevice}
         aria-haspopup="dialog"
@@ -49,7 +58,7 @@ export default function Hud() {
         aria-labelledby="device-title"
         onClose={() => {
           setIsOpen(false)
-          launcher.current?.focus()
+          opener.current?.focus()
         }}
         onClick={(event) => {
           if (event.target === event.currentTarget) closeDevice()

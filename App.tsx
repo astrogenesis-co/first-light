@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Scene from './scene/Scene'
 import './scene/scene.css'
 import Hud from './hud/Hud'
-import JourneyHud, { JourneyDevTools } from './hud/JourneyHud'
+import { JourneyDevTools } from './hud/JourneyHud'
 import { saveJourney } from './store/useJourneyStore'
 
 export default function App() {
@@ -20,7 +20,6 @@ export default function App() {
   return (
     <main aria-label="First light · Your journey">
       <Scene />
-      <JourneyHud />
       <Hud />
       {import.meta.env.DEV && <JourneyDevTools />}
     </main>
