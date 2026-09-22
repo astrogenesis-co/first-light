@@ -2,6 +2,8 @@ import { useRef, useState } from 'react'
 import './hud.css'
 import GalaxyMap from './GalaxyMap'
 import Codex from './Codex'
+import AudioApp, { RadioGlyph, TransmissionWidget } from './AudioApp'
+import { useAudioPlayer } from './useAudioPlayer'
 import JourneyHud from './JourneyHud'
 import { useAppStore } from '../store/useAppStore'
 import { useJourneyStore } from '../store/useJourneyStore'
@@ -20,7 +22,9 @@ export default function Hud() {
   const device = useRef<HTMLDialogElement>(null)
   const opener = useRef<HTMLElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [activeApp, setActiveApp] = useState<'map' | 'codex'>('map')
+  const [activeApp, setActiveApp] = useState<'map' | 'codex' | 'audio'>('map')
+  const player = useAudioPlayer()
+  function openAudio() { setActiveApp('audio'); openDevice() }
 
   function openDevice() {
     opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
@@ -34,6 +38,7 @@ export default function Hud() {
 
   return (
     <>
+      <TransmissionWidget player={player} onOpen={openAudio} />
       <JourneyHud mapOpen={isOpen && activeApp === 'map'} onOpenCodex={() => {
         setActiveApp('codex')
         openDevice()
@@ -71,7 +76,7 @@ export default function Hud() {
           <header className="device-header">
             <div className="device-header-heading">
               <div className="device-brand"><DeviceGlyph /><span>First light <span className="device-brand-divider">/</span> Field device</span></div>
-              <h1 id="device-title">{activeApp === 'map' ? 'Map' : 'Codex'}</h1>
+              <h1 id="device-title">{activeApp === 'map' ? 'Map' : activeApp === 'codex' ? 'Codex' : 'Audio'}</h1>
             </div>
             <div className="device-header-actions">
               {activeApp === 'map' && <span className="device-status"><i /> Navigation online</span>}
@@ -93,6 +98,7 @@ export default function Hud() {
                   <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5C9 3 5 3 3 4v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1Zm0 0v15M6 8h3M15 8h3M6 12h3M15 12h3" /></svg></span>
                   <span>Codex</span>
                 </button>
+                <button className="device-app device-app-audio" aria-pressed={activeApp === 'audio'} aria-controls="device-audio" onClick={() => setActiveApp('audio')}><span className="device-app-icon"><RadioGlyph /></span><span>Audio</span></button>
                 <button className="device-app" disabled>
                   <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="15" height="18" rx="2" /><path d="M3 7h4M3 12h4M3 17h4M10 8h6M10 12h6" /></svg></span>
                   <span>Journal</span>
@@ -107,7 +113,8 @@ export default function Hud() {
 
             <section className="device-content" aria-labelledby="device-title">
               <div id="device-map" hidden={activeApp !== 'map'}>{isOpen && <GalaxyMap />}</div>
-              <div id="device-codex" hidden={activeApp !== 'codex'}><Codex /></div>
+              <div id="device-codex" hidden={activeApp !== 'codex'}><Codex onPlayAudio={track => { player.play(track); openAudio() }} /></div>
+            <div id="device-audio" hidden={activeApp !== 'audio'}><AudioApp player={player} /></div>
             </section>
           </div>
 

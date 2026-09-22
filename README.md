@@ -12,7 +12,7 @@ search entries within a type, read entry details, and follow connected entries.
 Back navigation preserves the list filter and restores focus to the opened entry.
 The catalog is validated when loaded, with loading, empty, and retry states.
 The reader supports the fixture's basic Markdown headings, paragraphs, bold text,
-quotes, and lists; it does not inject HTML. Audio playback is not connected yet. Entries unlock progressively with the
+quotes, and lists; it does not inject HTML. Entries with an audio source offer **Play in Audio**. Entries unlock progressively with the
 journey; only the album overview and introduction are available on a first visit.
 
 The top-level value is an array matching the output of first-star's
@@ -151,3 +151,32 @@ button. Loading saved progress and entering, seeking, or leaving preview do not
 announce old discoveries. Preview uses the same rules and preserves the visitor
 save. This is presentation-level discovery: the static catalog is still shipped
 in full, not protected content.
+
+
+## Audio and transmissions
+
+**Device → Audio** contains Radio and Library. Starting a visitor burn automatically
+plays the journey transmission and opens a small top-right visor widget; it does
+not open the device. Click the widget to open Audio at the current playback
+position. Playback continues across device navigation and arrival in orbit.
+Pause/resume, seeking, and volume belong to the shared player. Hiding the widget
+does not stop playback; a completed transmission dismisses it after five seconds.
+Travel pause and audio pause are independent.
+
+`store/transmissions.ts` maps the seven transfers to recordings and transcripts.
+All seven currently reuse **one temporary, synthetic guide recording**, generated
+locally with the macOS Samantha voice. Replace each source and transcript with
+authored narration when ready. Audio paths resolve against Vite's base URL.
+Radio lists transmissions reached along the current linear journey, including
+the current transfer. Future transmissions stay hidden. Resetting or switching
+preview context stops audio; lab seeks do not automatically narrate. Received
+transmissions can be played manually in preview. Reloading in transit restarts
+the current recording; playback position and volume are not persisted. If the
+browser blocks autoplay, the widget offers an explicit play button.
+
+Library lists unlocked catalog entries with an `audio` URL. The current mock mix
+still points to an absent file, so it reports **Recording unavailable** until a
+real file is supplied. Codex **Play in Audio** uses the same player. A new journey
+transmission replaces any currently playing recording. Codex unlock timing
+continues to use the existing journey schedule; listening completion does not
+control discoveries in this first version.
