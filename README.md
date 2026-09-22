@@ -75,9 +75,10 @@ still need instancing, spatial culling, and loading/unloading of detailed assets
 
 ## Journey development
 
-The first visit starts in far orbit around the star. **Initiate burn** starts a
-45-second transfer to the first of seven placeholder planets. Each arrival holds
-in orbit until the visitor initiates the next burn. The seventh orbit is the
+The first visit starts at the edge of the star system, beyond the outermost
+planet. **Initiate burn** starts a 45-second transfer to Planet 7. Subsequent
+burns travel inward through Planet 6 to Planet 1. Each arrival holds
+in orbit until the visitor initiates the next burn. Planet 1 orbit is the
 endpoint and has no onward burn. All seven worlds share the existing planet visual
 and appear in the star-system map. A sample discovery unlocks at 22.5 seconds
 and remains available after arrival in planet orbit. The black-hole tutorial is
@@ -106,7 +107,7 @@ reset safely. Development controls are omitted from production builds.
 
 To extend the route, add a body in `galaxy.ts` and a destination with stable
 transfer/orbit IDs in `journey.ts`. Progression, camera endpoints, and the preview
-selector follow that route automatically. The original stage IDs and save version
-are preserved so existing visitors can continue from the first planet. Stage IDs are distinct from body IDs, allowing a later return to the star
+selector follow that route automatically. Planet and stage IDs retain their identities. Save version 2 starts a fresh
+inward journey, leaving previous outward-route checkpoints under their old key. Stage IDs are distinct from body IDs, allowing a later return to the star
 to have different behavior. Run `npm test` for progression, checkpoint, camera
 continuity, and galaxy regressions, and `npm run build` for the production check.

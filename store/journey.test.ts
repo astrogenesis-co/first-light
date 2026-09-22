@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { destinations, stages, advanceJourney, burn, discoveryUnlocked, initialJourney, restoreJourney, scenario, TRANSFER_SECONDS } from './journey.ts'
+import { bodies, getBody, getBodyPosition } from './galaxy.ts'
 import { journeyPose } from './journeyPose.ts'
 
 test('first visit waits in star orbit; only a burn begins travel', () => {
@@ -8,7 +9,7 @@ test('first visit waits in star orbit; only a burn begins travel', () => {
   assert.equal(waiting.stage, 'star-orbit')
   assert.equal(discoveryUnlocked(waiting), false)
   const transfer = burn(waiting)
-  assert.equal(transfer.stage, 'planet-transfer')
+  assert.equal(transfer.stage, 'planet-7-transfer')
   assert.equal(transfer.elapsed, 0)
   assert.deepEqual(burn(transfer), transfer)
 })
@@ -17,15 +18,15 @@ test('discovery unlocks at halfway and survives arrival, including large skips',
   assert.equal(discoveryUnlocked(advanceJourney(start, 22.49)), false)
   assert.equal(discoveryUnlocked(advanceJourney(start, 22.5)), true)
   const arrived = advanceJourney(start, 50)
-  assert.equal(arrived.stage, 'planet-orbit')
+  assert.equal(arrived.stage, 'planet-7-orbit')
   assert.equal(arrived.elapsed, 5)
   assert.equal(discoveryUnlocked(arrived), true)
-  assert.equal(burn(arrived).stage, 'planet-2-transfer')
+  assert.equal(burn(arrived).stage, 'planet-6-transfer')
 })
 test('valid saves resume exactly; invalid, old, and malformed saves reset safely', () => {
   const state = scenario('planet-transfer', 30)
   assert.deepEqual(restoreJourney(JSON.stringify(state)), state)
-  for (const raw of [null, '{', '{}', JSON.stringify({ ...state, version: 2 }), JSON.stringify({ ...state, elapsed: -1 }), JSON.stringify({ ...state, stage: 'missing' }), JSON.stringify({ ...state, elapsed: 50 }), JSON.stringify({ ...state, time: 0 })]) {
+  for (const raw of [null, '{', '{}', JSON.stringify({ ...state, version: 1 }), JSON.stringify({ ...state, elapsed: -1 }), JSON.stringify({ ...state, stage: 'missing' }), JSON.stringify({ ...state, elapsed: 50 }), JSON.stringify({ ...state, time: 0 })]) {
     assert.deepEqual(restoreJourney(raw), initialJourney())
   }
 })
@@ -58,7 +59,7 @@ test('all seven worlds are visited in order and the last orbit is terminal', () 
     assert.equal(advanceJourney(state, 10000).stage, destination.orbitId)
   }
   assert.equal(burn(state), state)
-  assert.equal(advanceJourney(state, 10000).stage, 'planet-7-orbit')
+  assert.equal(advanceJourney(state, 10000).stage, 'planet-orbit')
 })
 test('every stage restores and every transfer rejects an overdue checkpoint', () => {
   for (const stage of stages) {
@@ -81,6 +82,20 @@ test('all legs have continuous camera endpoints and finite poses', () => {
       assert.deepEqual(journeyPose(end, aspect), journeyPose(orbit, aspect))
       const midpoint = journeyPose(advanceJourney(departure, TRANSFER_SECONDS / 2), aspect)
       assert.ok([...midpoint.position, ...midpoint.target].every(Number.isFinite))
+    }
+  }
+})
+
+test('route starts outside every planetary orbit and visits decreasing radii', () => {
+  const radii = destinations.map(destination => getBody(destination.bodyId).orbit!.radius)
+  for (let i = 1; i < radii.length; i++) assert.ok(radii[i] < radii[i - 1])
+  for (const time of [0, 15, 500, 10000]) {
+    for (const aspect of [0.5, 1.8]) {
+      const pose = journeyPose(advanceJourney(initialJourney(), time), aspect)
+      const star = getBodyPosition('first-star', time)
+      const distance = Math.hypot(...pose.position.map((value, i) => value - star[i]))
+      for (const planet of bodies.filter(body => body.kind === 'planet')) assert.ok(distance > planet.orbit!.radius)
+      assert.deepEqual(pose.target, star)
     }
   }
 })

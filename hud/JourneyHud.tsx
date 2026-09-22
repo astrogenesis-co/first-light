@@ -1,34 +1,38 @@
 import { useSyncExternalStore } from 'react'
-import { bodies } from '../store/galaxy'
+import { bodies, getBody, type Coordinates } from '../store/galaxy'
 import { mapClock } from '../store/simulation'
 import { useJourneyStore } from '../store/useJourneyStore'
 import { destinations, discoveryUnlocked, getStage, stages, TRANSFER_SECONDS, type StageId } from '../store/journey'
+import { farOrbitPosition, FAR_ORBIT_RADIUS } from '../store/journeyPose'
 import './journey.css'
 
 export function DiscoveryCard() {
   return <article className="discovery-card"><span className="journey-eyebrow">Discovery 01 · Signal received</span><h2>A world comes into view.</h2><p>Every journey begins with a closer look. Your first destination is waiting in the light of this star.</p></article>
 }
 const systemBodies = bodies.filter(body => body.id === 'first-star' || body.parentId === 'first-star')
-const mapScale = 100 / Math.max(...systemBodies.map(body => body.kind === 'planet' ? body.orbit!.radius : 0))
+const mapScale = 100 / FAR_ORBIT_RADIUS
 
 function MiniMap({ bodyId, fromBodyId, transfer }: { bodyId: string; fromBodyId: string; transfer: boolean }) {
   const positions = useSyncExternalStore(mapClock.subscribe, mapClock.getSnapshot)
   const center = positions.get('first-star')!
-  const point = (id: string) => {
-    const position = positions.get(id)!
+  const time = useJourneyStore(state => Math.floor(state.journey.time * 10) / 10)
+  const project = (position: Coordinates) => {
     return { x: 120 + (position[0] - center[0]) * mapScale, y: 110 + (position[2] - center[2]) * mapScale }
   }
-  const from = point(fromBodyId)
-  const to = point(bodyId)
+  const point = (id: string) => project(positions.get(id)!)
+  const edge = project(farOrbitPosition(time))
+  const from = fromBodyId === 'first-star' ? edge : point(fromBodyId)
+  const to = bodyId === 'first-star' ? edge : point(bodyId)
   return <svg className="journey-minimap" viewBox="0 0 240 220" aria-hidden="true">
     <path className="minimap-grid" d="M10 110h220M120 0v220" />
     {systemBodies.filter(body => body.kind === 'planet').map(body => <ellipse key={body.id} className="minimap-orbit" cx="120" cy="110" rx={body.orbit!.radius * mapScale} ry={body.orbit!.radius * mapScale * Math.cos(body.orbit!.inclination)} />)}
     {transfer && <line className="minimap-route" x1={from.x} y1={from.y} x2={to.x} y2={to.y} />}
+    {bodyId === 'first-star' && <circle className="minimap-active" cx={edge.x} cy={edge.y} r="8" />}
     {systemBodies.map(body => {
       const { x, y } = point(body.id)
       return <g key={body.id}>
         <circle className={body.kind === 'star' ? 'minimap-star' : 'minimap-planet'} cx={x} cy={y} r={body.kind === 'star' ? 4 : 2.5} />
-        {body.id === bodyId && <circle className="minimap-active" cx={x} cy={y} r="8" />}
+        {body.id === bodyId && bodyId !== 'first-star' && <circle className="minimap-active" cx={x} cy={y} r="8" />}
       </g>
     })}
   </svg>
@@ -54,7 +58,7 @@ export default function JourneyHud({ onOpenMap, mapOpen }: { onOpenMap: () => vo
     </section>
     <section className="journey-controls" aria-label="Journey controls">
       <div aria-live="polite" aria-atomic="true">{unlocked && current.stop === 1 && <DiscoveryCard />}</div>
-      {!transfer && next && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ Planet {current.stop + 1}</span></button>}
+      {!transfer && next && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ {getBody(next.bodyId).name}</span></button>}
       {transfer && <div className="journey-travel"><div className="journey-progress-label"><span>{paused ? 'Travel paused' : 'In transit'}</span><span>{TRANSFER_SECONDS - seconds}s to orbit</span></div><progress aria-label="Travel progress" max={TRANSFER_SECONDS} value={seconds} /><button className="journey-pause" onClick={() => useJourneyStore.getState().setPaused(!paused)}>{paused ? 'Resume travel' : 'Pause travel'}</button></div>}
     </section>
   </>
@@ -73,7 +77,7 @@ export function JourneyDevTools() {
       <label>Stage<select value={stage} onChange={event => actions.seek(event.target.value as StageId)}>{stages.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
       {getStage(stage).kind === 'transfer' && <label>Travel · {elapsed}s<input aria-label="Scrub travel" type="range" min="0" max={TRANSFER_SECONDS} step="0.1" value={elapsed} onChange={event => actions.seek(stage, Number(event.target.value))} /></label>}
       <div className="journey-dev-row"><button onClick={() => actions.setPaused(!paused)}>{paused ? 'Play' : 'Pause'}</button><label>Speed<select value={speed} onChange={event => actions.setSpeed(Number(event.target.value))}>{[1, 5, 20].map(value => <option key={value} value={value}>{value}×</option>)}</select></label></div>
-      <button onClick={() => actions.seek('planet-transfer', TRANSFER_SECONDS / 2)}>Load halfway / discovery</button>
+      <button onClick={() => actions.seek(destinations[0].transferId, TRANSFER_SECONDS / 2)}>Load halfway / discovery</button>
       <details><summary>Discovery component</summary><DiscoveryCard /></details>
     </>}
     <button onClick={actions.reset}>{preview ? 'Reset preview' : 'Reset visitor journey'}</button>
