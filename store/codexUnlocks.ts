@@ -1,4 +1,4 @@
-import { stages, TRANSFER_SECONDS, type Journey } from './journey.ts'
+import { stages, travelDuration, type Journey } from './journey.ts'
 import { codexSchedule, type CodexMilestone } from './codexSchedule.ts'
 
 const stageOrder = new Map(stages.map((stage, index) => [stage.id, index]))
@@ -32,7 +32,7 @@ export function validateCodexSchedule(keys: readonly string[], schedule = codexS
     const stage = stages.find(stage => stage.id === milestone.stage)
     const seconds = milestone.afterSeconds ?? 0
     if (ids.has(milestone.id) || !stage || !Number.isFinite(seconds) || seconds < 0 ||
-      (stage.kind === 'transfer' && seconds >= TRANSFER_SECONDS)) throw new Error(`Invalid Codex milestone: ${milestone.id}`)
+      (stage.kind !== 'orbit' && seconds >= travelDuration(stage.id))) throw new Error(`Invalid Codex milestone: ${milestone.id}`)
     ids.add(milestone.id)
     for (const key of milestone.entries) {
       if (!catalog.has(key) || assigned.has(key)) throw new Error(`Invalid Codex assignment: ${key}`)

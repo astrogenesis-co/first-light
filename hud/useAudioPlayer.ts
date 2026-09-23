@@ -62,7 +62,7 @@ export function useAudioPlayer() {
     const unsubscribe = useJourneyStore.subscribe((state, previous) => {
       const contextChanged = state.preview !== previous.preview
       const rewound = state.journey.time < previous.journey.time
-      const reset = state.journey.stage === 'star-orbit' && previous.journey.stage !== 'star-orbit'
+      const reset = state.journey.stage === 'blackhole-orbit' && previous.journey.stage !== 'blackhole-orbit'
       if (contextChanged || rewound || reset) { stop(); return }
       if (state.journey.stage !== previous.journey.stage) {
         const incoming = transmissions.find(item => item.id === state.journey.stage)

@@ -1,5 +1,5 @@
 import { BODY_RADII, getBody, getBodyPosition, type Coordinates } from './galaxy.ts'
-import { destinations, getStage, TRANSFER_SECONDS, type Journey } from './journey.ts'
+import { destinations, getStage, TRANSFER_SECONDS, WORMHOLE_SECONDS, type Journey } from './journey.ts'
 
 // Start outside the outermost world, along its radial direction from the star.
 export const FAR_ORBIT_RADIUS = getBody(destinations[0].bodyId).orbit!.radius + 40
@@ -29,10 +29,23 @@ export function journeyPose(state: Journey, aspect: number) {
   }
   const from = stage.fromBodyId === 'first-star' ? farOrbitPosition(state.time) : offset(source, viewingDistance(stage.fromBodyId))
   const to = stage.bodyId === 'first-star' ? farOrbitPosition(state.time) : offset(destination, viewingDistance(stage.bodyId))
+  // A simple hidden cut stands in for the future authored wormhole.
+  if (stage.kind === 'wormhole') {
+    return state.elapsed < WORMHOLE_SECONDS / 2
+      ? { position: from, target: source }
+      : { position: to, target: destination }
+  }
   const progress = stage.kind === 'orbit' ? 1 : Math.min(1, state.elapsed / TRANSFER_SECONDS)
   const blend = progress * progress * (3 - 2 * progress)
   const mix = (a: Coordinates, b: Coordinates): Coordinates => a.map((v, i) => blend === 1 ? b[i] : v + (b[i] - v) * blend) as Coordinates
   const position = mix(from, to)
   position[1] += (progress > 0 && progress < 1 ? Math.sin(Math.PI * progress) ** 2 * 12 : 0)
   return { position, target: mix(source, destination) }
+}
+
+/** Fully conceal the placeholder camera cut, including coarse preview steps. */
+export function wormholeOpacity(state: Journey): number {
+  if (state.stage !== 'wormhole-transit') return 0
+  const progress = Math.max(0, Math.min(1, state.elapsed / WORMHOLE_SECONDS))
+  return Math.min(1, progress * 4, (1 - progress) * 4)
 }

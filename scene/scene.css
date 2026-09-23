@@ -47,3 +47,5 @@ canvas {
 .scene-switcher button[aria-pressed="true"] { background: #e6b77f18; color: #e6b77f; }
 .scene-switcher button:hover { color: #eee8df; }
 .scene-switcher button:focus-visible { outline: 2px solid #e6b77f; outline-offset: 2px; }
+
+.wormhole-veil { position: fixed; inset: 0; background: #020308; opacity: 0; pointer-events: none; }

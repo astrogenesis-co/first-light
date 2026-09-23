@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Scene from './scene/Scene'
+import WormholeTransition from './scene/WormholeTransition'
 import './scene/scene.css'
 import Hud from './hud/Hud'
 import { JourneyDevTools } from './hud/JourneyHud'
@@ -20,6 +21,7 @@ export default function App() {
   return (
     <main aria-label="First light · Your journey">
       <Scene />
+      <WormholeTransition />
       <Hud />
       {import.meta.env.DEV && <JourneyDevTools />}
     </main>

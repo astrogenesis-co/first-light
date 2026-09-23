@@ -12,7 +12,7 @@ export interface CodexMilestone {
 // Prototype editorial schedule. Move entry keys between milestones to change
 // pacing; catalog relationships never grant access to other entries.
 export const codexSchedule: readonly CodexMilestone[] = [
-  { id: 'welcome', label: 'Welcome', stage: 'star-orbit', entries: ['albums/album-1', 'essays/0-what-is-star'] },
+  { id: 'welcome', label: 'Welcome', stage: 'blackhole-orbit', entries: ['albums/album-1', 'essays/0-what-is-star'] },
   { id: 'first-signal', label: 'First signal in transit', stage: 'planet-7-transfer', afterSeconds: 22.5, entries: ['songs/mock-signal'] },
   { id: 'creation', label: 'Creation · Planet 7 arrival', stage: 'planet-7-orbit', entries: ['stages/1-creation', 'essays/1-creation', 'tracks/1-mock-track'] },
   { id: 'demo', label: 'Demo transmission in transit', stage: 'planet-6-transfer', afterSeconds: 22.5, entries: ['mixes/mock-signal-demo'] },
