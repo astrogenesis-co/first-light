@@ -7,6 +7,7 @@ import GalaxyMap from './GalaxyMap'
 import Codex from './Codex'
 import AudioApp, { RadioGlyph, TransmissionWidget } from './AudioApp'
 import { useAudioPlayer } from './useAudioPlayer'
+import TransmissionSubtitles from './TransmissionSubtitles'
 import JourneyHud from './JourneyHud'
 import { useAppStore } from '../store/useAppStore'
 import { useJourneyStore } from '../store/useJourneyStore'
@@ -63,6 +64,7 @@ export default function Hud() {
     <>
       <CodexDiscoveryNotice onOpen={openNotification} target={launcher} suspended={isOpen} />
       <TransmissionWidget player={player} onOpen={openAudio} />
+      {!isOpen && <TransmissionSubtitles player={player} />}
       <JourneyHud mapOpen={isOpen && activeApp === 'journey'} onOpenMap={() => {
         setActiveApp('journey')
         setJourneyView('map')
@@ -153,6 +155,7 @@ export default function Hud() {
             </section>
           </div>
 
+          {isOpen && <TransmissionSubtitles player={player} inDevice />}
           <footer className="device-footer"><span><i /> Device online</span><span>Click outside to return <kbd>esc</kbd></span></footer>
         </div>
       </dialog>
