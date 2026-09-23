@@ -69,19 +69,63 @@
 .transmission-widget { transition: opacity .3s ease; }
 
 .device-launcher {
-  border: 1px solid var(--projection-line);
-  border-radius: 0;
-  background: var(--projection-surface);
-  box-shadow: var(--projection-glow);
+  gap: 15px;
+  padding: 13px 17px 13px 13px;
+  border: 1px solid #bedfe5a0;
+  border-left: 3px solid #e5faff;
+  border-radius: 2px;
+  background: repeating-linear-gradient(0deg, #c0eaff05 0 1px, transparent 1px 4px),
+    linear-gradient(115deg, #b8e7f01a, transparent 70%), rgb(3 10 15 / 92%);
+  box-shadow: inset 0 0 0 3px #02080b, inset 0 0 0 4px #bedfe522, 0 0 20px #bedfe510;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  font-size: 11px;
-  letter-spacing: .16em;
-  min-height: 46px;
+  text-align: left;
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
-.device-launcher svg { stroke: var(--projection-light); }
-.device-launcher-dot { background: var(--projection-light); box-shadow: 0 0 8px #ffffff40; }
-.device-launcher:hover { background: #000c; border-color: var(--projection-light); }
+.device-launcher::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 13px;
+  height: 13px;
+  border-right: 2px solid #e5faff;
+  border-bottom: 2px solid #e5faff;
+  pointer-events: none;
+}
+.device-launcher-emblem { display: grid; place-items: center; flex-shrink: 0; }
+.device-launcher .device-launcher-emblem svg { width: 46px; height: 46px; stroke: #e5faff; stroke-width: 1.3; }
+.device-launcher-orbit { stroke-dasharray: 29 5 3 5; opacity: .55; transform-origin: center; transition: transform .6s ease, opacity .2s ease; }
+.device-launcher-reticle { opacity: .45; }
+.device-launcher-satellite { fill: #e5faff; stroke: none; filter: drop-shadow(0 0 3px #c1efff); }
+.device-launcher-copy { display: grid; gap: 5px; }
+.device-launcher-overline { color: #b3c8cf; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.device-launcher-title { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; line-height: 1; }
+.device-launcher-title > span { color: #b3c8cf; font-size: 15px; transition: transform .2s ease, color .2s ease; }
+.device-launcher-status { display: flex; align-items: center; gap: 6px; color: #b3c8cf; font-size: 9px; letter-spacing: .16em; }
+.device-launcher-status i { width: 4px; height: 4px; background: #e5faff; box-shadow: 0 0 6px #c1efff80; }
+.device-launcher:hover, .device-launcher:focus-visible {
+  background-color: #12232af5;
+  border-color: #e5faff;
+  box-shadow: inset 0 0 0 3px #02080b, inset 0 0 0 4px #bedfe54a, 0 0 24px #bedfe524;
+}
+.device-launcher:is(:hover, :focus-visible) .device-launcher-orbit { transform: rotate(35deg); opacity: 1; }
+.device-launcher:is(:hover, :focus-visible) .device-launcher-title > span { transform: translate(2px, -2px); color: #fff; }
+.device-launcher:active { background-color: #203a43; box-shadow: inset 0 0 0 3px #02080b, inset 0 0 18px #bedfe530; }
+.device-launcher:focus-visible { outline-color: #e5faff; }
+@media (max-width: 600px) {
+  .device-launcher { gap: 9px; padding: 12px 11px; }
+  .device-launcher .device-launcher-emblem svg { width: 30px; height: 30px; }
+  .device-launcher-overline { display: none; }
+  .device-launcher-title { font-size: 12px; gap: 8px; }
+  .device-launcher-title > span { font-size: 12px; }
+  .device-launcher-status { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .device-launcher, .device-launcher-orbit, .device-launcher-title > span { transition: none; }
+  .device-launcher:is(:hover, :focus-visible) .device-launcher-orbit,
+  .device-launcher:is(:hover, :focus-visible) .device-launcher-title > span { transform: none; }
+}
 
 /* One projected terminal plane, rather than several floating app cards. */
 .device-dialog {
