@@ -24,7 +24,7 @@ export const stages: Stage[] = [
   ]),
 ]
 export const getStage = (id: StageId) => stages.find(stage => stage.id === id)!
-export interface Journey { version: 2; stage: StageId; elapsed: number; time: number }
+export interface Journey { version: 2; stage: StageId; elapsed: number; time: number; surface?: true }
 export const TRANSFER_SECONDS = 45
 export const WORMHOLE_SECONDS = 8
 export const travelDuration = (id: StageId) => getStage(id).kind === 'wormhole' ? WORMHOLE_SECONDS : TRANSFER_SECONDS
@@ -33,7 +33,20 @@ export const initialJourney = (): Journey => ({ version: 2, stage: 'blackhole-or
 export function discoveryUnlocked(state: Journey) {
   return getStage(state.stage).stop > 0 && (state.stage !== destinations[0].transferId || state.elapsed >= DISCOVERY_SECONDS)
 }
+export function canLand(state: Journey): boolean {
+  const stage = getStage(state.stage)
+  return !state.surface && stage.kind === 'orbit' && getBody(stage.bodyId).kind === 'planet'
+}
+export function land(state: Journey): Journey {
+  return canLand(state) ? { ...state, surface: true } : state
+}
+export function returnToOrbit(state: Journey): Journey {
+  if (!state.surface) return state
+  const { surface: _, ...orbit } = state
+  return orbit
+}
 export function burn(state: Journey): Journey {
+  if (state.surface) return state
   const stage = getStage(state.stage)
   const next = destinations[stage.stop]
   return stage.stop >= 0 && stage.kind === 'orbit' && next ? { ...state, stage: next.transferId, elapsed: 0 } : state
@@ -42,7 +55,7 @@ export function enterWormhole(state: Journey): Journey {
   return state.stage === 'blackhole-orbit' ? { ...state, stage: 'wormhole-transit', elapsed: 0 } : state
 }
 export function advanceJourney(state: Journey, seconds: number): Journey {
-  if (!Number.isFinite(seconds) || seconds <= 0) return state
+  if (state.surface || !Number.isFinite(seconds) || seconds <= 0) return state
   const elapsed = state.elapsed + seconds
   const stage = getStage(state.stage)
   if (stage.kind === 'wormhole' && elapsed >= WORMHOLE_SECONDS) {
@@ -64,6 +77,11 @@ export function restoreJourney(raw: string | null): Journey {
     if (value?.version !== 2 || !stages.some(stage => stage.id === value.stage) ||
       !Number.isFinite(value.elapsed) || value.elapsed < 0 || !Number.isFinite(value.time) || value.time < value.elapsed ||
       (getStage(value.stage).kind !== 'orbit' && value.elapsed >= travelDuration(value.stage))) return initialJourney()
-    return { version: 2, stage: value.stage, elapsed: value.elapsed, time: value.time }
+    const restored: Journey = { version: 2, stage: value.stage, elapsed: value.elapsed, time: value.time }
+    if (value.surface !== undefined) {
+      if (value.surface !== true || !canLand(restored)) return initialJourney()
+      return land(restored)
+    }
+    return restored
   } catch { return initialJourney() }
 }

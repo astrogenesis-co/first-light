@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Scene from './scene/Scene'
+import PlanetSurface from './scene/PlanetSurface'
 import WormholeTransition from './scene/WormholeTransition'
 import './scene/scene.css'
 import Hud from './hud/Hud'
@@ -22,6 +23,7 @@ export default function App() {
     <main aria-label="First light · Your journey">
       <Scene />
       <WormholeTransition />
+      <PlanetSurface />
       <Hud />
       {import.meta.env.DEV && <JourneyDevTools />}
     </main>

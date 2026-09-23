@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { advanceJourney, burn, enterWormhole, initialJourney, restoreJourney, scenario, type Journey, type StageId } from './journey'
+import { advanceJourney, burn, land, returnToOrbit, enterWormhole, initialJourney, restoreJourney, scenario, type Journey, type StageId } from './journey'
 
 const SAVE_KEY = 'first-light.journey.v2'
 function readSave() {
@@ -13,6 +13,8 @@ interface JourneyStore {
   visitor: Journey | null
   visitorPaused: boolean
   tick: (seconds: number) => void
+  land: () => void
+  returnToOrbit: () => void
   initiateBurn: () => void
   enterWormhole: () => void
   togglePreview: () => void
@@ -29,6 +31,8 @@ export const useJourneyStore = create<JourneyStore>((set, get) => ({
     set({ journey: advanceJourney(state.journey, seconds * state.speed) })
   },
   enterWormhole: () => { set({ journey: enterWormhole(get().journey) }); saveJourney() },
+  land: () => { set({ journey: land(get().journey) }); saveJourney() },
+  returnToOrbit: () => { set({ journey: returnToOrbit(get().journey) }); saveJourney() },
   initiateBurn: () => { set({ journey: burn(get().journey) }); saveJourney() },
   togglePreview: () => {
     if (!import.meta.env.DEV) return
