@@ -1,11 +1,11 @@
 import { memo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Stars } from '@react-three/drei'
 import { Group } from 'three'
 import Blackhole from './Blackhole'
 import CameraRig from './CameraRig'
 import Bloom from './Bloom'
 import Star from './Star'
+import Starfield from './Starfield'
 import Planet from './Planet'
 import { bodies, BODY_RADII, type CelestialBody } from '../store/galaxy'
 import { useAppStore } from '../store/useAppStore'
@@ -60,7 +60,7 @@ function Scene() {
       gl={{ antialias: true, alpha: false }}
     >
       <color attach="background" args={['#020308']} />
-      <Stars radius={2000} depth={500} count={4500} factor={2.5} saturation={0.15} fade speed={0.2} />
+      <Starfield />
       <GalaxyClock />
       {bodies.map((body) => <Body key={body.id} body={body} />)}
       <CameraRig />
