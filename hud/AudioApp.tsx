@@ -17,7 +17,8 @@ function PlayButton({ player }: { player: AudioPlayer }) {
 }
 export function TransmissionWidget({ player, onOpen }: { player: AudioPlayer; onOpen: () => void }) {
   if (!player.track || !player.visible) return null
-  return <aside className="transmission-widget" aria-label="Audio transmission">
+  return <aside key={player.track.id} className="transmission-widget" aria-label="Audio transmission">
+    <span className="transmission-arrival-sweep" aria-hidden="true" />
     <button className="transmission-open" onClick={onOpen} aria-haspopup="dialog" aria-controls="field-device">
       <span className="audio-eyebrow">{player.track.channel}</span>
       <strong>{player.track.title}</strong>
