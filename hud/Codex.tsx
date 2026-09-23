@@ -3,6 +3,7 @@ import { z } from 'zod'
 import './codex.css'
 import type { AudioTrack } from '../store/transmissions'
 import { discoveredCatalog, validateCodexSchedule } from '../store/codexUnlocks'
+import { bodyDiscoveryKeys } from '../store/journeyProgress'
 import { useCodexProgress } from './useCodexProgress'
 
 const collections = [
@@ -26,7 +27,11 @@ const entrySchema = z.object({
 })
 type Entry = z.infer<typeof entrySchema>
 
-export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack) => void }) {
+export default function Codex({ onPlayAudio, scope, onClearScope }: {
+  onPlayAudio: (track: AudioTrack) => void
+  scope: { bodyId: string; label: string } | null
+  onClearScope: () => void
+}) {
   const unlockedKeys = useCodexProgress()
   const [catalog, setEntries] = useState<Entry[] | null>(null)
   const [error, setError] = useState(false)
@@ -85,9 +90,11 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
   if (error) return <div className="codex-message" role="alert"><h2>Catalog unavailable</h2><p>We couldn’t load your entries.</p><button onClick={() => setAttempt(value => value + 1)}>Try again</button></div>
   if (!entries || !catalog) return <div className="codex-message" role="status">Opening the Codex…</div>
 
+  const scopeKeys = scope ? new Set(bodyDiscoveryKeys(scope.bodyId, unlockedKeys)) : null
+  const scopedEntries = scopeKeys ? entries.filter(entry => scopeKeys.has(entry.key)) : entries
   const collection = collections.find(item => item.group === group)
   const search = query.trim().toLowerCase()
-  const visible = entries.filter(entry => entry.group === group
+  const visible = scopedEntries.filter(entry => entry.group === group
     && `${entry.title} ${entry.type} ${entry.excerpt}`.toLowerCase().includes(search))
     .sort((a, b) => group === 'tracks' ? (a.trackNumber ?? 0) - (b.trackNumber ?? 0) : a.title.localeCompare(b.title))
 
@@ -99,6 +106,7 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
 
   return (
     <div className="codex">
+      {scope && <div className="journey-codex-scope"><span>Discoveries · {scope.label}</span><button className="codex-back" onClick={onClearScope}>View all discoveries ↗</button></div>}
       {selected ? (
         <article className="codex-detail">
           <button className="codex-back" onClick={() => setHistory(availableHistory.slice(0, -1))}>← {availableHistory.length > 1 ? 'Previous entry' : `Back to ${collection?.label.toLowerCase() ?? 'entries'}`}</button>
@@ -128,7 +136,7 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
       ) : (
         <nav className="codex-types" aria-label="Entry types" ref={types}>
           {collections.map(item => {
-            const count = entries.filter(entry => entry.group === item.group).length
+            const count = scopedEntries.filter(entry => entry.group === item.group).length
             return <button key={item.group} data-group={item.group} onClick={() => { setGroup(item.group); setQuery('') }}><span className="codex-type-mark" aria-hidden="true">{item.mark}</span><strong>{item.label}</strong><span className="codex-type-count">{count} unlocked</span><span className="codex-type-arrow" aria-hidden="true">→</span></button>
           })}
         </nav>
