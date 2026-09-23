@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react'
 import './hud.css'
-import CodexDiscoveryNotice from './CodexDiscoveryNotice'
 import { Notifications } from './Notifications'
 import { useNotificationStore } from '../store/useNotificationStore'
 import GalaxyMap from './GalaxyMap'
@@ -25,9 +24,7 @@ function DeviceGlyph() {
 export default function Hud() {
   const launcher = useRef<HTMLButtonElement>(null)
   const records = useNotificationStore(state => state.records)
-  const pending = useNotificationStore(state => state.pending)
   const unread = records.filter(item => !item.read).length
-  const savedUnread = records.filter(item => !item.read && !pending.includes(item.key)).length
   const [journeyView, setJourneyView] = useState<'map' | 'notifications'>('map')
   const [entryKey, setEntryKey] = useState<string | null>(null)
   const device = useRef<HTMLDialogElement>(null)
@@ -62,7 +59,6 @@ export default function Hud() {
 
   return (
     <>
-      <CodexDiscoveryNotice onOpen={openNotification} target={launcher} suspended={isOpen} />
       <TransmissionWidget player={player} onOpen={openAudio} />
       {!isOpen && <TransmissionSubtitles player={player} />}
       <JourneyHud mapOpen={isOpen && activeApp === 'journey'} onOpenMap={() => {
@@ -83,7 +79,7 @@ export default function Hud() {
         aria-expanded={isOpen}
         aria-label={`Open device${unread ? ` · ${unread} unread notifications` : ''}`}
       >
-        {savedUnread > 0 && <span key={savedUnread} className="device-notification-count" aria-hidden="true">{savedUnread}</span>}
+        {unread > 0 && <span key={unread} className="device-notification-count" aria-hidden="true">{unread}</span>}
         <span className="device-launcher-emblem" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none">
             <circle className="device-launcher-orbit" cx="24" cy="24" r="20" />

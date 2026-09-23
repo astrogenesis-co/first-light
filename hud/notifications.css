@@ -1,13 +1,3 @@
-.visor-notifications { position: fixed; z-index: 20; top: max(28px, env(safe-area-inset-top)); left: 50%; width: min(440px, calc(100vw - 32px)); transform: translateX(-50%); pointer-events: none; color: #e5faff; font-family: "SFMono-Regular", Consolas, monospace; }
-.visor-notice { display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid #bddfea80; background: #061018ef; box-shadow: inset 3px 0 #d1edff, 0 8px 30px #0006; pointer-events: auto; animation: notice-arrive .3s ease-out; }
-.visor-notice-symbol { font-size: 30px; color: #c6b1ff; }
-.visor-notice button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-.visor-notice-open { display: grid; gap: 7px; text-align: left; padding: 0; flex: 1; min-width: 0; }
-.visor-notice-open small { text-transform: uppercase; font-size: 10px; letter-spacing: .14em; color: #abc1ce; }
-.visor-notice-open strong { font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
-.visor-notice-open > span { font-size: 11px; color: #c6b1ff; }
-.visor-notice .visor-notice-dismiss { align-self: start; font-size: 22px; padding: 4px 8px; }
-.visor-notice button:focus-visible { outline: 2px solid #c6b1ff; outline-offset: 5px; }
 .device-notification-count { position: absolute; top: -10px; right: -10px; display: grid; place-items: center; min-width: 24px; height: 24px; padding: 0 5px; box-sizing: border-box; border: 2px solid #061018; border-radius: 20px; color: #081019; background: #d0bfff; font: bold 12px monospace; animation: notification-count .35s ease-out; }
 .journey-views { display: flex; gap: 8px; padding: 16px 20px; border-bottom: 1px solid var(--device-line); }
 .journey-views button, .notification-history button { font: inherit; cursor: pointer; color: var(--device-text); }
@@ -30,10 +20,9 @@
 .notification-empty { padding: 42px 12px; text-align: center; }
 .notification-empty > span { font-size: 36px; color: #c6b1ff; }
 .notification-empty h3 { font-size: 16px; }
-@keyframes notice-arrive { from { opacity: 0; translate: 0 -12px; } to { opacity: 1; translate: 0 0; } }
 @keyframes notification-count { 50% { scale: 1.2; } }
-@media (max-width: 600px) { .notification-history { padding: 20px 16px; } .notification-history header { align-items: start; flex-direction: column; } .visor-notifications { top: 16px; } }
-@media (prefers-reduced-motion: reduce) { .visor-notice, .device-notification-count { animation: none; } }
+@media (max-width: 600px) { .notification-history { padding: 20px 16px; } .notification-history header { align-items: start; flex-direction: column; } }
+@media (prefers-reduced-motion: reduce) { .device-notification-count { animation: none; } }
 .device-dialog .journey-views button[aria-pressed="true"],
 .device-dialog .notification-filters button[aria-pressed="true"] { background: #c6b1ff18; border-color: #c6b1ff; box-shadow: inset 0 -2px #c6b1ff; }
 .device-dialog .notification-history .notification-row { background: transparent; box-shadow: none; border-bottom-color: #bddfea35; }
