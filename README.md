@@ -165,10 +165,16 @@ Pause/resume, seeking, and volume belong to the shared player. Hiding the widget
 does not stop playback; a completed transmission dismisses it after five seconds.
 Travel pause and audio pause are independent.
 
+Transmissions show timed subtitles in a recessed lower-visor comms readout (and
+within the device while it is open). Captions follow audio position, retain the
+current line when paused, and clear when playback ends or stops. Hiding the audio
+widget leaves captions enabled. Tracks without subtitle cues show no readout.
+
 `store/transmissions.ts` maps the seven transfers to recordings and transcripts.
 All seven currently reuse **one temporary, synthetic guide recording**, generated
 locally with the macOS Samantha voice. Replace each source and transcript with
-authored narration when ready. Audio paths resolve against Vite's base URL.
+authored narration and matching `subtitles` cues when ready; cue start/end values
+are seconds in the recording. Audio paths resolve against Vite's base URL.
 Radio lists transmissions reached along the current linear journey, including
 the current transfer. Future transmissions stay hidden. Resetting or switching
 preview context stops audio; lab seeks do not automatically narrate. Received
