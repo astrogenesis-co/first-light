@@ -2,7 +2,7 @@ import { useSyncExternalStore } from 'react'
 import { bodies, getBody, type Coordinates } from '../store/galaxy'
 import { mapClock } from '../store/simulation'
 import { useJourneyStore } from '../store/useJourneyStore'
-import { destinations, getStage, stages, TRANSFER_SECONDS, type StageId } from '../store/journey'
+import { destinations, getStage, stages, TRANSFER_SECONDS, travelDuration, type StageId } from '../store/journey'
 import { codexSchedule } from '../store/codexSchedule'
 import { useCodexProgress } from './useCodexProgress'
 import CodexDiscoveryNotice from './CodexDiscoveryNotice'
@@ -46,22 +46,30 @@ export default function JourneyHud({ onOpenMap, onOpenCodex, mapOpen }: { onOpen
   const seconds = useJourneyStore(state => Math.floor(state.journey.elapsed))
   const paused = useJourneyStore(state => state.paused)
   const current = getStage(stage)
-  const transfer = current.kind === 'transfer'
+  const transfer = current.kind !== 'orbit'
+  const intro = current.stop < 0
+  const duration = travelDuration(stage)
   const next = destinations[current.stop]
-  const finished = !transfer && !next
+  const finished = !intro && !transfer && !next
   return <>
     <section className="journey-hud" aria-label="Journey mini map">
       <button className="journey-map-launcher" onClick={onOpenMap} aria-label={`Open Map in device · ${current.title}`} aria-haspopup="dialog" aria-controls="field-device" aria-expanded={mapOpen}>
-        <span className="journey-map-heading"><span className="journey-eyebrow">Star system</span><span className="journey-eyebrow">X / Z</span></span>
-        <MiniMap bodyId={current.bodyId} fromBodyId={current.fromBodyId} transfer={transfer} />
+        <span className="journey-map-heading"><span className="journey-eyebrow">{intro ? 'Galactic core' : 'Star system'}</span><span className="journey-eyebrow">X / Z</span></span>
+        {intro ? <svg className="journey-minimap" viewBox="0 0 240 220" aria-hidden="true">
+          <path className="minimap-grid" d="M10 110h220M120 0v220" />
+          <circle className="minimap-orbit" cx="120" cy="110" r="42" />
+          <circle className="minimap-active" cx="120" cy="110" r="12" />
+          <circle className="minimap-planet" cx="120" cy="68" r="3" />
+        </svg> : <MiniMap bodyId={current.bodyId} fromBodyId={current.fromBodyId} transfer={transfer} />}
         <span className="journey-map-title">{current.title}</span>
-        <span className="journey-map-footer"><span>{transfer ? 'Destination marked' : finished ? 'Journey complete' : `${current.stop} / ${destinations.length} worlds visited`}</span><span>Open map ↗</span></span>
+        <span className="journey-map-footer"><span>{intro ? (transfer ? 'To the star system' : 'Journey begins here') : transfer ? 'Destination marked' : finished ? 'Journey complete' : `${current.stop} / ${destinations.length} worlds visited`}</span><span>Open map ↗</span></span>
       </button>
     </section>
     <section className="journey-controls" aria-label="Journey controls">
       <CodexDiscoveryNotice onOpen={onOpenCodex} />
-      {!transfer && next && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ {getBody(next.bodyId).name}</span></button>}
-      {transfer && <div className="journey-travel"><div className="journey-progress-label"><span>{paused ? 'Travel paused' : 'In transit'}</span><span>{TRANSFER_SECONDS - seconds}s to orbit</span></div><progress aria-label="Travel progress" max={TRANSFER_SECONDS} value={seconds} /><button className="journey-pause" onClick={() => useJourneyStore.getState().setPaused(!paused)}>{paused ? 'Resume travel' : 'Pause travel'}</button></div>}
+      {stage === 'blackhole-orbit' && <button className="journey-primary" onClick={() => useJourneyStore.getState().enterWormhole()}>Enter wormhole <span>↗ Star system</span></button>}
+      {!intro && !transfer && next && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ {getBody(next.bodyId).name}</span></button>}
+      {transfer && <div className="journey-travel"><div className="journey-progress-label"><span>{paused ? 'Travel paused' : current.kind === 'wormhole' ? 'Through the wormhole' : 'In transit'}</span><span>{duration - seconds}s {current.kind === 'wormhole' ? 'to star system' : 'to orbit'}</span></div><progress aria-label="Travel progress" max={duration} value={seconds} /><button className="journey-pause" onClick={() => useJourneyStore.getState().setPaused(!paused)}>{paused ? 'Resume travel' : 'Pause travel'}</button></div>}
     </section>
   </>
 }
@@ -79,7 +87,7 @@ export function JourneyDevTools() {
     <button onClick={actions.togglePreview}>{preview ? 'Return to visitor' : 'Enter preview'}</button>
     {preview && <>
       <label>Stage<select value={stage} onChange={event => actions.seek(event.target.value as StageId)}>{stages.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
-      {getStage(stage).kind === 'transfer' && <label>Travel · {elapsed}s<input aria-label="Scrub travel" type="range" min="0" max={TRANSFER_SECONDS} step="0.1" value={elapsed} onChange={event => actions.seek(stage, Number(event.target.value))} /></label>}
+      {getStage(stage).kind !== 'orbit' && <label>Travel · {elapsed}s<input aria-label="Scrub travel" type="range" min="0" max={travelDuration(stage)} step="0.1" value={elapsed} onChange={event => actions.seek(stage, Number(event.target.value))} /></label>}
       <div className="journey-dev-row"><button onClick={() => actions.setPaused(!paused)}>{paused ? 'Play' : 'Pause'}</button><label>Speed<select value={speed} onChange={event => actions.setSpeed(Number(event.target.value))}>{[1, 5, 20].map(value => <option key={value} value={value}>{value}×</option>)}</select></label></div>
       <button onClick={() => actions.seek(destinations[0].transferId, TRANSFER_SECONDS / 2)}>Load halfway / discovery</button>
       <label>Preview Codex milestone<select value="" onChange={event => {

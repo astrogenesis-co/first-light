@@ -38,7 +38,7 @@ test('every scheduled unlock happens at its exact boundary and persists in later
 })
 
 test('large ticks, restored saves, and completed journeys retain cumulative discoveries', () => {
-  const arrived = advanceJourney(burn(initialJourney()), 60)
+  const arrived = advanceJourney(burn(scenario('star-orbit')), 60)
   assert.equal(unlockedCodexKeys(arrived).length, 6)
   assert.ok(unlockedCodexKeys(arrived).includes('songs/mock-signal'))
   assert.deepEqual(unlockedCodexKeys(restoreJourney(JSON.stringify(arrived))), unlockedCodexKeys(arrived))

@@ -75,15 +75,17 @@ still need instancing, spatial culling, and loading/unloading of detailed assets
 
 ## Journey development
 
-The first visit starts at the edge of the star system, beyond the outermost
-planet. **Initiate burn** starts a 45-second transfer to Planet 7. Subsequent
+The first visit starts beside the black hole, the future intro/tutorial area.
+**Enter wormhole** starts an eight-second passage with a simple fade covering
+a camera cut to the edge of the star system, beyond the outermost planet.
+The passage supports pause, resume, saving, and preview scrubbing; authored
+tutorial interactions and wormhole visuals are deferred. Arrival waits for input. **Initiate burn** starts a 45-second transfer to Planet 7. Subsequent
 burns travel inward through Planet 6 to Planet 1. Each arrival holds
 in orbit until the visitor initiates the next burn. Planet 1 orbit is the
 endpoint and has no onward burn. All seven worlds share the existing planet visual
 and appear in the star-system map. A song entry unlocks at 22.5 seconds
 and remains available after arrival in planet orbit. Arrival unlocks the next
-chapter bundle; additional transit discoveries are configured in the Codex schedule. The black-hole tutorial is
-reserved for a later chapter; the body remains available on the map.
+chapter bundle; additional transit discoveries are configured in the Codex schedule. The black-hole opening and wormhole passage precede the planetary route.
 
 `store/journey.ts` contains pure progression rules, stable stage IDs, checkpoint
 validation, and preview scenarios. `store/journeyPose.ts` defines a continuous
@@ -94,7 +96,7 @@ the visitor HUD, sample content card, and development panel.
 In `npm run dev`, open **Journey lab** at the bottom right:
 
 - **Enter preview** preserves visitor progress and opens a paused sandbox.
-- Choose any of the 15 stages, scrub any transfer, or load the halfway discovery scenario.
+- Choose any of the 17 stages, scrub any transfer, or load the halfway discovery scenario.
 - Use Play/Pause and 1×, 5×, or 20× playback to test transitions.
 - Use **Preview Codex milestone** to jump to any configured unlock. Open the Codex
   to inspect the entries at that point; the lab also shows the discovered count.
@@ -110,8 +112,8 @@ reset safely. Development controls are omitted from production builds.
 
 To extend the route, add a body in `galaxy.ts` and a destination with stable
 transfer/orbit IDs in `journey.ts`. Progression, camera endpoints, and the preview
-selector follow that route automatically. Planet and stage IDs retain their identities. Save version 2 starts a fresh
-inward journey, leaving previous outward-route checkpoints under their old key. Stage IDs are distinct from body IDs, allowing a later return to the star
+selector follow that route automatically. Planet and stage IDs retain their identities. Save version 2 preserves existing inward-route checkpoints; reset the visitor
+journey to experience the new black-hole opening. Stage IDs are distinct from body IDs, allowing a later return to the star
 to have different behavior. Run `npm test` for progression, checkpoint, camera
 continuity, and galaxy regressions, and `npm run build` for the production check.
 
