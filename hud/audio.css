@@ -1,5 +1,19 @@
 .transmission-widget { position: fixed; top: max(38px, env(safe-area-inset-top)); right: max(28px, env(safe-area-inset-right)); width: min(310px, calc(100vw - 48px)); display: flex; border: 1px solid #68ffe140; border-top: 2px solid #68ffe1a0; border-radius: 10px; background: linear-gradient(125deg, #0b242bed, #080f20eb); color: #ddfff8; backdrop-filter: blur(16px); box-shadow: 0 12px 35px #0004; font: 12px monospace; }
 .transmission-widget button { color: inherit; font: inherit; cursor: pointer; }
+.transmission-widget { animation: transmission-arrive 850ms cubic-bezier(.16, 1, .3, 1) backwards; }
+.transmission-arrival-sweep { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.transmission-arrival-sweep::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 30%, rgb(220 247 255 / 13%) 49%, transparent 68%); translate: 110% 0; animation: transmission-sweep 1200ms 150ms ease-out backwards; }
+.transmission-widget .audio-eyebrow { animation: transmission-copy 500ms 180ms ease-out backwards; }
+.transmission-open strong { animation: transmission-copy 550ms 280ms ease-out backwards; }
+.transmission-status, .transmission-controls { animation: transmission-copy 550ms 380ms ease-out backwards; }
+/* Individual translate preserves the projection's existing 3D transform. */
+@keyframes transmission-arrive {
+  from { opacity: 0; translate: 18px -6px; clip-path: inset(0 0 100% 0); }
+  45% { opacity: 1; clip-path: inset(0); }
+  to { opacity: 1; translate: 0 0; clip-path: inset(0); }
+}
+@keyframes transmission-copy { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+@keyframes transmission-sweep { from { translate: -110% 0; } to { translate: 110% 0; } }
 .transmission-open { flex: 1; min-width: 0; border: 0; background: transparent; text-align: left; padding: 17px; border-radius: 9px; }
 .audio-eyebrow { display: block; color: #8abebc; font: 12px monospace; text-transform: uppercase; letter-spacing: .1em; line-height: 1.5; }
 .transmission-open strong { display: block; margin: 9px 0 13px; font-size: 13px; font-weight: 700; }
@@ -44,7 +58,7 @@
 .audio-app :focus-visible, .transmission-widget :focus-visible { outline: 2px solid #68ffe1; outline-offset: 3px; }
 .device-app-audio { --app-accent: #9ddcfb; }
 .device-app-audio .device-app-icon { background: linear-gradient(145deg, #203a50, #101b2b); }
-main:has(.device-dialog[open]) .transmission-widget { opacity: 0; pointer-events: none; }
+main:has(.device-dialog[open]) .transmission-widget { opacity: 0; visibility: hidden; pointer-events: none; }
 @media (max-width: 700px) {
   .transmission-widget { top: max(20px, env(safe-area-inset-top)); right: 16px; width: min(210px, calc(100vw - 32px)); }
   .transmission-open { padding: 12px; }
@@ -63,3 +77,8 @@ main:has(.device-dialog[open]) .transmission-widget { opacity: 0; pointer-events
 }
 @media (max-width: 600px) { .device-apps { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 @media (prefers-reduced-motion: reduce) { .audio-wave[data-playing="true"] i { animation: none; height: 10px; } }
+@media (prefers-reduced-motion: reduce) {
+  .transmission-widget, .transmission-widget .audio-eyebrow, .transmission-open strong,
+  .transmission-status, .transmission-controls, .transmission-arrival-sweep::after { animation: none; }
+  .transmission-arrival-sweep { display: none; }
+}
