@@ -2,7 +2,7 @@ import { destinations, getStage, type StageId } from './journey.ts'
 import { getBody } from './galaxy.ts'
 
 export interface SubtitleCue { start: number; end: number; text: string }
-export interface AudioTrack { id: string; title: string; source: string; channel: string; transcript?: string; subtitles?: readonly SubtitleCue[] }
+export interface AudioTrack { id: string; title: string; source: string; channel: string; receiver?: 'comms' | 'radio'; loop?: boolean; transcript?: string; subtitles?: readonly SubtitleCue[] }
 
 // Sentence boundaries in temporary-guide.mp3, in audio seconds (not journey time).
 const guideSubtitles: readonly SubtitleCue[] = [
@@ -16,6 +16,7 @@ export const transmissions = destinations.map((destination, index) => ({
   id: destination.transferId,
   title: `Approaching ${getBody(destination.bodyId).name}`,
   source: 'audio/transmissions/temporary-guide.mp3',
+  receiver: 'comms' as const,
   channel: `Journey channel · Transmission ${String(index + 1).padStart(2, '0')}`,
   transcript: guideSubtitles.map(cue => cue.text).join(' '),
   subtitles: guideSubtitles,

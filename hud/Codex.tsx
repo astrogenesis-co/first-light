@@ -19,6 +19,7 @@ const collections = [
 
 const entrySchema = z.object({
   audio: z.string().nullable().optional(),
+  audioReceiver: z.enum(['comms', 'radio']).optional(),
   key: z.string(), title: z.string(), type: z.string(),
   group: z.enum(['albums', 'stages', 'essays', 'tracks', 'songs', 'mixes', 'stems']),
   status: z.string(), excerpt: z.string(), body: z.string(),
@@ -125,7 +126,7 @@ export default function Codex({ onPlayAudio, scope, onClearScope, initialEntryKe
             selected.progress && `Progress: ${selected.progress}`,
             selected.duration && `${Math.floor(selected.duration / 60)}:${String(selected.duration % 60).padStart(2, '0')}`,
           ].filter(Boolean).join(' · ')}</p>}
-          {selected.audio && <button className="codex-back" onClick={() => onPlayAudio({ id: selected.key, title: selected.title, source: selected.audio!, channel: 'Codex library' })}>▶ Play in Audio ↗</button>}
+          {selected.audio && <button className="codex-back" onClick={() => onPlayAudio({ id: selected.key, title: selected.title, source: selected.audio!, channel: 'Codex library', receiver: selected.audioReceiver ?? 'radio' })}>▶ Play in Audio ↗</button>}
           <div className="codex-prose">{selected.body ? <MarkdownBody body={selected.body} title={selected.title} /> : <p className="codex-empty">This entry is waiting to be written.</p>}</div>
           {selected.channels.length > 0 && <section className="codex-related"><h3>Channels</h3><ul>{selected.channels.map(channel => <li key={channel.label}>{channel.label}</li>)}</ul></section>}
           {selected.links.length > 0 && <section className="codex-related"><h3>Connected entries <span>{selected.links.length}</span></h3><div className="codex-connections">{selected.links.map(link => <button key={link.key} onClick={() => openEntry(link.key)}><span><small>{link.label}</small>{link.title}</span><span aria-hidden="true">↗</span></button>)}</div></section>}

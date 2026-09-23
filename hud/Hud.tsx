@@ -59,8 +59,8 @@ export default function Hud() {
 
   return (
     <>
-      <TransmissionWidget player={player} onOpen={openAudio} />
-      {!isOpen && <TransmissionSubtitles player={player} />}
+      <TransmissionWidget player={player.comms} onOpen={openAudio} />
+      {!isOpen && <TransmissionSubtitles player={player.comms} />}
       <JourneyHud mapOpen={isOpen && activeApp === 'journey'} onOpenMap={() => {
         setActiveApp('journey')
         setJourneyView('map')
@@ -151,7 +151,7 @@ export default function Hud() {
             </section>
           </div>
 
-          {isOpen && <TransmissionSubtitles player={player} inDevice />}
+          {isOpen && <TransmissionSubtitles player={player.comms} inDevice />}
           <footer className="device-footer"><span><i /> Device online</span><span>Click outside to return <kbd>esc</kbd></span></footer>
         </div>
       </dialog>
