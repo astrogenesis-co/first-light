@@ -54,7 +54,7 @@ export default function JourneyHud({ onOpenMap, onOpenCodex, mapOpen }: { onOpen
   const finished = !intro && !transfer && !next
   return <>
     <section className={`journey-hud${surface ? " journey-hud-surface" : ""}`} aria-label="Journey mini map">
-      <button className="journey-map-launcher" onClick={onOpenMap} aria-label={`Open Map in device · ${current.title}`} aria-haspopup="dialog" aria-controls="field-device" aria-expanded={mapOpen}>
+      <button className="journey-map-launcher" onClick={onOpenMap} aria-label={`Open Journey in device · ${current.title}`} aria-haspopup="dialog" aria-controls="field-device" aria-expanded={mapOpen}>
         <span className="journey-map-heading"><span className="journey-eyebrow">{intro ? 'Galactic core' : 'Star system'}</span><span className="journey-eyebrow">X / Z</span></span>
         {intro ? <svg className="journey-minimap" viewBox="0 0 240 220" aria-hidden="true">
           <path className="minimap-grid" d="M10 110h220M120 0v220" />
@@ -63,7 +63,7 @@ export default function JourneyHud({ onOpenMap, onOpenCodex, mapOpen }: { onOpen
           <circle className="minimap-planet" cx="120" cy="68" r="3" />
         </svg> : <MiniMap bodyId={current.bodyId} fromBodyId={current.fromBodyId} transfer={transfer} />}
         <span className="journey-map-title">{surface ? `${getBody(current.bodyId).name} surface` : current.title}</span>
-        <span className="journey-map-footer"><span>{surface ? 'Surface visit' : intro ? (transfer ? 'To the star system' : 'Journey begins here') : transfer ? 'Destination marked' : finished ? 'Journey complete' : `${current.stop} / ${destinations.length} worlds visited`}</span><span>Open map ↗</span></span>
+        <span className="journey-map-footer"><span>{surface ? 'Surface visit' : intro ? (transfer ? 'To the star system' : 'Journey begins here') : transfer ? 'Destination marked' : finished ? 'Journey complete' : `${current.stop} / ${destinations.length} worlds visited`}</span><span>Open journey ↗</span></span>
       </button>
     </section>
     <section className="journey-controls" aria-label="Journey controls">

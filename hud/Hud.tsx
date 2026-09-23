@@ -22,7 +22,14 @@ export default function Hud() {
   const device = useRef<HTMLDialogElement>(null)
   const opener = useRef<HTMLElement | null>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [activeApp, setActiveApp] = useState<'map' | 'codex' | 'audio'>('map')
+  const [activeApp, setActiveApp] = useState<'journey' | 'codex' | 'audio'>('journey')
+  const [codexScope, setCodexScope] = useState<{ bodyId: string; label: string } | null>(null)
+  const [codexVisit, setCodexVisit] = useState(0)
+  function openCodex(scope: { bodyId: string; label: string } | null = null) {
+    setCodexScope(scope)
+    setCodexVisit(value => value + 1)
+    setActiveApp('codex')
+  }
   const player = useAudioPlayer()
   function openAudio() { setActiveApp('audio'); openDevice() }
 
@@ -39,11 +46,11 @@ export default function Hud() {
   return (
     <>
       <TransmissionWidget player={player} onOpen={openAudio} />
-      <JourneyHud mapOpen={isOpen && activeApp === 'map'} onOpenCodex={() => {
-        setActiveApp('codex')
+      <JourneyHud mapOpen={isOpen && activeApp === 'journey'} onOpenCodex={() => {
+        openCodex()
         openDevice()
       }} onOpenMap={() => {
-        setActiveApp('map')
+        setActiveApp('journey')
         useAppStore.getState().selectBody(getStage(useJourneyStore.getState().journey.stage).bodyId)
         openDevice()
       }} />
@@ -76,10 +83,10 @@ export default function Hud() {
           <header className="device-header">
             <div className="device-header-heading">
               <div className="device-brand"><DeviceGlyph /><span>First light <span className="device-brand-divider">/</span> Field device</span></div>
-              <h1 id="device-title">{activeApp === 'map' ? 'Map' : activeApp === 'codex' ? 'Codex' : 'Audio'}</h1>
+              <h1 id="device-title">{activeApp === 'journey' ? 'Journey' : activeApp === 'codex' ? 'Codex' : 'Audio'}</h1>
             </div>
             <div className="device-header-actions">
-              {activeApp === 'map' && <span className="device-status"><i /> Navigation online</span>}
+              {activeApp === 'journey' && <span className="device-status"><i /> Journey online</span>}
             <button className="device-close" onClick={closeDevice} aria-label="Close device" autoFocus>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg>
             </button>
@@ -90,11 +97,11 @@ export default function Hud() {
             <aside className="device-sidebar" aria-label="Device apps">
               <span className="device-eyebrow">Apps</span>
               <div className="device-apps">
-                <button className="device-app" aria-pressed={activeApp === 'map'} aria-controls="device-map" onClick={() => setActiveApp('map')}>
+                <button className="device-app" aria-pressed={activeApp === 'journey'} aria-controls="device-journey" onClick={() => setActiveApp('journey')}>
                   <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5ZM9 3v16M15 5v16" /></svg></span>
-                  <span>Map</span>
+                  <span>Journey</span>
                 </button>
-                <button className="device-app device-app-codex" aria-pressed={activeApp === 'codex'} aria-controls="device-codex" onClick={() => setActiveApp('codex')}>
+                <button className="device-app device-app-codex" aria-pressed={activeApp === 'codex'} aria-controls="device-codex" onClick={() => openCodex()}>
                   <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5C9 3 5 3 3 4v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1Zm0 0v15M6 8h3M15 8h3M6 12h3M15 12h3" /></svg></span>
                   <span>Codex</span>
                 </button>
@@ -112,8 +119,8 @@ export default function Hud() {
             </aside>
 
             <section className="device-content" aria-labelledby="device-title">
-              <div id="device-map" hidden={activeApp !== 'map'}>{isOpen && <GalaxyMap />}</div>
-              <div id="device-codex" hidden={activeApp !== 'codex'}><Codex onPlayAudio={track => { player.play(track); openAudio() }} /></div>
+              <div id="device-journey" hidden={activeApp !== 'journey'}>{isOpen && <GalaxyMap onOpenCodex={openCodex} />}</div>
+              <div id="device-codex" hidden={activeApp !== 'codex'}><Codex key={codexVisit} scope={codexScope} onClearScope={() => openCodex()} onPlayAudio={track => { player.play(track); openAudio() }} /></div>
             <div id="device-audio" hidden={activeApp !== 'audio'}><AudioApp player={player} /></div>
             </section>
           </div>
