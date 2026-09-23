@@ -115,13 +115,13 @@ export function useAudioPlayer() {
       const reset = state.journey.stage === 'blackhole-orbit' && state.journey.time === 0 && state.journey !== previous.journey
       if (contextChanged || rewound || reset) { stopAll(); return }
       if (state.journey.stage !== previous.journey.stage) {
-        const incoming = transmissions.find(item => item.id === state.journey.stage)
+        const incoming = transmissions.find(item => item.stage === state.journey.stage)
         if (incoming && !state.preview) comms.play(incoming)
         else if (state.preview) stopAll()
       }
     })
     const state = useJourneyStore.getState()
-    const incoming = transmissions.find(item => item.id === state.journey.stage)
+    const incoming = transmissions.find(item => item.stage === state.journey.stage)
     if (incoming && !state.preview) comms.play(incoming)
     return unsubscribe
   }, [])
