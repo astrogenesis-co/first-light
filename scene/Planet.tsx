@@ -1,8 +1,9 @@
 import { useMemo, useRef, type RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { AdditiveBlending, Group, Vector3 } from 'three'
+import { AdditiveBlending, Color, Group, Vector3 } from 'three'
 import { BODY_RADII, getBody } from '../store/galaxy'
 import { simulation } from '../store/simulation'
+import { worldPalette } from './worldPalette'
 
 const noise = /* glsl */ `
   float hash(vec3 p) {
@@ -20,16 +21,7 @@ const noise = /* glsl */ `
       mix(mix(hash(i + vec3(0, 0, 1)), hash(i + vec3(1, 0, 1)), f.x),
           mix(hash(i + vec3(0, 1, 1)), hash(i + vec3(1, 1, 1)), f.x), f.y), f.z);
   }
-  float fbm(vec3 p) {
-    float value = 0.0;
-    float amplitude = 0.5;
-    for (int i = 0; i < 5; i++) {
-      value += noise3(p) * amplitude;
-      p = p * 2.03 + vec3(3.1, 7.2, 1.8);
-      amplitude *= 0.5;
-    }
-    return value;
-  }
+
 `
 
 const vertex = /* glsl */ `
@@ -44,8 +36,22 @@ const vertex = /* glsl */ `
   }
 `
 
+// Equal-area seeds make 36 connected panes on the sphere, with no terrain islands.
+const PANE_COUNT = 36
+const paneCenters = Array.from({ length: PANE_COUNT }, (_, index) => {
+  const y = 1 - 2 * (index + 0.5) / PANE_COUNT
+  const angle = index * Math.PI * (3 - Math.sqrt(5))
+  const radius = Math.sqrt(1 - y * y)
+  return new Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius)
+})
+
 const surface = /* glsl */ `
   uniform vec3 uStarPosition;
+  uniform vec3 uColor;
+  uniform vec3 uLight;
+  uniform vec3 uPanes[36];
+  uniform vec3 uPaneColors[36];
+  uniform float uPixelRatio;
   varying vec3 vPosition;
   varying vec3 vWorldPosition;
   varying vec3 vNormal;
@@ -55,74 +61,102 @@ const surface = /* glsl */ `
     vec3 n = normalize(vNormal);
     vec3 light = normalize(uStarPosition - vWorldPosition);
     vec3 view = normalize(cameraPosition - vWorldPosition);
-    float terrain = fbm(p * 3.0 + vec3(4.2, 1.3, 7.8));
-    float land = smoothstep(0.48, 0.505, terrain);
-    float detail = fbm(p * 42.0);
-    vec3 ocean = mix(vec3(0.008, 0.035, 0.09), vec3(0.025, 0.22, 0.29),
-      smoothstep(0.36, 0.5, terrain));
-    vec3 ground = mix(vec3(0.045, 0.13, 0.07), vec3(0.3, 0.25, 0.13),
-      smoothstep(0.52, 0.67, terrain));
-    ground *= 0.7 + detail * 0.6;
-    vec3 albedo = mix(ocean, ground, land);
-    float ice = smoothstep(0.83, 0.96, abs(p.y) + (detail - 0.5) * 0.14);
-    albedo = mix(albedo, vec3(0.73, 0.84, 0.88), ice);
-    float daylight = max(dot(n, light), 0.0);
-    vec3 color = albedo * (vec3(0.014, 0.024, 0.045) + vec3(1.35, 1.16, 0.94) * daylight);
-    float glint = pow(max(dot(n, normalize(light + view)), 0.0), 100.0);
-    color += vec3(1.0, 0.75, 0.43) * glint * (1.0 - land) * (1.0 - ice) * daylight * 0.7;
-    float rim = pow(1.0 - max(dot(n, view), 0.0), 3.5);
-    color += vec3(0.065, 0.28, 0.55) * rim * smoothstep(-0.12, 0.3, dot(n, light)) * 0.5;
+    float backlight = pow(max(dot(n, -light), 0.0), 0.7);
+    vec3 color;
+    #ifdef DISTANT
+      // Preserve a split jewel and colored edge even when only a few pixels wide.
+      float split = smoothstep(-0.08, 0.08, p.y + p.x * 0.45);
+      color = mix(uColor * 0.35, mix(uColor, uLight, 0.25), split);
+      color *= 0.65 + 1.1 * backlight;
+      float rim = pow(1.0 - max(dot(n, view), 0.0), 3.0);
+      color += mix(vec3(0.05, 0.2, 0.8), vec3(0.85, 0.12, 0.025), p.y * 0.5 + 0.5) * rim;
+    #else
+      float nearest = -2.0;
+      float second = -2.0;
+      vec3 seed = vec3(0.0);
+      vec3 neighbor = vec3(0.0);
+      vec3 glass = uColor;
+      for (int i = 0; i < 36; i++) {
+        float proximity = dot(p, uPanes[i]);
+        if (proximity > nearest) {
+          second = nearest;
+          neighbor = seed;
+          nearest = proximity;
+          seed = uPanes[i];
+          glass = uPaneColors[i];
+        } else if (proximity > second) {
+          second = proximity;
+          neighbor = uPanes[i];
+        }
+      }
+      float edge = (nearest - second) / max(length(seed - neighbor), 0.001);
+      // Half-width on each side of the boundary: approximately 2.5 CSS pixels total.
+      // Differentiate the continuous sphere position: fwidth(edge) folds at the
+      // seam and can collapse to zero, leaving broken leading on bright panes.
+      vec3 boundaryNormal = normalize(seed - neighbor);
+      float pixel = max(abs(dot(dFdx(p), boundaryNormal))
+        + abs(dot(dFdy(p), boundaryNormal)), 0.0001);
+      float came = 1.0 - smoothstep(pixel * (1.25 * uPixelRatio - 0.5),
+        pixel * (1.25 * uPixelRatio + 0.5), edge);
+      float thickness = noise3(p * 6.0 + seed * 3.0);
+      float grain = noise3(p * 85.0);
+      // Absorption at the pane edges and uneven thickness carry light inside the glass.
+      float pool = smoothstep(0.005, 0.19, edge);
+      float transmission = (0.42 + 1.8 * backlight) * (0.48 + pool * 0.65);
+      transmission *= mix(0.55, 1.5, thickness);
+      float grainVisibility = 1.0 - smoothstep(0.5, 1.8, length(fwidth(p * 85.0)));
+      transmission *= 1.0 + (grain - 0.5) * 0.18 * grainVisibility;
+      color = glass * transmission;
+      color += glass * pool * pow(thickness, 3.0) * 0.45;
+      color = color / (1.0 + color * 0.45);
+      color = mix(color, vec3(0.0012, 0.0014, 0.002), came);
+    #endif
     gl_FragColor = vec4(color, 1.0);
   }
 `
 
-const clouds = /* glsl */ `
-  uniform vec3 uStarPosition;
-  varying vec3 vPosition;
-  varying vec3 vWorldPosition;
-  varying vec3 vNormal;
-  ${noise}
-  void main() {
-    vec3 p = normalize(vPosition);
-    float warp = fbm(p * 4.0);
-    float cover = fbm(p * 9.0 + vec3(warp * 3.0, 0.0, warp));
-    float density = smoothstep(0.49, 0.66, cover);
-    float daylight = max(dot(normalize(vNormal), normalize(uStarPosition - vWorldPosition)), 0.0);
-    vec3 color = vec3(0.008, 0.015, 0.028) + vec3(1.0, 0.94, 0.84) * daylight;
-    gl_FragColor = vec4(color, density * 0.88);
-  }
-`
-
+// Narrow, separated channel footprints prevent dispersion from adding up to white.
 const atmosphere = /* glsl */ `
-  uniform vec3 uStarPosition;
   varying vec3 vWorldPosition;
   varying vec3 vNormal;
   void main() {
     vec3 n = normalize(vNormal);
     vec3 view = normalize(cameraPosition - vWorldPosition);
-    float facing = max(dot(n, view), 0.0);
-    float sun = dot(n, normalize(uStarPosition - vWorldPosition));
-    float rim = pow(1.0 - facing, 4.0) * smoothstep(0.0, 0.18, facing);
-    float lit = smoothstep(-0.2, 0.45, sun);
-    vec3 color = mix(vec3(0.8, 0.22, 0.06), vec3(0.12, 0.48, 1.0), smoothstep(-0.05, 0.3, sun));
-    gl_FragColor = vec4(color * 1.4, rim * lit * 0.65);
+    vec3 facing = vec3(
+      dot(normalize(n + view * 0.11), view),
+      dot(n, view),
+      dot(normalize(n - view * 0.11), view));
+    vec3 distanceToRim = abs(facing - vec3(0.17));
+    vec3 aa = max(fwidth(facing), vec3(0.003));
+    vec3 fringe = 1.0 - smoothstep(vec3(0.03) - aa, vec3(0.03) + aa, distanceToRim);
+    gl_FragColor = vec4(fringe * 0.95, max(fringe.r, max(fringe.g, fringe.b)) * 0.85);
   }
 `
 
-export default function Planet({ bodyId, active }: { bodyId: string; active: RefObject<boolean> }) {
+export default function Planet({ bodyId, active, distant = false }: { bodyId: string; active: RefObject<boolean>; distant?: boolean }) {
   const surfaceGroup = useRef<Group>(null)
-  const cloudGroup = useRef<Group>(null)
+  const palette = worldPalette(bodyId)
   const uniforms = useMemo(() => ({
+    uPixelRatio: { value: 1 },
+    uPanes: { value: paneCenters },
+    uPaneColors: { value: paneCenters.map((_, index) => {
+      // Five of 36 panes (14%) borrow rose, gold and emerald from the other windows.
+      const accents = ['#e74887', '#efb93d', '#18aa70']
+      if (index % 7 === 2) return new Color(accents[Math.floor(index / 7) % accents.length])
+      return new Color(palette.color).lerp(new Color(palette.light), (index * 13 % 11) / 24)
+    }) },
+    uColor: { value: new Color(palette.color) },
+    uLight: { value: new Color(palette.light) },
     uStarPosition: { value: new Vector3(-15, 5, -38) },
-  }), [])
+  }), [palette])
 
   const parentId = getBody(bodyId).parentId
-  useFrame(() => {
-    if (!active.current) return
+  useFrame(({ gl }) => {
+    if (active.current === distant) return
+    uniforms.uPixelRatio.value = gl.getPixelRatio()
     const time = simulation.elapsedSeconds
     if (parentId) uniforms.uStarPosition.value.set(...simulation.position(parentId))
     if (surfaceGroup.current) surfaceGroup.current.rotation.y = time * 0.018
-    if (cloudGroup.current) cloudGroup.current.rotation.y = time * 0.023
   })
 
   return (
@@ -130,21 +164,15 @@ export default function Planet({ bodyId, active }: { bodyId: string; active: Ref
       <group rotation={[0, 0, 0.18]}>
         <group ref={surfaceGroup}>
           <mesh>
-            <sphereGeometry args={[BODY_RADII.planet, 96, 64]} />
-            <shaderMaterial uniforms={uniforms} vertexShader={vertex} fragmentShader={surface} />
+            <sphereGeometry args={[BODY_RADII.planet, distant ? 20 : 48, distant ? 12 : 32]} />
+            <shaderMaterial defines={distant ? { DISTANT: 1 } : {}} uniforms={uniforms} vertexShader={vertex} fragmentShader={surface} toneMapped={false} />
           </mesh>
         </group>
-        <group ref={cloudGroup}>
-          <mesh>
-            <sphereGeometry args={[BODY_RADII.planet * 1.009375, 96, 64]} />
-            <shaderMaterial uniforms={uniforms} vertexShader={vertex} fragmentShader={clouds} transparent depthWrite={false} />
-          </mesh>
-        </group>
-        <mesh>
-          <sphereGeometry args={[BODY_RADII.planet * 1.03125, 96, 64]} />
+        {!distant && <mesh>
+          <sphereGeometry args={[BODY_RADII.planet * 1.04, 48, 32]} />
           <shaderMaterial uniforms={uniforms} vertexShader={vertex} fragmentShader={atmosphere}
             transparent blending={AdditiveBlending} depthWrite={false} toneMapped={false} />
-        </mesh>
+        </mesh>}
       </group>
     </>
   )

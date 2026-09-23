@@ -22,7 +22,7 @@ export const bodies: CelestialBody[] = [
     id: 'first-planet', name: 'Planet 1', kind: 'planet', parentId: 'first-star', position: [0, 0, 0],
     orbit: { radius: 41, period: 3140, phase: 1.195, inclination: -0.13 },
   },
-  // Shared planet visuals; these stable IDs can receive their own content later.
+  // Stable world IDs also identify the seven outer-to-inner glass palettes.
   ...Array.from({ length: 6 }, (_, index): CelestialBody => ({
     id: `planet-${index + 2}`, name: `Planet ${index + 2}`, kind: 'planet',
     parentId: 'first-star', position: [0, 0, 0],

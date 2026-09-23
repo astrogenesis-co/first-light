@@ -13,8 +13,8 @@ export default function Bloom() {
   useEffect(() => {
     const effects = new EffectComposer(gl)
     const render = new RenderPass(scene, camera)
-    // Only HDR highlights bloom, leaving the star field and black sky crisp.
-    const bloom = new UnrealBloomPass(new Vector2(1, 1), 0.28, 0.15, 1.8)
+    // Emissive glass blooms softly; gold leaf and ultramarine stay crisp.
+    const bloom = new UnrealBloomPass(new Vector2(1, 1), 0.18, 0.2, 1.15)
     const output = new OutputPass()
     effects.addPass(render)
     effects.addPass(bloom)

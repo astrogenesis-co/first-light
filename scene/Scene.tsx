@@ -33,10 +33,10 @@ function Body({ body }: { body: CelestialBody }) {
         {body.kind === 'planet' ? <Planet bodyId={body.id} active={active} /> : body.kind === 'star' ? <Star active={active} /> : <Blackhole active={active} />}
       </group>
       <group ref={distant} visible={false}>
-        <mesh>
+        {body.kind === 'planet' ? <Planet bodyId={body.id} active={active} distant /> : <mesh>
           <sphereGeometry args={[BODY_RADII[body.kind], 12, 8]} />
-          <meshBasicMaterial color={body.kind === 'star' ? '#ffd49a' : body.kind === 'planet' ? '#203a50' : '#000000'} toneMapped={false} />
-        </mesh>
+          <meshBasicMaterial color={body.kind === 'star' ? '#ffd49a' : '#000000'} toneMapped={false} />
+        </mesh>}
       </group>
     </group>
   )
@@ -59,7 +59,7 @@ function Scene() {
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: false }}
     >
-      <color attach="background" args={['#020308']} />
+      <color attach="background" args={['#030611']} />
       <Starfield />
       <GalaxyClock />
       {bodies.map((body) => <Body key={body.id} body={body} />)}
