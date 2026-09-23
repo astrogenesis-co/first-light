@@ -5,12 +5,12 @@
   --projection-line: #ffffff;
   --projection-glow: 0 0 8px rgb(255 255 255 / 16%), inset 0 0 6px rgb(255 255 255 / 5%);
   --hud-font: "Electrolize", sans-serif;
-  --projection-surface: rgb(0 0 0 / 55%);
+  --projection-surface: rgb(0 0 0 / 82%);
 }
 
 .journey-hud, .journey-controls, .transmission-widget, .device-launcher {
   color: var(--projection-ink);
-  text-shadow: 0 0 12px #ffffff20, 0 1px 3px #000;
+  text-shadow: none;
 }
 
 .journey-hud, .transmission-widget {
@@ -75,7 +75,7 @@
   box-shadow: var(--projection-glow);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: .16em;
   min-height: 46px;
 }
@@ -96,7 +96,7 @@
   gap: 0;
   padding: 0;
   border: 1px solid var(--projection-line);
-  background: rgb(0 0 0 / 72%);
+  background: rgb(0 0 0 / 96%);
   box-shadow: var(--projection-glow), 0 25px 100px #0005;
 }
 .device-header, .device-sidebar, .device-content, .device-footer {
@@ -126,6 +126,9 @@
 :is(.journey-hud, .journey-controls, .journey-dev, .device-launcher, .device-dialog, .transmission-widget, .surface-caption),
 :is(.journey-hud, .journey-controls, .journey-dev, .device-launcher, .device-dialog, .transmission-widget, .surface-caption) * {
   font-family: var(--hud-font);
+  font-weight: 700;
+  -webkit-font-smoothing: auto;
+  text-shadow: none;
 }
 :is(.device-dialog, .journey-controls, .journey-dev, .transmission-widget) * {
   border-color: var(--projection-line);
@@ -168,7 +171,7 @@
 .journey-controls .journey-primary { min-height: 60px; padding: 16px 18px; }
 .journey-controls .journey-primary span {
   color: #b3c8cf;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: .02em;
   text-transform: none;
 }
@@ -180,7 +183,7 @@
   color: #ffe4ce;
   border-color: #ff783e;
   background-color: rgb(35 10 5 / 92%);
-  text-shadow: 0 0 12px #ff6b3540;
+  text-shadow: none;
   box-shadow: inset 0 0 0 3px #160905, inset 0 0 0 4px #ff783e40,
     inset 0 -12px 22px #ff4c1212, 0 0 22px #ff581c20;
 }
@@ -234,7 +237,7 @@
   .journey-controls { right: 4vw; bottom: 7vh; }
   .transmission-widget { top: 9vh; right: 4vw; }
   .device-launcher { left: 4vw; bottom: 7vh; }
-  .device-shell { transform: perspective(1800px) rotateY(-2deg); }
+  /* Keep the reading surface aligned to pixels; 3D transforms soften small type. */
 }
 
 @media (max-width: 600px) {
@@ -251,3 +254,13 @@
 @media (prefers-reduced-motion: reduce) {
   .transmission-widget, .journey-controls :is(.journey-primary, .journey-pause) { transition: none; }
 }
+
+/* Brighter secondary copy and substantial icons keep the terminal easy to scan. */
+.device-dialog :is(.device-eyebrow, .device-serial, .device-view-caption > span:first-child,
+  .audio-app p, .audio-eyebrow, .audio-tabs button, .audio-transport span,
+  .audio-volume, .audio-transcript summary, .audio-recording small) { color: var(--device-muted); }
+.device-launcher svg, .device-brand svg, .device-close svg, .device-app-icon svg { stroke-width: 2; }
+.device-app:disabled { opacity: .55; }
+.device-dialog :is(.device-brand, .device-status, .device-footer) { flex-wrap: wrap; }
+.device-brand { letter-spacing: .08em; }
+.device-footer { line-height: 1.5; }
