@@ -1,0 +1,187 @@
+/* Shared visor treatment. Keep projection styling separate from instrument layout. */
+:root {
+  --projection-ink: #ffffff;
+  --projection-light: #ffffff;
+  --projection-line: #ffffff;
+  --projection-glow: 0 0 8px rgb(255 255 255 / 16%), inset 0 0 6px rgb(255 255 255 / 5%);
+  --hud-font: "Electrolize", sans-serif;
+  --projection-surface: rgb(0 0 0 / 55%);
+}
+
+.journey-hud, .journey-controls, .transmission-widget, .device-launcher {
+  color: var(--projection-ink);
+  text-shadow: 0 0 12px #ffffff20, 0 1px 3px #000;
+}
+
+.journey-hud, .transmission-widget {
+  border: 1px solid var(--projection-light);
+  border-radius: 0;
+  background: var(--projection-surface);
+  box-shadow: var(--projection-glow);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.journey-hud { width: 248px; }
+.journey-map-launcher { padding: 14px 18px; }
+.journey-map-heading { border-bottom: 1px solid var(--projection-line); padding-bottom: 12px; }
+.journey-eyebrow, .journey-map-footer, .audio-eyebrow, .transmission-status { color: #a6cbd0; }
+.journey-minimap { max-height: 172px; opacity: .85; }
+.minimap-grid { stroke: #99e9f230; }
+.minimap-orbit { stroke: #99e9f24a; }
+.minimap-active, .minimap-route { stroke: var(--projection-light); }
+.minimap-planet { fill: var(--projection-light); }
+.journey-map-title { font-size: 13px; letter-spacing: .04em; }
+.journey-map-footer { flex-wrap: wrap; line-height: 1.6; }
+.journey-map-footer > :last-child { color: var(--projection-light); }
+
+/* Small emitter marks give the otherwise open panels a physical origin. */
+.journey-hud::before, .transmission-widget::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--projection-light);
+  box-shadow: 0 0 10px #ffffff40;
+  pointer-events: none;
+}
+
+.journey-controls { display: grid; gap: 10px; }
+.journey-primary, .journey-travel, .codex-discovery-notice {
+  border: 1px solid var(--projection-light);
+  border-radius: 0;
+  background: var(--projection-surface);
+  box-shadow: var(--projection-glow);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+.journey-primary { min-height: 48px; align-items: center; color: var(--projection-ink); }
+.journey-primary span { color: #a6cbd0; }
+.journey-primary:hover, .journey-pause:hover { background: #000c; border-color: #fff; }
+.journey-landing { margin-top: 0; }
+.journey-pause, .codex-discovery-notice button { border-radius: 0; background: #0008; }
+.journey-progress-label { color: var(--projection-light); }
+.journey-controls progress { accent-color: var(--projection-light); }
+.codex-discovery-notice { border-color: #fff; margin-bottom: 0; }
+.transmission-open, .transmission-controls > button { border-radius: 0; }
+.transmission-widget { transition: opacity .3s ease; }
+
+.device-launcher {
+  border: 1px solid var(--projection-line);
+  border-radius: 0;
+  background: var(--projection-surface);
+  box-shadow: var(--projection-glow);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  font-size: 10px;
+  letter-spacing: .16em;
+  min-height: 46px;
+}
+.device-launcher svg { stroke: var(--projection-light); }
+.device-launcher-dot { background: var(--projection-light); box-shadow: 0 0 8px #ffffff40; }
+.device-launcher:hover { background: #000c; border-color: var(--projection-light); }
+
+/* One projected terminal plane, rather than several floating app cards. */
+.device-dialog {
+  --device-text: var(--projection-ink);
+  --device-muted: #c3c7c9;
+  --device-amber: var(--projection-light);
+  --device-line: var(--projection-line);
+}
+.device-dialog::backdrop { background: #0005; }
+.device-shell {
+  position: relative;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--projection-line);
+  background: rgb(0 0 0 / 72%);
+  box-shadow: var(--projection-glow), 0 25px 100px #0005;
+}
+.device-header, .device-sidebar, .device-content, .device-footer {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: var(--projection-glow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.device-header { border-bottom: 1px solid var(--device-line); }
+.device-header-heading h1 { font-size: 24px; letter-spacing: .16em; }
+.device-body { gap: 0; }
+.device-sidebar { border-right: 1px solid var(--device-line); }
+.device-footer { border-top: 1px solid var(--device-line); }
+.device-app-icon, .device-app-codex .device-app-icon, .device-app-audio .device-app-icon {
+  border-radius: 2px;
+  background: transparent;
+  box-shadow: var(--projection-glow);
+}
+.device-app[aria-pressed="true"] .device-app-icon { background: #0009; box-shadow: var(--projection-glow), inset 2px 0 #fff; }
+.device-close, .map-scopes button, .map-destinations button,
+.codex-types button, .codex-search input, .codex-entry-mark,
+.audio-tabs button, .audio-now { border-radius: 1px; }
+
+/* Override legacy component font shorthands and colored control surfaces. */
+:is(.journey-hud, .journey-controls, .journey-dev, .device-launcher, .device-dialog, .transmission-widget, .surface-caption),
+:is(.journey-hud, .journey-controls, .journey-dev, .device-launcher, .device-dialog, .transmission-widget, .surface-caption) * {
+  font-family: var(--hud-font);
+}
+:is(.device-dialog, .journey-controls, .journey-dev, .transmission-widget) * {
+  border-color: var(--projection-line);
+}
+.device-dialog :is(button, input, .device-app-icon, .codex-entry-mark, .audio-now),
+.journey-dev, .journey-dev :is(button, select), .discovery-card,
+.transmission-controls > button {
+  background: var(--projection-surface);
+  box-shadow: var(--projection-glow);
+}
+.device-dialog button:hover, .device-dialog button[aria-pressed="true"],
+.journey-dev button:hover { background: #000c; border-color: #fff; }
+.device-dialog .device-app, .device-dialog .codex-entry, .device-dialog .audio-recording {
+  background: transparent;
+  box-shadow: none;
+}
+.device-header, .device-sidebar, .device-content, .device-footer { box-shadow: none; }
+.galaxy-map { background-image: none; }
+.journey-dev { border-color: #fff; }
+
+@media (min-width: 901px) and (min-height: 601px) {
+  /* Matching tangent planes around the visor, including the shorter controls.
+     Pitch and roll make the lower rim visible even on a shallow button. */
+  .journey-hud, .device-launcher, .journey-controls, .transmission-widget {
+    --visor-yaw: 10deg;
+    --visor-pitch: -6deg;
+    --visor-roll: 1deg;
+    transform: perspective(900px) rotateY(var(--visor-yaw)) rotateX(var(--visor-pitch)) rotateZ(var(--visor-roll));
+    transform-origin: left center;
+  }
+  .journey-controls, .transmission-widget {
+    --visor-yaw: -10deg;
+    --visor-roll: -1deg;
+    transform-origin: right center;
+  }
+  .device-launcher, .journey-controls { --visor-pitch: 6deg; }
+  .device-launcher { --visor-roll: -1deg; }
+  .journey-controls { --visor-roll: 1deg; }
+  .journey-hud { top: 9vh; left: 4vw; }
+  .journey-controls { right: 4vw; bottom: 7vh; }
+  .transmission-widget { top: 9vh; right: 4vw; }
+  .device-launcher { left: 4vw; bottom: 7vh; }
+  .device-shell { transform: perspective(1800px) rotateY(-2deg); }
+}
+
+@media (max-width: 600px) {
+  .journey-hud { width: 200px; }
+  .journey-map-launcher { padding: 12px; }
+  .journey-minimap { max-height: 135px; }
+  .journey-primary { align-items: flex-start; }
+  .device-header-heading h1 { font-size: 21px; }
+  .device-sidebar { border-right: 0; border-bottom: 1px solid var(--device-line); }
+  .device-app-icon { border-radius: 1px; }
+}
+
+@media (max-height: 600px) { .journey-minimap { max-height: 100px; } }
+@media (prefers-reduced-motion: reduce) {
+  .transmission-widget { transition: none; }
+}
