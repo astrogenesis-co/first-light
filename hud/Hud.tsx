@@ -118,14 +118,6 @@ export default function Hud() {
                   <span>Codex</span>
                 </button>
                 <button className="device-app device-app-audio" aria-pressed={activeApp === 'audio'} aria-controls="device-audio" onClick={() => setActiveApp('audio')}><span className="device-app-icon"><RadioGlyph /></span><span>Audio</span></button>
-                <button className="device-app" disabled>
-                  <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="15" height="18" rx="2" /><path d="M3 7h4M3 12h4M3 17h4M10 8h6M10 12h6" /></svg></span>
-                  <span>Journal</span>
-                </button>
-                <button className="device-app" disabled>
-                  <span className="device-app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v11h16V9M9 13h6" /><rect x="3" y="4" width="18" height="5" rx="1" /></svg></span>
-                  <span>Archive</span>
-                </button>
               </div>
               <div className="device-sidebar-note"><span className="device-eyebrow">Personal terminal</span><p>A place to keep<br />what you discover.</p><span className="device-serial">FL / 001</span></div>
             </aside>
