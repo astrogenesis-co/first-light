@@ -148,8 +148,8 @@ are available at an existing checkpoint.
 
 The Codex counts and searches discovered entries only, strips locked connections,
 and closes inaccessible detail history when resetting or seeking backward in
-preview. Live visitor unlocks show a brief notification with an **Open Codex**
-button. Loading saved progress and entering, seeking, or leaving preview do not
+preview. Live visitor unlocks show a visor notification that opens the discovered
+entry directly. Loading saved progress and entering, seeking, or leaving preview do not
 announce old discoveries. Preview uses the same rules and preserves the visitor
 save. This is presentation-level discovery: the static catalog is still shipped
 in full, not protected content.
@@ -199,3 +199,17 @@ remaining compatible with existing version 2 saves. Preview landing uses the
 same controls and stays isolated from visitor progress. Choose a planet orbit in
 Journey lab, then land to preview its surface. `scene/PlanetSurface.tsx` owns the
 placeholder vignette for future authored scenes.
+
+### Journey notifications
+
+New discoveries queue as eight-second banners at the top of the visor. Hovering,
+keyboard focus, and a hidden browser tab pause dismissal. Unopened banners shrink
+into the device launcher and increment its unread badge; reduced-motion preferences
+skip the flight animation. “Save for later” keeps the item unread.
+
+Journey → Notifications contains the persistent discovery history, All / Unread
+filters, and Mark all as read. Opening a notification goes directly to its Codex
+entry. Reading an entry from anywhere in the Codex marks its notification read.
+Opening the device alone does not clear unread items. Banners wait while the device
+is open. Reloading restores history without replaying old banners; preview does
+not create notifications, and resetting the visitor journey removes relocked entries.
