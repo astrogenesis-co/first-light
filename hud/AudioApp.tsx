@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { z } from 'zod'
+import { catalogSchema, entryAudioTrack } from '../store/catalog'
 import { receivedTransmissions, type AudioTrack } from '../store/transmissions'
 import { useJourneyStore } from '../store/useJourneyStore'
 import { useCodexProgress } from './useCodexProgress'
@@ -28,7 +28,6 @@ export function TransmissionWidget({ player, onOpen }: { player: AudioChannel; o
     <div className="transmission-controls"><PlayButton player={player} /><button onClick={player.dismiss} aria-label="Hide audio widget">×</button></div>
   </aside>
 }
-const librarySchema = z.array(z.object({ key: z.string(), title: z.string(), audio: z.string().nullable().optional(), audioReceiver: z.enum(['comms', 'radio']).optional() }))
 function Receiver({ player, name, ducked = false }: { player: AudioChannel; name: 'Comms' | 'Radio'; ducked?: boolean }) {
   return (
     <section className="audio-now" aria-label={`${name} receiver`}>
@@ -37,7 +36,7 @@ function Receiver({ player, name, ducked = false }: { player: AudioChannel; name
       <p role="status">{player.track ? (name === 'Radio' && player.status === 'ended' ? 'Recording complete' : name === 'Radio' && ducked && player.status === 'playing' ? 'Lowered for incoming comms' : statusText[player.status]) : name === 'Comms' ? 'Your next transmission will arrive when you begin transit.' : 'Tune to a station or play a recording from your library.'}</p>
       {player.track && <><div className="audio-transport"><PlayButton player={player} />{name === 'Radio' && <button className="audio-off" onClick={player.stop}>Turn off</button>}<input aria-label={`${name} playback position`} type="range" min="0" max={player.duration || 1} step="0.1" value={player.position} disabled={!player.duration} onChange={event => player.seek(Number(event.target.value))} /><span>{formatTime(player.position)} / {formatTime(player.duration)}</span></div>{player.status === 'error' && <p>This audio file could not be loaded. Try playing it again.</p>}</>}
       <label className="audio-volume">{name} volume<input type="range" min="0" max="1" step="0.01" value={player.volume} onChange={event => player.setVolume(Number(event.target.value))} /><span>{Math.round(player.volume * 100)}%</span></label>
-      {player.track?.transcript && <details className="audio-transcript"><summary>Transcript · temporary narration</summary><p>{player.track.transcript}</p></details>}
+      {player.track?.transcript && <details className="audio-transcript"><summary>Transcript</summary><p>{player.track.transcript}</p></details>}
     </section>
   )
 }
@@ -56,7 +55,7 @@ export default function AudioApp({ player }: { player: AudioPlayer }) {
     fetch(import.meta.env.BASE_URL + 'catalog.json', { signal: controller.signal })
       .then(response => { if (!response.ok) throw new Error(); return response.json() })
       .then(data => {
-        setCatalog(librarySchema.parse(data).filter(entry => entry.audio).map(entry => ({ id: entry.key, title: entry.title, source: entry.audio!, channel: 'Codex library', receiver: entry.audioReceiver ?? 'radio' })))
+        setCatalog(catalogSchema.parse(data).filter(entry => entry.audio).map(entryAudioTrack))
         setLibraryStatus('')
       }).catch(() => { if (!controller.signal.aborted) setLibraryStatus('Could not load your recordings.') })
     return () => controller.abort()

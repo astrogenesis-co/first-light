@@ -5,9 +5,12 @@ Run `npm run dev` for the local preview and `npm run build` to typecheck and bui
 ## Codex mock catalog
 
 `public/catalog.json` is a standalone development fixture, served by Vite at
-`/catalog.json` and copied into production builds. It contains 28 mock entries:
-one album, seven stages, eight essays, seven album tracks, three songs, one mix,
-and one stem session. Open **Device → Codex** to browse types and counts,
+`/catalog.json` and copied into production builds. It contains 36 mock entries:
+one album, seven planets, eight reflections, seven album tracks, three songs,
+one memory, one mix, one stem session, and seven transmissions. Major types are
+Albums, Songs, Album Tracks, Memories, Reflections, and Planets. Minor types are
+Mixes, Stems, and Transmissions. These sections organize types without requiring
+minor entries to have a parent. Open **Device → Codex** to browse types and counts,
 search entries within a type, read entry details, and follow connected entries.
 Back navigation preserves the list filter and restores focus to the opened entry.
 The catalog is validated when loaded, with loading, empty, and retry states.
@@ -15,21 +18,22 @@ The reader supports the fixture's basic Markdown headings, paragraphs, bold text
 quotes, and lists; it does not inject HTML. Entries with an audio source offer **Play in Audio**. Entries unlock progressively with the
 journey; only the album overview and introduction are available on a first visit.
 
-The top-level value is an array matching the output of first-star's
-`src/lib/catalog.mjs` catalog builder. Entries retain its fields and relationship
-labels, including `key`, `group`, `type`, `body` (Markdown), `html`, `excerpt`,
+The top-level value is an array adapted from first-star's
+`src/lib/catalog.mjs` catalog builder. Entries retain its core fields, including `key`, `group`, `type`, `body` (Markdown), `html`, `excerpt`,
 and `links`. Keys such as `songs/mock-signal` are the relationship identifiers;
 `id` alone is only unique within its group. Tracks reference an `album`, a
-`narrativeStage`, and source songs; stages connect to companion essays; mixes
+`planet`, and source songs; planets connect to companion reflections; mixes
 and stems connect to songs. `links` includes the reverse relationships for
 detail-page navigation. Multiple tracks intentionally reuse source songs.
 
-The fixture preserves the seven stage IDs from first-star, but all prose,
-song data, and arrangements are invented. It includes long titles, formatted
-essays, draft/complete/unwritten states, and empty bodies. `source` is a logical
+The seven former narrative stages are now Planet entries with a `bodyId` matching
+the galaxy registry and a `narrativeTitle` preserving the chapter name. Journey
+stage IDs remain unchanged. Saved notification keys are migrated to the new
+taxonomy while preserving read states and discovery dates. All prose, song data, and arrangements are invented.
+The fixture includes long titles, formatted reflections, draft/complete/unwritten states, and empty bodies. `source` is a logical
 Markdown path, not an existing file; `sourceUrl`, `historyUrl`, and `updated`
-are null because these mock entries have no source history. Media paths are
-placeholders with no audio files behind them; use them for layout, not playback.
+are null because these mock entries have no source history. Mix and stem media paths are placeholders; transmissions use the playable
+temporary guide recording.
 
 `hud/Codex.tsx` fetches it using the configured Vite base URL.
 No external checkout or content generation step is required.
@@ -170,7 +174,16 @@ within the device while it is open). Captions follow audio position, retain the
 current line when paused, and clear when playback ends or stops. Hiding the audio
 widget leaves captions enabled. Tracks without subtitle cues show no readout.
 
-`store/transmissions.ts` maps the seven transfers to recordings and transcripts.
+`public/catalog.json` owns transmission audio, transcripts, subtitle cues, and
+optional `transmissionStage` delivery triggers. `store/transmissions.ts` imports
+these records at build time for synchronous playback on a burn; rebuild after
+editing delivery data. The Codex and Audio library use the same audio mapping.
+Scheduled transmissions unlock at the start of their transfer, and each keeps
+its catalog key across live playback and replay. Transmissions can link to
+Memories or Reflections through `links`, with a reverse link on the related entry,
+or have no links at all. The sample includes both linked and standalone signals.
+A Memory or Reflection can have multiple Transmissions. Unscheduled transmissions
+can be assigned a discovery milestone directly in `store/codexSchedule.ts`.
 All seven currently reuse **one temporary, synthetic guide recording**, generated
 locally with the macOS Samantha voice. Replace each source and transcript with
 authored narration and matching `subtitles` cues when ready; cue start/end values

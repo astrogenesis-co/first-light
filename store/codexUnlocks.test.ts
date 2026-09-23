@@ -15,7 +15,7 @@ test('prototype assigns all catalog entries exactly once to valid milestones', (
 })
 
 test('first visit exposes only welcome entries, even after waiting a long time', () => {
-  const expected = ['albums/album-1', 'essays/0-what-is-star']
+  const expected = ['albums/album-1', 'reflections/0-what-is-star']
   assert.deepEqual(unlockedCodexKeys(initialJourney()), expected)
   assert.deepEqual(unlockedCodexKeys(advanceJourney(initialJourney(), 100000)), expected)
 })
@@ -39,7 +39,7 @@ test('every scheduled unlock happens at its exact boundary and persists in later
 
 test('large ticks, restored saves, and completed journeys retain cumulative discoveries', () => {
   const arrived = advanceJourney(burn(scenario('star-orbit')), 60)
-  assert.equal(unlockedCodexKeys(arrived).length, 6)
+  assert.equal(unlockedCodexKeys(arrived).length, 8)
   assert.ok(unlockedCodexKeys(arrived).includes('songs/mock-signal'))
   assert.deepEqual(unlockedCodexKeys(restoreJourney(JSON.stringify(arrived))), unlockedCodexKeys(arrived))
   assert.equal(unlockedCodexKeys(scenario('planet-orbit')).length, catalog.length)
@@ -53,8 +53,8 @@ test('earlier preview/reset states relock content without mutating visitor progr
   assert.deepEqual(unlockedCodexKeys(visitor), before)
   const original = JSON.stringify(catalog)
   const visible = discoveredCatalog(catalog, unlockedCodexKeys(initialJourney()))
-  assert.deepEqual(visible.map(entry => entry.key).sort(), ['albums/album-1', 'essays/0-what-is-star'])
-  assert.deepEqual(visible.find(entry => entry.key === 'albums/album-1')?.links.map(link => link.key), ['essays/0-what-is-star'])
+  assert.deepEqual(visible.map(entry => entry.key).sort(), ['albums/album-1', 'reflections/0-what-is-star'])
+  assert.deepEqual(visible.find(entry => entry.key === 'albums/album-1')?.links.map(link => link.key), ['reflections/0-what-is-star'])
   assert.equal(JSON.stringify(catalog), original)
 })
 

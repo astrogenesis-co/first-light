@@ -53,3 +53,11 @@
 .codex .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media (max-width: 800px) { .codex { padding: 20px; } .codex-types { grid-template-columns: repeat(2, minmax(0, 1fr)); } .codex-list-heading { align-items: stretch; flex-direction: column; } .codex-search { flex: auto; } }
 @media (max-width: 600px) { .codex { padding: 18px; } .codex-intro h2 { font-size: 19px; } .codex-connections { grid-template-columns: 1fr; } .codex-entry { gap: 10px; } .codex-entry-mark { display: none; } .codex-detail h2 { font-size: 21px; } }
+
+.codex-type-sections { display: grid; gap: 28px; }
+.codex-tier-heading { margin: 0 0 14px; font-size: 14px; font-weight: 700; color: var(--device-text); }
+.codex-types-minor { display: flex; flex-wrap: wrap; gap: 10px; }
+.codex .codex-types-minor button { display: flex; align-items: center; min-height: 44px; gap: 10px; padding: 10px 16px; border-radius: 999px; }
+.codex-types-minor .codex-type-mark { font-size: 18px; line-height: 20px; }
+.codex-types-minor strong { font-size: 13px; }
+.codex-types-minor .codex-type-count { font-size: 11px; white-space: nowrap; }

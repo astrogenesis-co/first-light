@@ -24,3 +24,15 @@ test('restoring preserves read status and excludes invalid, duplicate, or locked
   assert.deepEqual(restoreNotifications('{broken', ['a']), [])
   assert.deepEqual(restoreNotifications(null, ['a']), [])
 })
+
+test('renamed entries retain notification dates and read state without duplicates', () => {
+  const raw = JSON.stringify([
+    { key: 'essays/1-creation', read: true, discoveredAt: 100 },
+    { key: 'stages/1-creation', read: false, discoveredAt: 200 },
+    { key: 'reflections/1-creation', read: false, discoveredAt: 300 },
+  ])
+  assert.deepEqual(restoreNotifications(raw, ['reflections/1-creation', 'planets/planet-7']), [
+    { key: 'reflections/1-creation', read: true, discoveredAt: 100 },
+    { key: 'planets/planet-7', read: false, discoveredAt: 200 },
+  ])
+})

@@ -11,7 +11,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": "albums/album-1",
-    "narrativeStage": "stages/3-promise",
+    "planet": "planets/planet-5",
     "trackNumber": 3,
     "sources": [
       {
@@ -39,10 +39,10 @@
         "label": "Album"
       },
       {
-        "key": "stages/3-promise",
-        "title": "Promise",
-        "type": "Stage",
-        "label": "Narrative stage"
+        "key": "planets/planet-5",
+        "title": "Planet 5 · Promise",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "songs/mock-home",
@@ -56,10 +56,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/3-promise",
+    "key": "reflections/3-promise",
     "id": "3-promise",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "A Light Left On",
     "status": "draft",
     "progress": "",
@@ -67,7 +67,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -77,17 +77,17 @@
     "normalized": false,
     "duration": null,
     "mixDate": null,
-    "body": "# A Light Left On\n\nThis fictional essay accompanies the promise stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
-    "html": "<h1>A Light Left On</h1>\n<p>This fictional essay accompanies the promise stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
-    "excerpt": "A Light Left On This fictional essay accompanies the promise stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint tone r",
+    "body": "# A Light Left On\n\nThis fictional reflection accompanies the promise planet. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>A Light Left On</h1>\n<p>This fictional reflection accompanies the promise planet. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "A Light Left On This fictional reflection accompanies the promise planet. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint tone r",
     "references": [],
-    "source": "stars/first-star/essays/3-promise.md",
+    "source": "stars/first-star/reflections/3-promise.md",
     "links": [
       {
-        "key": "stages/3-promise",
-        "title": "Promise",
-        "type": "Stage",
-        "label": "Album stage"
+        "key": "planets/planet-5",
+        "title": "Planet 5 · Promise",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "albums/album-1",
@@ -112,7 +112,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": "albums/album-1",
-    "narrativeStage": "stages/2-fall",
+    "planet": "planets/planet-6",
     "trackNumber": 2,
     "sources": [
       {
@@ -140,10 +140,10 @@
         "label": "Album"
       },
       {
-        "key": "stages/2-fall",
-        "title": "Fall",
-        "type": "Stage",
-        "label": "Narrative stage"
+        "key": "planets/planet-6",
+        "title": "Planet 6 · Fall",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "songs/mock-orbit",
@@ -157,10 +157,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/2-fall",
+    "key": "reflections/2-fall",
     "id": "2-fall",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "A Map of Missing Things",
     "status": "complete",
     "progress": "",
@@ -168,7 +168,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -178,17 +178,17 @@
     "normalized": false,
     "duration": null,
     "mixDate": null,
-    "body": "# A Map of Missing Things\n\nThis fictional essay accompanies the fall stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
-    "html": "<h1>A Map of Missing Things</h1>\n<p>This fictional essay accompanies the fall stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
-    "excerpt": "A Map of Missing Things This fictional essay accompanies the fall stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint t",
+    "body": "# A Map of Missing Things\n\nThis fictional reflection accompanies the fall planet. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>A Map of Missing Things</h1>\n<p>This fictional reflection accompanies the fall planet. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "A Map of Missing Things This fictional reflection accompanies the fall planet. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint t",
     "references": [],
-    "source": "stars/first-star/essays/2-fall.md",
+    "source": "stars/first-star/reflections/2-fall.md",
     "links": [
       {
-        "key": "stages/2-fall",
-        "title": "Fall",
-        "type": "Stage",
-        "label": "Album stage"
+        "key": "planets/planet-6",
+        "title": "Planet 6 · Fall",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "albums/album-1",
@@ -213,7 +213,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": "albums/album-1",
-    "narrativeStage": "stages/7-love",
+    "planet": "planets/first-planet",
     "trackNumber": 7,
     "sources": [
       {
@@ -241,10 +241,10 @@
         "label": "Album"
       },
       {
-        "key": "stages/7-love",
-        "title": "Love",
-        "type": "Stage",
-        "label": "Narrative stage"
+        "key": "planets/first-planet",
+        "title": "Planet 1 · Love",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "songs/mock-signal",
@@ -258,10 +258,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/7-love",
+    "key": "reflections/7-love",
     "id": "7-love",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "A Place for Every Voice",
     "status": "unwritten",
     "progress": "",
@@ -269,7 +269,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -283,13 +283,13 @@
     "html": "",
     "excerpt": "A place for work still to come.",
     "references": [],
-    "source": "stars/first-star/essays/7-love.md",
+    "source": "stars/first-star/reflections/7-love.md",
     "links": [
       {
-        "key": "stages/7-love",
-        "title": "Love",
-        "type": "Stage",
-        "label": "Album stage"
+        "key": "planets/first-planet",
+        "title": "Planet 1 · Love",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "albums/album-1",
@@ -314,7 +314,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -354,18 +354,18 @@
     "historyUrl": null
   },
   {
-    "key": "stages/1-creation",
-    "id": "1-creation",
-    "group": "stages",
-    "type": "Stage",
-    "title": "Creation",
+    "key": "planets/planet-7",
+    "id": "planet-7",
+    "group": "planets",
+    "type": "Planet",
+    "title": "Planet 7 · Creation",
     "status": "draft",
     "progress": "",
     "created": "2026-01-01T00:00:00.000Z",
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -379,7 +379,7 @@
     "html": "<h1>The First Signal</h1>\n<p>Mock chapter 1 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
     "excerpt": "The First Signal Mock chapter 1 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before movin",
     "references": [],
-    "source": "stars/first-star/stages/1-creation.md",
+    "source": "stars/first-star/planets/planet-7.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -388,10 +388,10 @@
         "label": "Album"
       },
       {
-        "key": "essays/1-creation",
+        "key": "reflections/1-creation",
         "title": "The First Signal",
-        "type": "Essay",
-        "label": "Companion essay"
+        "type": "Reflection",
+        "label": "Companion reflection"
       },
       {
         "key": "tracks/1-mock-track",
@@ -402,21 +402,23 @@
     ],
     "updated": null,
     "sourceUrl": null,
-    "historyUrl": null
+    "historyUrl": null,
+    "bodyId": "planet-7",
+    "narrativeTitle": "Creation"
   },
   {
-    "key": "stages/5-crucifixion",
-    "id": "5-crucifixion",
-    "group": "stages",
-    "type": "Stage",
-    "title": "Crucifixion",
+    "key": "planets/planet-3",
+    "id": "planet-3",
+    "group": "planets",
+    "type": "Planet",
+    "title": "Planet 3 · Crucifixion",
     "status": "draft",
     "progress": "",
     "created": "2026-01-01T00:00:00.000Z",
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -430,7 +432,7 @@
     "html": "<h1>Through the Quiet</h1>\n<p>Mock chapter 5 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
     "excerpt": "Through the Quiet Mock chapter 5 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before movi",
     "references": [],
-    "source": "stars/first-star/stages/5-crucifixion.md",
+    "source": "stars/first-star/planets/planet-3.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -439,10 +441,10 @@
         "label": "Album"
       },
       {
-        "key": "essays/5-crucifixion",
+        "key": "reflections/5-crucifixion",
         "title": "Through the Quiet",
-        "type": "Essay",
-        "label": "Companion essay"
+        "type": "Reflection",
+        "label": "Companion reflection"
       },
       {
         "key": "tracks/5-mock-track",
@@ -453,21 +455,23 @@
     ],
     "updated": null,
     "sourceUrl": null,
-    "historyUrl": null
+    "historyUrl": null,
+    "bodyId": "planet-3",
+    "narrativeTitle": "Crucifixion"
   },
   {
-    "key": "stages/2-fall",
-    "id": "2-fall",
-    "group": "stages",
-    "type": "Stage",
-    "title": "Fall",
+    "key": "planets/planet-6",
+    "id": "planet-6",
+    "group": "planets",
+    "type": "Planet",
+    "title": "Planet 6 · Fall",
     "status": "draft",
     "progress": "",
     "created": "2026-01-01T00:00:00.000Z",
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -481,7 +485,7 @@
     "html": "<h1>A Map of Missing Things</h1>\n<p>Mock chapter 2 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
     "excerpt": "A Map of Missing Things Mock chapter 2 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen befor",
     "references": [],
-    "source": "stars/first-star/stages/2-fall.md",
+    "source": "stars/first-star/planets/planet-6.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -490,10 +494,10 @@
         "label": "Album"
       },
       {
-        "key": "essays/2-fall",
+        "key": "reflections/2-fall",
         "title": "A Map of Missing Things",
-        "type": "Essay",
-        "label": "Companion essay"
+        "type": "Reflection",
+        "label": "Companion reflection"
       },
       {
         "key": "tracks/2-mock-track",
@@ -504,7 +508,9 @@
     ],
     "updated": null,
     "sourceUrl": null,
-    "historyUrl": null
+    "historyUrl": null,
+    "bodyId": "planet-6",
+    "narrativeTitle": "Fall"
   },
   {
     "key": "albums/album-1",
@@ -518,7 +524,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -535,22 +541,22 @@
     "source": "stars/first-star/albums/album-1.md",
     "links": [
       {
-        "key": "essays/0-what-is-star",
+        "key": "reflections/0-what-is-star",
         "title": "What Is a Star? — Mock Introduction",
-        "type": "Essay",
+        "type": "Reflection",
         "label": "Introduction"
       },
       {
-        "key": "stages/1-creation",
-        "title": "Creation",
-        "type": "Stage",
-        "label": "Stage"
+        "key": "planets/planet-7",
+        "title": "Planet 7 · Creation",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
-        "key": "essays/1-creation",
+        "key": "reflections/1-creation",
         "title": "The First Signal",
-        "type": "Essay",
-        "label": "Essay"
+        "type": "Reflection",
+        "label": "Reflection"
       },
       {
         "key": "tracks/1-mock-track",
@@ -559,16 +565,16 @@
         "label": "Track 1"
       },
       {
-        "key": "stages/2-fall",
-        "title": "Fall",
-        "type": "Stage",
-        "label": "Stage"
+        "key": "planets/planet-6",
+        "title": "Planet 6 · Fall",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
-        "key": "essays/2-fall",
+        "key": "reflections/2-fall",
         "title": "A Map of Missing Things",
-        "type": "Essay",
-        "label": "Essay"
+        "type": "Reflection",
+        "label": "Reflection"
       },
       {
         "key": "tracks/2-mock-track",
@@ -577,16 +583,16 @@
         "label": "Track 2"
       },
       {
-        "key": "stages/3-promise",
-        "title": "Promise",
-        "type": "Stage",
-        "label": "Stage"
+        "key": "planets/planet-5",
+        "title": "Planet 5 · Promise",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
-        "key": "essays/3-promise",
+        "key": "reflections/3-promise",
         "title": "A Light Left On",
-        "type": "Essay",
-        "label": "Essay"
+        "type": "Reflection",
+        "label": "Reflection"
       },
       {
         "key": "tracks/3-mock-track",
@@ -595,16 +601,16 @@
         "label": "Track 3"
       },
       {
-        "key": "stages/4-incarnation",
-        "title": "Incarnation",
-        "type": "Stage",
-        "label": "Stage"
+        "key": "planets/planet-4",
+        "title": "Planet 4 · Incarnation",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
-        "key": "essays/4-incarnation",
+        "key": "reflections/4-incarnation",
         "title": "Learning to Land",
-        "type": "Essay",
-        "label": "Essay"
+        "type": "Reflection",
+        "label": "Reflection"
       },
       {
         "key": "tracks/4-mock-track",
@@ -613,16 +619,16 @@
         "label": "Track 4"
       },
       {
-        "key": "stages/5-crucifixion",
-        "title": "Crucifixion",
-        "type": "Stage",
-        "label": "Stage"
+        "key": "planets/planet-3",
+        "title": "Planet 3 · Crucifixion",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
-        "key": "essays/5-crucifixion",
+        "key": "reflections/5-crucifixion",
         "title": "Through the Quiet",
-        "type": "Essay",
-        "label": "Essay"
+        "type": "Reflection",
+        "label": "Reflection"
       },
       {
         "key": "tracks/5-mock-track",
@@ -631,16 +637,16 @@
         "label": "Track 5"
       },
       {
-        "key": "stages/6-resurrection",
-        "title": "Resurrection",
-        "type": "Stage",
-        "label": "Stage"
+        "key": "planets/planet-2",
+        "title": "Planet 2 · Resurrection",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
-        "key": "essays/6-resurrection",
+        "key": "reflections/6-resurrection",
         "title": "Returning to the Surface",
-        "type": "Essay",
-        "label": "Essay"
+        "type": "Reflection",
+        "label": "Reflection"
       },
       {
         "key": "tracks/6-mock-track",
@@ -649,16 +655,16 @@
         "label": "Track 6"
       },
       {
-        "key": "stages/7-love",
-        "title": "Love",
-        "type": "Stage",
-        "label": "Stage"
+        "key": "planets/first-planet",
+        "title": "Planet 1 · Love",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
-        "key": "essays/7-love",
+        "key": "reflections/7-love",
         "title": "A Place for Every Voice",
-        "type": "Essay",
-        "label": "Essay"
+        "type": "Reflection",
+        "label": "Reflection"
       },
       {
         "key": "tracks/7-mock-track",
@@ -683,7 +689,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -717,18 +723,18 @@
     "historyUrl": null
   },
   {
-    "key": "stages/4-incarnation",
-    "id": "4-incarnation",
-    "group": "stages",
-    "type": "Stage",
-    "title": "Incarnation",
+    "key": "planets/planet-4",
+    "id": "planet-4",
+    "group": "planets",
+    "type": "Planet",
+    "title": "Planet 4 · Incarnation",
     "status": "draft",
     "progress": "",
     "created": "2026-01-01T00:00:00.000Z",
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -742,7 +748,7 @@
     "html": "<h1>Learning to Land</h1>\n<p>Mock chapter 4 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
     "excerpt": "Learning to Land Mock chapter 4 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before movin",
     "references": [],
-    "source": "stars/first-star/stages/4-incarnation.md",
+    "source": "stars/first-star/planets/planet-4.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -751,10 +757,10 @@
         "label": "Album"
       },
       {
-        "key": "essays/4-incarnation",
+        "key": "reflections/4-incarnation",
         "title": "Learning to Land",
-        "type": "Essay",
-        "label": "Companion essay"
+        "type": "Reflection",
+        "label": "Companion reflection"
       },
       {
         "key": "tracks/4-mock-track",
@@ -765,7 +771,9 @@
     ],
     "updated": null,
     "sourceUrl": null,
-    "historyUrl": null
+    "historyUrl": null,
+    "bodyId": "planet-4",
+    "narrativeTitle": "Incarnation"
   },
   {
     "key": "tracks/4-mock-track",
@@ -779,7 +787,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": "albums/album-1",
-    "narrativeStage": "stages/4-incarnation",
+    "planet": "planets/planet-4",
     "trackNumber": 4,
     "sources": [
       {
@@ -807,10 +815,10 @@
         "label": "Album"
       },
       {
-        "key": "stages/4-incarnation",
-        "title": "Incarnation",
-        "type": "Stage",
-        "label": "Narrative stage"
+        "key": "planets/planet-4",
+        "title": "Planet 4 · Incarnation",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "songs/mock-signal",
@@ -824,10 +832,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/4-incarnation",
+    "key": "reflections/4-incarnation",
     "id": "4-incarnation",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "Learning to Land",
     "status": "draft",
     "progress": "",
@@ -835,7 +843,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -845,17 +853,17 @@
     "normalized": false,
     "duration": null,
     "mixDate": null,
-    "body": "# Learning to Land\n\nThis fictional essay accompanies the incarnation stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
-    "html": "<h1>Learning to Land</h1>\n<p>This fictional essay accompanies the incarnation stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
-    "excerpt": "Learning to Land This fictional essay accompanies the incarnation stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint t",
+    "body": "# Learning to Land\n\nThis fictional reflection accompanies the incarnation planet. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>Learning to Land</h1>\n<p>This fictional reflection accompanies the incarnation planet. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "Learning to Land This fictional reflection accompanies the incarnation planet. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint t",
     "references": [],
-    "source": "stars/first-star/essays/4-incarnation.md",
+    "source": "stars/first-star/reflections/4-incarnation.md",
     "links": [
       {
-        "key": "stages/4-incarnation",
-        "title": "Incarnation",
-        "type": "Stage",
-        "label": "Album stage"
+        "key": "planets/planet-4",
+        "title": "Planet 4 · Incarnation",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "albums/album-1",
@@ -869,18 +877,18 @@
     "historyUrl": null
   },
   {
-    "key": "stages/7-love",
-    "id": "7-love",
-    "group": "stages",
-    "type": "Stage",
-    "title": "Love",
+    "key": "planets/first-planet",
+    "id": "first-planet",
+    "group": "planets",
+    "type": "Planet",
+    "title": "Planet 1 · Love",
     "status": "draft",
     "progress": "",
     "created": "2026-01-01T00:00:00.000Z",
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -894,7 +902,7 @@
     "html": "<h1>A Place for Every Voice</h1>\n<p>Mock chapter 7 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
     "excerpt": "A Place for Every Voice Mock chapter 7 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen befor",
     "references": [],
-    "source": "stars/first-star/stages/7-love.md",
+    "source": "stars/first-star/planets/first-planet.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -903,10 +911,10 @@
         "label": "Album"
       },
       {
-        "key": "essays/7-love",
+        "key": "reflections/7-love",
         "title": "A Place for Every Voice",
-        "type": "Essay",
-        "label": "Companion essay"
+        "type": "Reflection",
+        "label": "Companion reflection"
       },
       {
         "key": "tracks/7-mock-track",
@@ -917,21 +925,23 @@
     ],
     "updated": null,
     "sourceUrl": null,
-    "historyUrl": null
+    "historyUrl": null,
+    "bodyId": "first-planet",
+    "narrativeTitle": "Love"
   },
   {
-    "key": "stages/3-promise",
-    "id": "3-promise",
-    "group": "stages",
-    "type": "Stage",
-    "title": "Promise",
+    "key": "planets/planet-5",
+    "id": "planet-5",
+    "group": "planets",
+    "type": "Planet",
+    "title": "Planet 5 · Promise",
     "status": "draft",
     "progress": "",
     "created": "2026-01-01T00:00:00.000Z",
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -945,7 +955,7 @@
     "html": "<h1>A Light Left On</h1>\n<p>Mock chapter 3 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
     "excerpt": "A Light Left On Mock chapter 3 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen before moving",
     "references": [],
-    "source": "stars/first-star/stages/3-promise.md",
+    "source": "stars/first-star/planets/planet-5.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -954,10 +964,10 @@
         "label": "Album"
       },
       {
-        "key": "essays/3-promise",
+        "key": "reflections/3-promise",
         "title": "A Light Left On",
-        "type": "Essay",
-        "label": "Companion essay"
+        "type": "Reflection",
+        "label": "Companion reflection"
       },
       {
         "key": "tracks/3-mock-track",
@@ -968,21 +978,23 @@
     ],
     "updated": null,
     "sourceUrl": null,
-    "historyUrl": null
+    "historyUrl": null,
+    "bodyId": "planet-5",
+    "narrativeTitle": "Promise"
   },
   {
-    "key": "stages/6-resurrection",
-    "id": "6-resurrection",
-    "group": "stages",
-    "type": "Stage",
-    "title": "Resurrection",
+    "key": "planets/planet-2",
+    "id": "planet-2",
+    "group": "planets",
+    "type": "Planet",
+    "title": "Planet 2 · Resurrection",
     "status": "draft",
     "progress": "",
     "created": "2026-01-01T00:00:00.000Z",
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -996,7 +1008,7 @@
     "html": "<h1>Returning to the Surface</h1>\n<p>Mock chapter 6 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it.</p>\n<h2>Field notes</h2>\n<ul>\n<li>Listen before moving on.</li>\n<li>Keep one small detail from this place.</li>\n<li>Leave room for another interpretation.</li>\n</ul>\n",
     "excerpt": "Returning to the Surface Mock chapter 6 of the album journey. A traveler pauses here to notice how the world has changed, and how they have changed with it. Field notes Listen befo",
     "references": [],
-    "source": "stars/first-star/stages/6-resurrection.md",
+    "source": "stars/first-star/planets/planet-2.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -1005,10 +1017,10 @@
         "label": "Album"
       },
       {
-        "key": "essays/6-resurrection",
+        "key": "reflections/6-resurrection",
         "title": "Returning to the Surface",
-        "type": "Essay",
-        "label": "Companion essay"
+        "type": "Reflection",
+        "label": "Companion reflection"
       },
       {
         "key": "tracks/6-mock-track",
@@ -1019,7 +1031,9 @@
     ],
     "updated": null,
     "sourceUrl": null,
-    "historyUrl": null
+    "historyUrl": null,
+    "bodyId": "planet-2",
+    "narrativeTitle": "Resurrection"
   },
   {
     "key": "tracks/6-mock-track",
@@ -1033,7 +1047,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": "albums/album-1",
-    "narrativeStage": "stages/6-resurrection",
+    "planet": "planets/planet-2",
     "trackNumber": 6,
     "sources": [
       {
@@ -1061,10 +1075,10 @@
         "label": "Album"
       },
       {
-        "key": "stages/6-resurrection",
-        "title": "Resurrection",
-        "type": "Stage",
-        "label": "Narrative stage"
+        "key": "planets/planet-2",
+        "title": "Planet 2 · Resurrection",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "songs/mock-home",
@@ -1078,10 +1092,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/6-resurrection",
+    "key": "reflections/6-resurrection",
     "id": "6-resurrection",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "Returning to the Surface",
     "status": "draft",
     "progress": "",
@@ -1089,7 +1103,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -1099,17 +1113,17 @@
     "normalized": false,
     "duration": null,
     "mixDate": null,
-    "body": "# Returning to the Surface\n\nThis fictional essay accompanies the resurrection stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
-    "html": "<h1>Returning to the Surface</h1>\n<p>This fictional essay accompanies the resurrection stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
-    "excerpt": "Returning to the Surface This fictional essay accompanies the resurrection stage. The journey is measured in what the traveler notices, as much as in distance. A small observation ",
+    "body": "# Returning to the Surface\n\nThis fictional reflection accompanies the resurrection planet. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>Returning to the Surface</h1>\n<p>This fictional reflection accompanies the resurrection planet. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "Returning to the Surface This fictional reflection accompanies the resurrection planet. The journey is measured in what the traveler notices, as much as in distance. A small observation ",
     "references": [],
-    "source": "stars/first-star/essays/6-resurrection.md",
+    "source": "stars/first-star/reflections/6-resurrection.md",
     "links": [
       {
-        "key": "stages/6-resurrection",
-        "title": "Resurrection",
-        "type": "Stage",
-        "label": "Album stage"
+        "key": "planets/planet-2",
+        "title": "Planet 2 · Resurrection",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "albums/album-1",
@@ -1134,7 +1148,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": "songs/mock-signal",
@@ -1173,7 +1187,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": "songs/mock-signal",
@@ -1228,7 +1242,7 @@
     "songCreated": "2025-12-10T00:00:00.000Z",
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -1299,7 +1313,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": "albums/album-1",
-    "narrativeStage": "stages/1-creation",
+    "planet": "planets/planet-7",
     "trackNumber": 1,
     "sources": [
       {
@@ -1327,10 +1341,10 @@
         "label": "Album"
       },
       {
-        "key": "stages/1-creation",
-        "title": "Creation",
-        "type": "Stage",
-        "label": "Narrative stage"
+        "key": "planets/planet-7",
+        "title": "Planet 7 · Creation",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "songs/mock-signal",
@@ -1344,10 +1358,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/1-creation",
+    "key": "reflections/1-creation",
     "id": "1-creation",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "The First Signal",
     "status": "complete",
     "progress": "",
@@ -1355,7 +1369,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -1365,23 +1379,29 @@
     "normalized": false,
     "duration": null,
     "mixDate": null,
-    "body": "# The First Signal\n\nThis fictional essay accompanies the creation stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
-    "html": "<h1>The First Signal</h1>\n<p>This fictional essay accompanies the creation stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
-    "excerpt": "The First Signal This fictional essay accompanies the creation stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint tone",
+    "body": "# The First Signal\n\nThis fictional reflection accompanies the creation planet. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>The First Signal</h1>\n<p>This fictional reflection accompanies the creation planet. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "The First Signal This fictional reflection accompanies the creation planet. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint tone",
     "references": [],
-    "source": "stars/first-star/essays/1-creation.md",
+    "source": "stars/first-star/reflections/1-creation.md",
     "links": [
       {
-        "key": "stages/1-creation",
-        "title": "Creation",
-        "type": "Stage",
-        "label": "Album stage"
+        "key": "planets/planet-7",
+        "title": "Planet 7 · Creation",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "albums/album-1",
         "title": "First Light — Mock Album",
         "type": "Album",
         "label": "Album"
+      },
+      {
+        "key": "transmissions/approaching-planet-6",
+        "title": "Approaching Planet 6",
+        "type": "Transmission",
+        "label": "Transmission"
       }
     ],
     "updated": null,
@@ -1400,7 +1420,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": "albums/album-1",
-    "narrativeStage": "stages/5-crucifixion",
+    "planet": "planets/planet-3",
     "trackNumber": 5,
     "sources": [
       {
@@ -1428,10 +1448,10 @@
         "label": "Album"
       },
       {
-        "key": "stages/5-crucifixion",
-        "title": "Crucifixion",
-        "type": "Stage",
-        "label": "Narrative stage"
+        "key": "planets/planet-3",
+        "title": "Planet 3 · Crucifixion",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "songs/mock-orbit",
@@ -1445,10 +1465,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/5-crucifixion",
+    "key": "reflections/5-crucifixion",
     "id": "5-crucifixion",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "Through the Quiet",
     "status": "draft",
     "progress": "",
@@ -1456,7 +1476,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -1466,17 +1486,17 @@
     "normalized": false,
     "duration": null,
     "mixDate": null,
-    "body": "# Through the Quiet\n\nThis fictional essay accompanies the crucifixion stage. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
-    "html": "<h1>Through the Quiet</h1>\n<p>This fictional essay accompanies the crucifixion stage. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
-    "excerpt": "Through the Quiet This fictional essay accompanies the crucifixion stage. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint ",
+    "body": "# Through the Quiet\n\nThis fictional reflection accompanies the crucifixion planet. The journey is measured in what the traveler notices, as much as in distance.\n\n## A small observation\n\nA faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.\n\n> Attention can turn an ordinary moment into a landmark.\n\n## Carry it forward\n\n1. Remember the sound.\n2. Describe it in your own words.\n3. Notice what changes the next time you hear it.",
+    "html": "<h1>Through the Quiet</h1>\n<p>This fictional reflection accompanies the crucifixion planet. The journey is measured in what the traveler notices, as much as in distance.</p>\n<h2>A small observation</h2>\n<p>A faint tone returns each evening. At first it seems like interference. After a while, it becomes familiar.</p>\n<blockquote>\n<p>Attention can turn an ordinary moment into a landmark.</p>\n</blockquote>\n<h2>Carry it forward</h2>\n<ol>\n<li>Remember the sound.</li>\n<li>Describe it in your own words.</li>\n<li>Notice what changes the next time you hear it.</li>\n</ol>\n",
+    "excerpt": "Through the Quiet This fictional reflection accompanies the crucifixion planet. The journey is measured in what the traveler notices, as much as in distance. A small observation A faint ",
     "references": [],
-    "source": "stars/first-star/essays/5-crucifixion.md",
+    "source": "stars/first-star/reflections/5-crucifixion.md",
     "links": [
       {
-        "key": "stages/5-crucifixion",
-        "title": "Crucifixion",
-        "type": "Stage",
-        "label": "Album stage"
+        "key": "planets/planet-3",
+        "title": "Planet 3 · Crucifixion",
+        "type": "Planet",
+        "label": "Planet"
       },
       {
         "key": "albums/album-1",
@@ -1490,10 +1510,10 @@
     "historyUrl": null
   },
   {
-    "key": "essays/0-what-is-star",
+    "key": "reflections/0-what-is-star",
     "id": "0-what-is-star",
-    "group": "essays",
-    "type": "Essay",
+    "group": "reflections",
+    "type": "Reflection",
     "title": "What Is a Star? — Mock Introduction",
     "status": "draft",
     "progress": "",
@@ -1501,7 +1521,7 @@
     "songCreated": null,
     "visibility": "public",
     "album": null,
-    "narrativeStage": null,
+    "planet": null,
     "trackNumber": null,
     "sources": [],
     "song": null,
@@ -1515,7 +1535,7 @@
     "html": "<h1>What is a star?</h1>\n<p>From far away, every light looks like a destination. Up close, each one becomes a question.</p>\n<blockquote>\n<p>What do we carry with us when we begin?</p>\n</blockquote>\n<p>This mock introduction belongs to the album as a whole.</p>\n",
     "excerpt": "What is a star? From far away, every light looks like a destination. Up close, each one becomes a question. What do we carry with us when we begin? This mock introduction belongs t",
     "references": [],
-    "source": "stars/first-star/essays/0-what-is-star.md",
+    "source": "stars/first-star/reflections/0-what-is-star.md",
     "links": [
       {
         "key": "albums/album-1",
@@ -1527,5 +1547,499 @@
     "updated": null,
     "sourceUrl": null,
     "historyUrl": null
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": null,
+    "duration": null,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "memories/first-glimpse",
+    "id": "first-glimpse",
+    "group": "memories",
+    "type": "Memory",
+    "title": "The First Glimpse",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "A fictional memory: the outermost world appeared as a pale point beyond the glass. Then the first voice arrived, and the distance felt a little smaller.",
+    "html": "<p>A fictional memory: the outermost world appeared as a pale point beyond the glass. Then the first voice arrived, and the distance felt a little smaller.</p>\n",
+    "excerpt": "A fictional memory: the outermost world appeared as a pale point beyond the glass. Then the first voice arrived, and the distance felt a little smaller.",
+    "references": [],
+    "source": "stars/first-star/memories/first-glimpse.md",
+    "links": [
+      {
+        "key": "transmissions/approaching-planet-7",
+        "title": "Approaching Planet 7",
+        "type": "Transmission",
+        "label": "Transmission"
+      }
+    ]
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": "audio/transmissions/temporary-guide.mp3",
+    "duration": 13.12,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "transmissions/approaching-planet-7",
+    "id": "approaching-planet-7",
+    "group": "transmissions",
+    "type": "Transmission",
+    "title": "Approaching Planet 7",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "Temporary guide narration for the journey to Planet 7.",
+    "html": "<p>Temporary guide narration for the journey to Planet 7.</p>\n",
+    "excerpt": "Temporary guide narration for the journey to Planet 7.",
+    "references": [],
+    "source": "stars/first-star/transmissions/approaching-planet-7.md",
+    "links": [
+      {
+        "key": "memories/first-glimpse",
+        "title": "The First Glimpse",
+        "type": "Memory",
+        "label": "Related memory"
+      }
+    ],
+    "audioReceiver": "comms",
+    "audioChannel": "Journey channel · Transmission 01",
+    "transcript": "The next world is coming into view. Take a moment to watch the light change as we draw closer. There is no hurry when we arrive. Your discoveries will be waiting in the Codex. I will be here when you are ready to continue.",
+    "subtitles": [
+      {
+        "start": 0,
+        "end": 2.25,
+        "text": "The next world is coming into view."
+      },
+      {
+        "start": 2.25,
+        "end": 5.83,
+        "text": "Take a moment to watch the light change as we draw closer."
+      },
+      {
+        "start": 5.83,
+        "end": 7.86,
+        "text": "There is no hurry when we arrive."
+      },
+      {
+        "start": 7.86,
+        "end": 10.74,
+        "text": "Your discoveries will be waiting in the Codex."
+      },
+      {
+        "start": 10.74,
+        "end": 13.12,
+        "text": "I will be here when you are ready to continue."
+      }
+    ],
+    "transmissionStage": "planet-7-transfer"
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": "audio/transmissions/temporary-guide.mp3",
+    "duration": 13.12,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "transmissions/approaching-planet-6",
+    "id": "approaching-planet-6",
+    "group": "transmissions",
+    "type": "Transmission",
+    "title": "Approaching Planet 6",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "Temporary guide narration for the journey to Planet 6.",
+    "html": "<p>Temporary guide narration for the journey to Planet 6.</p>\n",
+    "excerpt": "Temporary guide narration for the journey to Planet 6.",
+    "references": [],
+    "source": "stars/first-star/transmissions/approaching-planet-6.md",
+    "links": [
+      {
+        "key": "reflections/1-creation",
+        "title": "The First Signal",
+        "type": "Reflection",
+        "label": "Related reflection"
+      }
+    ],
+    "audioReceiver": "comms",
+    "audioChannel": "Journey channel · Transmission 02",
+    "transcript": "The next world is coming into view. Take a moment to watch the light change as we draw closer. There is no hurry when we arrive. Your discoveries will be waiting in the Codex. I will be here when you are ready to continue.",
+    "subtitles": [
+      {
+        "start": 0,
+        "end": 2.25,
+        "text": "The next world is coming into view."
+      },
+      {
+        "start": 2.25,
+        "end": 5.83,
+        "text": "Take a moment to watch the light change as we draw closer."
+      },
+      {
+        "start": 5.83,
+        "end": 7.86,
+        "text": "There is no hurry when we arrive."
+      },
+      {
+        "start": 7.86,
+        "end": 10.74,
+        "text": "Your discoveries will be waiting in the Codex."
+      },
+      {
+        "start": 10.74,
+        "end": 13.12,
+        "text": "I will be here when you are ready to continue."
+      }
+    ],
+    "transmissionStage": "planet-6-transfer"
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": "audio/transmissions/temporary-guide.mp3",
+    "duration": 13.12,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "transmissions/approaching-planet-5",
+    "id": "approaching-planet-5",
+    "group": "transmissions",
+    "type": "Transmission",
+    "title": "Approaching Planet 5",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "Temporary guide narration for the journey to Planet 5.",
+    "html": "<p>Temporary guide narration for the journey to Planet 5.</p>\n",
+    "excerpt": "Temporary guide narration for the journey to Planet 5.",
+    "references": [],
+    "source": "stars/first-star/transmissions/approaching-planet-5.md",
+    "links": [],
+    "audioReceiver": "comms",
+    "audioChannel": "Journey channel · Transmission 03",
+    "transcript": "The next world is coming into view. Take a moment to watch the light change as we draw closer. There is no hurry when we arrive. Your discoveries will be waiting in the Codex. I will be here when you are ready to continue.",
+    "subtitles": [
+      {
+        "start": 0,
+        "end": 2.25,
+        "text": "The next world is coming into view."
+      },
+      {
+        "start": 2.25,
+        "end": 5.83,
+        "text": "Take a moment to watch the light change as we draw closer."
+      },
+      {
+        "start": 5.83,
+        "end": 7.86,
+        "text": "There is no hurry when we arrive."
+      },
+      {
+        "start": 7.86,
+        "end": 10.74,
+        "text": "Your discoveries will be waiting in the Codex."
+      },
+      {
+        "start": 10.74,
+        "end": 13.12,
+        "text": "I will be here when you are ready to continue."
+      }
+    ],
+    "transmissionStage": "planet-5-transfer"
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": "audio/transmissions/temporary-guide.mp3",
+    "duration": 13.12,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "transmissions/approaching-planet-4",
+    "id": "approaching-planet-4",
+    "group": "transmissions",
+    "type": "Transmission",
+    "title": "Approaching Planet 4",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "Temporary guide narration for the journey to Planet 4.",
+    "html": "<p>Temporary guide narration for the journey to Planet 4.</p>\n",
+    "excerpt": "Temporary guide narration for the journey to Planet 4.",
+    "references": [],
+    "source": "stars/first-star/transmissions/approaching-planet-4.md",
+    "links": [],
+    "audioReceiver": "comms",
+    "audioChannel": "Journey channel · Transmission 04",
+    "transcript": "The next world is coming into view. Take a moment to watch the light change as we draw closer. There is no hurry when we arrive. Your discoveries will be waiting in the Codex. I will be here when you are ready to continue.",
+    "subtitles": [
+      {
+        "start": 0,
+        "end": 2.25,
+        "text": "The next world is coming into view."
+      },
+      {
+        "start": 2.25,
+        "end": 5.83,
+        "text": "Take a moment to watch the light change as we draw closer."
+      },
+      {
+        "start": 5.83,
+        "end": 7.86,
+        "text": "There is no hurry when we arrive."
+      },
+      {
+        "start": 7.86,
+        "end": 10.74,
+        "text": "Your discoveries will be waiting in the Codex."
+      },
+      {
+        "start": 10.74,
+        "end": 13.12,
+        "text": "I will be here when you are ready to continue."
+      }
+    ],
+    "transmissionStage": "planet-4-transfer"
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": "audio/transmissions/temporary-guide.mp3",
+    "duration": 13.12,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "transmissions/approaching-planet-3",
+    "id": "approaching-planet-3",
+    "group": "transmissions",
+    "type": "Transmission",
+    "title": "Approaching Planet 3",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "Temporary guide narration for the journey to Planet 3.",
+    "html": "<p>Temporary guide narration for the journey to Planet 3.</p>\n",
+    "excerpt": "Temporary guide narration for the journey to Planet 3.",
+    "references": [],
+    "source": "stars/first-star/transmissions/approaching-planet-3.md",
+    "links": [],
+    "audioReceiver": "comms",
+    "audioChannel": "Journey channel · Transmission 05",
+    "transcript": "The next world is coming into view. Take a moment to watch the light change as we draw closer. There is no hurry when we arrive. Your discoveries will be waiting in the Codex. I will be here when you are ready to continue.",
+    "subtitles": [
+      {
+        "start": 0,
+        "end": 2.25,
+        "text": "The next world is coming into view."
+      },
+      {
+        "start": 2.25,
+        "end": 5.83,
+        "text": "Take a moment to watch the light change as we draw closer."
+      },
+      {
+        "start": 5.83,
+        "end": 7.86,
+        "text": "There is no hurry when we arrive."
+      },
+      {
+        "start": 7.86,
+        "end": 10.74,
+        "text": "Your discoveries will be waiting in the Codex."
+      },
+      {
+        "start": 10.74,
+        "end": 13.12,
+        "text": "I will be here when you are ready to continue."
+      }
+    ],
+    "transmissionStage": "planet-3-transfer"
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": "audio/transmissions/temporary-guide.mp3",
+    "duration": 13.12,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "transmissions/approaching-planet-2",
+    "id": "approaching-planet-2",
+    "group": "transmissions",
+    "type": "Transmission",
+    "title": "Approaching Planet 2",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "Temporary guide narration for the journey to Planet 2.",
+    "html": "<p>Temporary guide narration for the journey to Planet 2.</p>\n",
+    "excerpt": "Temporary guide narration for the journey to Planet 2.",
+    "references": [],
+    "source": "stars/first-star/transmissions/approaching-planet-2.md",
+    "links": [],
+    "audioReceiver": "comms",
+    "audioChannel": "Journey channel · Transmission 06",
+    "transcript": "The next world is coming into view. Take a moment to watch the light change as we draw closer. There is no hurry when we arrive. Your discoveries will be waiting in the Codex. I will be here when you are ready to continue.",
+    "subtitles": [
+      {
+        "start": 0,
+        "end": 2.25,
+        "text": "The next world is coming into view."
+      },
+      {
+        "start": 2.25,
+        "end": 5.83,
+        "text": "Take a moment to watch the light change as we draw closer."
+      },
+      {
+        "start": 5.83,
+        "end": 7.86,
+        "text": "There is no hurry when we arrive."
+      },
+      {
+        "start": 7.86,
+        "end": 10.74,
+        "text": "Your discoveries will be waiting in the Codex."
+      },
+      {
+        "start": 10.74,
+        "end": 13.12,
+        "text": "I will be here when you are ready to continue."
+      }
+    ],
+    "transmissionStage": "planet-2-transfer"
+  },
+  {
+    "songCreated": null,
+    "album": null,
+    "planet": null,
+    "trackNumber": null,
+    "song": null,
+    "file": null,
+    "audio": "audio/transmissions/temporary-guide.mp3",
+    "duration": 13.12,
+    "mixDate": null,
+    "updated": null,
+    "sourceUrl": null,
+    "historyUrl": null,
+    "key": "transmissions/approaching-planet-1",
+    "id": "approaching-planet-1",
+    "group": "transmissions",
+    "type": "Transmission",
+    "title": "Approaching Planet 1",
+    "status": "draft",
+    "progress": "",
+    "created": "2026-01-01T00:00:00.000Z",
+    "visibility": "public",
+    "sources": [],
+    "channels": [],
+    "normalized": false,
+    "body": "Temporary guide narration for the journey to Planet 1.",
+    "html": "<p>Temporary guide narration for the journey to Planet 1.</p>\n",
+    "excerpt": "Temporary guide narration for the journey to Planet 1.",
+    "references": [],
+    "source": "stars/first-star/transmissions/approaching-planet-1.md",
+    "links": [],
+    "audioReceiver": "comms",
+    "audioChannel": "Journey channel · Transmission 07",
+    "transcript": "The next world is coming into view. Take a moment to watch the light change as we draw closer. There is no hurry when we arrive. Your discoveries will be waiting in the Codex. I will be here when you are ready to continue.",
+    "subtitles": [
+      {
+        "start": 0,
+        "end": 2.25,
+        "text": "The next world is coming into view."
+      },
+      {
+        "start": 2.25,
+        "end": 5.83,
+        "text": "Take a moment to watch the light change as we draw closer."
+      },
+      {
+        "start": 5.83,
+        "end": 7.86,
+        "text": "There is no hurry when we arrive."
+      },
+      {
+        "start": 7.86,
+        "end": 10.74,
+        "text": "Your discoveries will be waiting in the Codex."
+      },
+      {
+        "start": 10.74,
+        "end": 13.12,
+        "text": "I will be here when you are ready to continue."
+      }
+    ],
+    "transmissionStage": "planet-transfer"
   }
 ]

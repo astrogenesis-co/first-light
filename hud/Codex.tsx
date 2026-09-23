@@ -1,33 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { z } from 'zod'
+import { collections, catalogSchema, entryAudioTrack, type Entry } from '../store/catalog'
 import './codex.css'
 import type { AudioTrack } from '../store/transmissions'
 import { discoveredCatalog, validateCodexSchedule } from '../store/codexUnlocks'
 import { bodyDiscoveryKeys } from '../store/journeyProgress'
 import { useNotificationStore } from '../store/useNotificationStore'
 import { useCodexProgress } from './useCodexProgress'
-
-const collections = [
-  { group: 'albums', label: 'Albums', mark: '◉', description: 'Collections that hold the larger story.' },
-  { group: 'stages', label: 'Stages', mark: '◇', description: 'Chapters along the narrative arc.' },
-  { group: 'essays', label: 'Essays', mark: '≡', description: 'Ideas, observations, and stories to carry forward.' },
-  { group: 'tracks', label: 'Album tracks', mark: '⋮', description: 'Arrangements and their place in an album.' },
-  { group: 'songs', label: 'Songs', mark: '♫', description: 'Musical ideas and the worlds inside them.' },
-  { group: 'mixes', label: 'Mixes', mark: '≈', description: 'Recorded versions of a song.' },
-  { group: 'stems', label: 'Stems', mark: '☷', description: 'The individual voices within a recording.' },
-] as const
-
-const entrySchema = z.object({
-  audio: z.string().nullable().optional(),
-  audioReceiver: z.enum(['comms', 'radio']).optional(),
-  key: z.string(), title: z.string(), type: z.string(),
-  group: z.enum(['albums', 'stages', 'essays', 'tracks', 'songs', 'mixes', 'stems']),
-  status: z.string(), excerpt: z.string(), body: z.string(),
-  trackNumber: z.number().nullable(), progress: z.string(), duration: z.number().nullable(),
-  channels: z.array(z.object({ label: z.string() })),
-  links: z.array(z.object({ key: z.string(), title: z.string(), type: z.string(), label: z.string() })),
-})
-type Entry = z.infer<typeof entrySchema>
 
 export default function Codex({ onPlayAudio, scope, onClearScope, initialEntryKey = null, active = false }: {
   initialEntryKey?: string | null
@@ -60,11 +38,7 @@ export default function Codex({ onPlayAudio, scope, onClearScope, initialEntryKe
     fetch(import.meta.env.BASE_URL + 'catalog.json', { signal: controller.signal })
       .then(response => { if (!response.ok) throw new Error('Catalog unavailable'); return response.json() })
       .then(data => {
-        const parsed = z.array(entrySchema).parse(data)
-        const keys = new Set(parsed.map(entry => entry.key))
-        if (keys.size !== parsed.length || parsed.some(entry => entry.links.some(link => !keys.has(link.key)))) {
-          throw new Error('Invalid catalog relationships')
-        }
+        const parsed = catalogSchema.parse(data)
         validateCodexSchedule(parsed.map(entry => entry.key))
         setEntries(parsed)
       })
@@ -124,10 +98,11 @@ export default function Codex({ onPlayAudio, scope, onClearScope, initialEntryKe
           {(selected.progress || selected.trackNumber || selected.duration) && <p className="codex-facts">{[
             selected.trackNumber && `Track ${selected.trackNumber}`,
             selected.progress && `Progress: ${selected.progress}`,
-            selected.duration && `${Math.floor(selected.duration / 60)}:${String(selected.duration % 60).padStart(2, '0')}`,
+            selected.duration && `${Math.floor(selected.duration / 60)}:${String(Math.floor(selected.duration % 60)).padStart(2, '0')}`,
           ].filter(Boolean).join(' · ')}</p>}
-          {selected.audio && <button className="codex-back" onClick={() => onPlayAudio({ id: selected.key, title: selected.title, source: selected.audio!, channel: 'Codex library', receiver: selected.audioReceiver ?? 'radio' })}>▶ Play in Audio ↗</button>}
+          {selected.audio && <button className="codex-back" onClick={() => onPlayAudio(entryAudioTrack(selected))}>▶ Play in Audio ↗</button>}
           <div className="codex-prose">{selected.body ? <MarkdownBody body={selected.body} title={selected.title} /> : <p className="codex-empty">This entry is waiting to be written.</p>}</div>
+          {selected.transcript && <section className="codex-related"><h3>Transcript</h3><div className="codex-prose"><p>{selected.transcript}</p></div></section>}
           {selected.channels.length > 0 && <section className="codex-related"><h3>Channels</h3><ul>{selected.channels.map(channel => <li key={channel.label}>{channel.label}</li>)}</ul></section>}
           {selected.links.length > 0 && <section className="codex-related"><h3>Connected entries <span>{selected.links.length}</span></h3><div className="codex-connections">{selected.links.map(link => <button key={link.key} onClick={() => openEntry(link.key)}><span><small>{link.label}</small>{link.title}</span><span aria-hidden="true">↗</span></button>)}</div></section>}
         </article>
@@ -143,11 +118,16 @@ export default function Codex({ onPlayAudio, scope, onClearScope, initialEntryKe
           </section>
         </>
       ) : (
-        <nav className="codex-types" aria-label="Entry types" ref={types}>
-          {collections.map(item => {
-            const count = scopedEntries.filter(entry => entry.group === item.group).length
-            return <button key={item.group} data-group={item.group} onClick={() => { setGroup(item.group); setQuery('') }}><span className="codex-type-mark" aria-hidden="true">{item.mark}</span><strong>{item.label}</strong><span className="codex-type-count">{count} unlocked</span><span className="codex-type-arrow" aria-hidden="true">→</span></button>
-          })}
+        <nav className="codex-type-sections" aria-label="Entry types" ref={types}>
+          {(['major', 'minor'] as const).map(tier => <section key={tier} aria-labelledby={`codex-${tier}-types`}>
+            <h2 id={`codex-${tier}-types`} className="codex-tier-heading">{tier === 'major' ? 'Major types' : 'Minor types'}</h2>
+            <div className={`codex-types${tier === 'minor' ? ' codex-types-minor' : ''}`}>
+              {collections.filter(item => item.tier === tier).map(item => {
+                const count = scopedEntries.filter(entry => entry.group === item.group).length
+                return <button key={item.group} data-group={item.group} onClick={() => { setGroup(item.group); setQuery('') }}><span className="codex-type-mark" aria-hidden="true">{item.mark}</span><strong>{item.label}</strong><span className="codex-type-count">{count} unlocked</span><span className="codex-type-arrow" aria-hidden="true">→</span></button>
+              })}
+            </div>
+          </section>)}
         </nav>
       )}
     </div>
