@@ -1,7 +1,7 @@
-import type { AudioPlayer } from './useAudioPlayer'
+import type { AudioChannel } from './useAudioPlayer'
 import './subtitles.css'
 
-export default function TransmissionSubtitles({ player, inDevice = false }: { player: AudioPlayer; inDevice?: boolean }) {
+export default function TransmissionSubtitles({ player, inDevice = false }: { player: AudioChannel; inDevice?: boolean }) {
   const active = player.status === 'playing' || player.status === 'paused'
   const cue = active ? player.track?.subtitles?.find(item => player.position >= item.start && player.position < item.end) : undefined
 

@@ -157,7 +157,7 @@ in full, not protected content.
 
 ## Audio and transmissions
 
-**Device → Audio** contains Radio and Library. Starting a visitor burn automatically
+**Device → Audio** contains Comms, Radio, and Library. Starting a visitor burn automatically
 plays the journey transmission and opens a small top-right visor widget; it does
 not open the device. Click the widget to open Audio at the current playback
 position. Playback continues across device navigation and arrival in orbit.
@@ -175,7 +175,7 @@ All seven currently reuse **one temporary, synthetic guide recording**, generate
 locally with the macOS Samantha voice. Replace each source and transcript with
 authored narration and matching `subtitles` cues when ready; cue start/end values
 are seconds in the recording. Audio paths resolve against Vite's base URL.
-Radio lists transmissions reached along the current linear journey, including
+Comms lists transmissions reached along the current linear journey, including
 the current transfer. Future transmissions stay hidden. Resetting or switching
 preview context stops audio; lab seeks do not automatically narrate. Received
 transmissions can be played manually in preview. Reloading in transit restarts
@@ -184,10 +184,32 @@ browser blocks autoplay, the widget offers an explicit play button.
 
 Library lists unlocked catalog entries with an `audio` URL. The current mock mix
 still points to an absent file, so it reports **Recording unavailable** until a
-real file is supplied. Codex **Play in Audio** uses the same player. A new journey
-transmission replaces any currently playing recording. Codex unlock timing
+real file is supplied. Codex **Play in Audio** uses the same receivers. Library recordings play on Radio by default; set `audioReceiver: "comms"` on a
+catalog entry for spoken recordings. Codex **Play in Audio** honors the same field.
+A new journey transmission replaces only the Comms recording. Radio continues
+at its current position underneath it. Codex unlock timing
 continues to use the existing journey schedule; listening completion does not
 control discoveries in this first version.
+
+Comms and Radio have independent play/pause, seek, and volume controls. Radio
+starts at 35% and Comms at 80%. While Comms is playing, Radio fades to 22% of
+its selected volume over 350 ms, then returns over 1.6 seconds when Comms pauses,
+ends, or fails. The selected Radio volume stays unchanged; zero stays silent.
+Turning Radio off leaves Comms available. The visor widget and subtitles belong
+to Comms. Journey resets, rewinds, and preview changes stop both receivers.
+
+Add ambient broadcasts to `store/radioStations.ts`, with audio files under
+`public/audio/radio/`. Use `receiver: 'radio'` and `loop: true` for a continuous
+station, with a title and channel identifying its in-world source. Stations are
+selected explicitly from Radio. The temporary looping soundtrack is July Skies’
+“You Take Me Through the Day,” supplied as an M4A file. Library
+recordings do not loop by default. Example station:
+
+```ts
+{ id: 'long-range', title: 'Long-range carrier',
+  channel: 'Auxiliary receiver · 88.4', source: 'audio/radio/long-range.mp3',
+  receiver: 'radio', loop: true }
+```
 
 
 ## Optional surface visits
