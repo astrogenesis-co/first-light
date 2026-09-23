@@ -25,20 +25,20 @@ const diskFragment = /* glsl */ `
     float inner = smoothstep(1.65, 2.05, radius);
     float outer = 1.0 - smoothstep(3.0, 6.5, radius);
     float falloff = exp(-(radius - 1.9) * 0.65);
-    float spiral = angle - uTime * 0.22 + radius * 3.8;
-    float strands = sin(radius * 38.0 + sin(spiral * 3.0) * 1.6);
-    float turbulence = sin(spiral * 7.0 + sin(radius * 15.0 - uTime) * 0.6);
-    float texture = 0.7 + strands * 0.17 + turbulence * 0.13;
-    vec3 amber = vec3(1.0, 0.42, 0.16);
-    vec3 hot = vec3(0.92, 0.96, 1.0);
-    vec3 color = mix(amber, hot, exp(-max(radius - 2.0, 0.0) * 0.55));
+    float spiral = angle - uTime * 0.12 + radius * 0.85;
+    float panes = floor((spiral + 3.14159) * 3.0) / 3.0;
+    float bands = floor(radius * 3.0) / 3.0;
+    float came = smoothstep(0.03, 0.18, fwidth(panes) + fwidth(bands));
+    float texture = mix(1.0, 0.035, came);
+    vec3 color = 0.5 + 0.5 * cos(panes * 1.8 - bands * 0.7 + vec3(0.0, 2.094, 4.189));
+    color = mix(color * color, vec3(1.0, 0.84, 0.48), 0.12);
     vec3 tangent = normalize(cross(uDiskNormal, vWorldPosition));
     vec3 toViewer = normalize(cameraPosition - vWorldPosition);
     float approaching = dot(tangent, toViewer);
     float beaming = pow(1.0 + approaching * 0.35, 2.0);
     float brightness = inner * outer * falloff * texture * beaming;
     // HDR intensity feeds the bloom pass before the final tone mapping.
-    gl_FragColor = vec4(color * 3.5, brightness);
+    gl_FragColor = vec4(color * 2.0, brightness);
   }
 `
 
@@ -68,14 +68,14 @@ const lensFragment = /* glsl */ `
     float band = (radius - innerRadius) / width;
     float envelope = smoothstep(0.0, 0.12, band)
       * (1.0 - smoothstep(0.18, 1.0, band));
-    float strands = 0.76 + 0.16 * sin(band * 85.0
-      + sin(angle * 6.0 - uTime * 0.4) * 1.4);
+    float pane = floor((angle - uTime * 0.12) * 6.0) / 6.0;
+    float came = smoothstep(0.025, 0.14, fwidth(pane));
+    float strands = mix(1.0, 0.06, came);
     float join = smoothstep(0.02, 0.55, abs(vPosition.y));
     float beaming = pow(1.0 - vPosition.x / max(radius, 0.01) * 0.35, 2.0);
-    vec3 color = mix(vec3(0.92, 0.96, 1.0), vec3(1.0, 0.48, 0.2),
-      smoothstep(0.05, 0.95, band));
+    vec3 color = 0.5 + 0.5 * cos(pane * 2.0 - band * 3.0 + vec3(0.0, 2.094, 4.189));
     float brightness = envelope * strands * join * beaming * mix(0.65, 1.0, upper);
-    gl_FragColor = vec4(color * 3.5, brightness);
+    gl_FragColor = vec4(color * 2.0, brightness);
   }
 `
 
@@ -96,7 +96,7 @@ const haloFragment = /* glsl */ `
   void main() {
     float edge = 1.0 - max(dot(normalize(vNormal), normalize(vView)), 0.0);
     float glow = pow(edge, 7.0);
-    gl_FragColor = vec4(vec3(1.0, 0.55, 0.2) * 1.8, glow * 0.8);
+    gl_FragColor = vec4((0.5 + 0.5 * cos(edge * 24.0 + vec3(0.0, 2.094, 4.189))) * 2.2, glow * 0.8);
   }
 `
 
@@ -115,11 +115,11 @@ export default function Blackhole({ active }: { active: RefObject<boolean> }) {
     <group rotation={[0, 0, -0.06]}>
       {/* Opaque event horizon also hides the far side of the disk. */}
       <mesh>
-        <sphereGeometry args={[1.6, 96, 64]} />
+        <sphereGeometry args={[1.6, 48, 32]} />
         <meshBasicMaterial color="#000000" />
       </mesh>
       <mesh>
-        <sphereGeometry args={[1.72, 96, 64]} />
+        <sphereGeometry args={[1.72, 48, 32]} />
         <shaderMaterial
           vertexShader={haloVertex}
           fragmentShader={haloFragment}

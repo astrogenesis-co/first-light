@@ -17,12 +17,12 @@ const vertexShader = /* glsl */ `
 const fragmentShader = /* glsl */ `
   varying vec3 vColor;
   void main() {
-    float radius = length(gl_PointCoord - 0.5) * 2.0;
+    vec2 facet = abs(gl_PointCoord - 0.5) * 2.0;
+    float radius = max(facet.x, facet.y) * 0.65 + (facet.x + facet.y) * 0.35;
     // A broad, smooth footprint avoids subpixel flashing during camera turns.
-    float opacity = exp(-3.0 * radius * radius) * (1.0 - smoothstep(0.7, 1.0, radius));
-    gl_FragColor = vec4(vColor, opacity * 0.65);
-    #include <tonemapping_fragment>
-    #include <colorspace_fragment>
+    float opacity = exp(-1.2 * radius * radius) * (1.0 - smoothstep(0.7, 1.0, radius));
+    gl_FragColor = vec4(vColor, opacity * 0.85);
+    // OutputPass handles color conversion once, after compositing.
   }
 `
 
@@ -39,9 +39,9 @@ export default function Starfield() {
       const angle = Math.random() * Math.PI * 2
       const ring = Math.sqrt(1 - y * y)
       positions.set([Math.cos(angle) * ring * 2200, y * 2200, Math.sin(angle) * ring * 2200], i * 3)
-      color.setHSL(Math.random(), 0.15, 0.65 + Math.random() * 0.2)
+      color.set(['#e8a62e', '#f3c450', '#ce861c'][i % 3])
       colors.set([color.r, color.g, color.b], i * 3)
-      sizes[i] = 2.5 + Math.random() * 1.5
+      sizes[i] = 3.0 + Math.random() * 2.0
     }
     return [positions, colors, sizes]
   }, [])
@@ -63,6 +63,7 @@ export default function Starfield() {
         uniforms={uniforms}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
+        toneMapped={false}
         vertexColors
         transparent
         blending={AdditiveBlending}
