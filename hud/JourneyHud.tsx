@@ -5,7 +5,6 @@ import { useJourneyStore } from '../store/useJourneyStore'
 import { canLand, destinations, getStage, stages, TRANSFER_SECONDS, travelDuration, type StageId } from '../store/journey'
 import { codexSchedule } from '../store/codexSchedule'
 import { useCodexProgress } from './useCodexProgress'
-import CodexDiscoveryNotice from './CodexDiscoveryNotice'
 import { farOrbitPosition, FAR_ORBIT_RADIUS } from '../store/journeyPose'
 import './journey.css'
 
@@ -41,7 +40,7 @@ function MiniMap({ bodyId, fromBodyId, transfer }: { bodyId: string; fromBodyId:
   </svg>
 }
 
-export default function JourneyHud({ onOpenMap, onOpenCodex, mapOpen }: { onOpenMap: () => void; onOpenCodex: () => void; mapOpen: boolean }) {
+export default function JourneyHud({ onOpenMap, mapOpen }: { onOpenMap: () => void; mapOpen: boolean }) {
   const surface = useJourneyStore(state => state.journey.surface)
   const stage = useJourneyStore(state => state.journey.stage)
   const seconds = useJourneyStore(state => Math.floor(state.journey.elapsed))
@@ -67,7 +66,6 @@ export default function JourneyHud({ onOpenMap, onOpenCodex, mapOpen }: { onOpen
       </button>
     </section>
     <section className="journey-controls" aria-label="Journey controls">
-      <CodexDiscoveryNotice onOpen={onOpenCodex} />
       {stage === 'blackhole-orbit' && <button className="journey-primary" onClick={() => useJourneyStore.getState().enterWormhole()}>Enter wormhole <span>↗ Star system</span></button>}
       {!surface && !intro && !transfer && next && <button className="journey-primary journey-burn" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ {getBody(next.bodyId).name}</span></button>}
       {(surface || canLand(useJourneyStore.getState().journey)) && <button className="journey-primary journey-landing" onClick={() => surface ? useJourneyStore.getState().returnToOrbit() : useJourneyStore.getState().land()}>{surface ? 'Return to orbit' : 'Land on planet'}<span>{surface ? '↑' : '↓'} {getBody(current.bodyId).name}</span></button>}

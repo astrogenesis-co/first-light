@@ -4,6 +4,7 @@ import './codex.css'
 import type { AudioTrack } from '../store/transmissions'
 import { discoveredCatalog, validateCodexSchedule } from '../store/codexUnlocks'
 import { bodyDiscoveryKeys } from '../store/journeyProgress'
+import { useNotificationStore } from '../store/useNotificationStore'
 import { useCodexProgress } from './useCodexProgress'
 
 const collections = [
@@ -27,7 +28,9 @@ const entrySchema = z.object({
 })
 type Entry = z.infer<typeof entrySchema>
 
-export default function Codex({ onPlayAudio, scope, onClearScope }: {
+export default function Codex({ onPlayAudio, scope, onClearScope, initialEntryKey = null, active = false }: {
+  initialEntryKey?: string | null
+  active?: boolean
   onPlayAudio: (track: AudioTrack) => void
   scope: { bodyId: string; label: string } | null
   onClearScope: () => void
@@ -38,7 +41,7 @@ export default function Codex({ onPlayAudio, scope, onClearScope }: {
   const [attempt, setAttempt] = useState(0)
   const [group, setGroup] = useState<typeof collections[number]['group'] | null>(null)
   const [query, setQuery] = useState('')
-  const [history, setHistory] = useState<string[]>([])
+  const [history, setHistory] = useState<string[]>(initialEntryKey ? [initialEntryKey] : [])
   const heading = useRef<HTMLHeadingElement>(null)
   const returnKey = useRef<string | null>(null)
   const list = useRef<HTMLDivElement>(null)
@@ -69,6 +72,11 @@ export default function Codex({ onPlayAudio, scope, onClearScope }: {
   }, [attempt])
 
   useEffect(() => {
+    if (active && selectedKey) useNotificationStore.getState().markRead(selectedKey)
+  }, [active, selectedKey])
+
+  useEffect(() => {
+    if (!active) return
     if (selectedKey) heading.current?.focus()
     else if (group && returnKey.current) {
       const button = Array.from(list.current?.querySelectorAll<HTMLButtonElement>('button[data-key]') ?? [])
@@ -80,7 +88,7 @@ export default function Codex({ onPlayAudio, scope, onClearScope }: {
       types.current?.querySelector<HTMLButtonElement>(`button[data-group="${returnGroup.current}"]`)?.focus()
       returnGroup.current = null
     }
-  }, [selectedKey, group])
+  }, [selectedKey, group, active])
 
   useEffect(() => {
     const unlocked = new Set(unlockedKeys)
