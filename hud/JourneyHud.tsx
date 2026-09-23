@@ -69,7 +69,7 @@ export default function JourneyHud({ onOpenMap, onOpenCodex, mapOpen }: { onOpen
     <section className="journey-controls" aria-label="Journey controls">
       <CodexDiscoveryNotice onOpen={onOpenCodex} />
       {stage === 'blackhole-orbit' && <button className="journey-primary" onClick={() => useJourneyStore.getState().enterWormhole()}>Enter wormhole <span>↗ Star system</span></button>}
-      {!surface && !intro && !transfer && next && <button className="journey-primary" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ {getBody(next.bodyId).name}</span></button>}
+      {!surface && !intro && !transfer && next && <button className="journey-primary journey-burn" onClick={() => useJourneyStore.getState().initiateBurn()}>Initiate burn <span>↗ {getBody(next.bodyId).name}</span></button>}
       {(surface || canLand(useJourneyStore.getState().journey)) && <button className="journey-primary journey-landing" onClick={() => surface ? useJourneyStore.getState().returnToOrbit() : useJourneyStore.getState().land()}>{surface ? 'Return to orbit' : 'Land on planet'}<span>{surface ? '↑' : '↓'} {getBody(current.bodyId).name}</span></button>}
       {transfer && <div className="journey-travel"><div className="journey-progress-label"><span>{paused ? 'Travel paused' : current.kind === 'wormhole' ? 'Through the wormhole' : 'In transit'}</span><span>{duration - seconds}s {current.kind === 'wormhole' ? 'to star system' : 'to orbit'}</span></div><progress aria-label="Travel progress" max={duration} value={seconds} /><button className="journey-pause" onClick={() => useJourneyStore.getState().setPaused(!paused)}>{paused ? 'Resume travel' : 'Pause travel'}</button></div>}
     </section>
