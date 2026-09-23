@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { destinations, stages, advanceJourney, burn, discoveryUnlocked, initialJourney, restoreJourney, scenario, enterWormhole, WORMHOLE_SECONDS, travelDuration, TRANSFER_SECONDS } from './journey.ts'
+import { canLand, land, returnToOrbit, destinations, stages, advanceJourney, burn, discoveryUnlocked, initialJourney, restoreJourney, scenario, enterWormhole, WORMHOLE_SECONDS, travelDuration, TRANSFER_SECONDS } from './journey.ts'
 import { bodies, getBody, getBodyPosition } from './galaxy.ts'
 import { journeyPose, wormholeOpacity } from './journeyPose.ts'
 
@@ -140,4 +140,36 @@ test('wormhole endpoints match their orbits and the interior cut is concealed', 
     assert.equal(wormholeOpacity(passage), 0)
     assert.equal(wormholeOpacity(end), 0)
   }
+})
+
+
+test('optional surface visits preserve every orbit and its onward route', () => {
+  for (const destination of destinations) {
+    const orbit = scenario(destination.orbitId, 12)
+    assert.equal(canLand(orbit), true)
+    const surface = land(orbit)
+    assert.equal(surface.surface, true)
+    assert.equal(surface.stage, orbit.stage)
+    assert.equal(land(surface), surface)
+    assert.equal(burn(surface), surface)
+    assert.equal(advanceJourney(surface, 1000), surface)
+    assert.deepEqual(restoreJourney(JSON.stringify(surface)), surface)
+    assert.deepEqual(journeyPose(surface, 1.8), journeyPose(orbit, 1.8))
+    const returned = returnToOrbit(surface)
+    assert.deepEqual(returned, orbit)
+    assert.deepEqual(burn(returned), burn(orbit))
+    assert.deepEqual(land(returned), surface)
+  }
+})
+
+test('landing is unavailable outside planetary orbit and invalid surface saves reset', () => {
+  for (const stage of stages) {
+    const state = scenario(stage.id)
+    assert.equal(returnToOrbit(state), state)
+    if (stage.kind === 'orbit' && stage.stop > 0) continue
+    assert.equal(canLand(state), false)
+    assert.equal(land(state), state)
+    assert.deepEqual(restoreJourney(JSON.stringify({ ...state, surface: true })), initialJourney())
+  }
+  assert.deepEqual(restoreJourney(JSON.stringify({ ...scenario('planet-orbit'), surface: 'true' })), initialJourney())
 })

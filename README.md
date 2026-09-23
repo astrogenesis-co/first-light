@@ -182,3 +182,20 @@ real file is supplied. Codex **Play in Audio** uses the same player. A new journ
 transmission replaces any currently playing recording. Codex unlock timing
 continues to use the existing journey schedule; listening completion does not
 control discoveries in this first version.
+
+
+## Optional surface visits
+
+Every planet orbit offers **Land on planet** alongside the onward burn (including
+landing at the final planet, where there is no onward burn). Landing cuts directly
+to a shared placeholder landscape and short surface vignette. **Return to orbit**
+cuts back to the same planet; visitors can then burn onward or land again.
+There are no exploration controls or required visits.
+
+Surface visits preserve the orbit stage, discoveries, elapsed time, and camera
+position. Journey time holds on the surface; audio remains independent. The
+optional `surface` checkpoint field restores a landed visit after reloading while
+remaining compatible with existing version 2 saves. Preview landing uses the
+same controls and stays isolated from visitor progress. Choose a planet orbit in
+Journey lab, then land to preview its surface. `scene/PlanetSurface.tsx` owns the
+placeholder vignette for future authored scenes.
