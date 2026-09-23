@@ -60,10 +60,22 @@ export default function Hud() {
         aria-haspopup="dialog"
         aria-controls="field-device"
         aria-expanded={isOpen}
+        aria-label="Open device"
       >
-        <DeviceGlyph />
-        <span>Device</span>
-        <span className="device-launcher-dot" aria-hidden="true" />
+        <span className="device-launcher-emblem" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none">
+            <circle className="device-launcher-orbit" cx="24" cy="24" r="20" />
+            <path className="device-launcher-reticle" d="M24 1v5M24 42v5M1 24h5M42 24h5" />
+            <path d="m24 12 9 5v14l-9 5-9-5V17l9-5Z" />
+            <path d="m15 17 9 5 9-5M24 22v14" />
+            <circle className="device-launcher-satellite" cx="24" cy="4" r="2" />
+          </svg>
+        </span>
+        <span className="device-launcher-copy">
+          <span className="device-launcher-overline">Personal terminal</span>
+          <span className="device-launcher-title">Device <span aria-hidden="true">↗</span></span>
+          <span className="device-launcher-status" aria-hidden="true"><i /> FL / 001</span>
+        </span>
       </button>
 
       <dialog
