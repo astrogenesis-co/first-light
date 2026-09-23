@@ -2,12 +2,12 @@
 .codex button, .codex-message button { font: inherit; cursor: pointer; }
 .codex button:focus-visible, .codex input:focus-visible, .codex-message button:focus-visible { outline: 2px solid #c6b1ff; outline-offset: 3px; }
 .codex-intro { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 25px; }
-.codex-intro h2 { margin: 10px 0; font-size: 22px; font-weight: 400; letter-spacing: -.04em; }
-.codex-intro p, .codex-list-heading p { font-size: 11px; color: var(--device-muted); line-height: 1.7; margin: 0; }
+.codex-intro h2 { margin: 10px 0; font-size: 22px; font-weight: 700; letter-spacing: -.04em; }
+.codex-intro p, .codex-list-heading p { font-size: 12px; color: var(--device-muted); line-height: 1.7; margin: 0; }
 .codex-types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .codex-types button { min-width: 0; min-height: 140px; display: grid; grid-template-columns: 1fr auto; gap: 12px 8px; text-align: left; padding: 20px; border: 1px solid #c6b1ff26; border-radius: 8px; background: #090e1f70; color: var(--device-text); }
-.codex-types strong { grid-column: 1 / -1; font-size: 14px; font-weight: 400; }
-.codex-type-count { grid-column: 1; font-size: 10px; color: var(--device-muted); }
+.codex-types strong { grid-column: 1 / -1; font-size: 14px; font-weight: 700; }
+.codex-type-count { grid-column: 1; font-size: 12px; color: var(--device-muted); }
 .codex-type-arrow { grid-column: 2; color: var(--codex-accent); }
 .codex-type-mark { color: var(--codex-accent); font-size: 24px; line-height: 28px; }
 .codex-types button:hover { border-color: #c6b1ff80; background: #c6b1ff0c; }
@@ -15,41 +15,41 @@
 .codex-collection-intro h2:focus { outline: none; }
 .codex-results { margin-top: 28px; }
 .codex-list-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
-.codex-list-heading h3 { font-size: 14px; font-weight: 400; margin: 0 0 6px; }
+.codex-list-heading h3 { font-size: 14px; font-weight: 700; margin: 0 0 6px; }
 .codex-search { flex: 0 1 190px; min-width: 120px; }
-.codex-search input { width: 100%; box-sizing: border-box; padding: 10px 11px; color: var(--device-text); background: #030b16a0; border: 1px solid #c6b1ff35; border-radius: 6px; font: 11px inherit; font-family: inherit; font-size: 11px; }
+.codex-search input { width: 100%; box-sizing: border-box; padding: 10px 11px; color: var(--device-text); background: #030b16a0; border: 1px solid #c6b1ff35; border-radius: 6px; font: 12px inherit; font-family: inherit; font-size: 12px; }
 .codex-search input::placeholder { color: var(--device-muted); }
-.codex-result-count { margin: 20px 0 9px; color: var(--device-muted); font-size: 9px; }
+.codex-result-count { margin: 20px 0 9px; color: var(--device-muted); font-size: 12px; }
 .codex-entries { border-top: 1px solid #c6b1ff26; }
 .codex-entry { width: 100%; display: flex; gap: 14px; align-items: flex-start; padding: 18px 4px; border: 0; border-bottom: 1px solid #c6b1ff20; color: var(--device-text); background: transparent; text-align: left; }
 .codex-entry:hover { background: #c6b1ff08; }
 .codex-entry-mark { flex: 0 0 32px; height: 34px; display: grid; place-items: center; color: var(--codex-accent); background: #c6b1ff0c; border: 1px solid #c6b1ff20; border-radius: 6px; font-size: 20px; }
 .codex-entry-copy { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 6px; }
-.codex-entry-copy small { color: var(--codex-accent); font-size: 9px; }
-.codex-entry-copy strong { font-size: 13px; line-height: 1.6; font-weight: 400; overflow-wrap: anywhere; }
-.codex-entry-copy > span { font-size: 10px; line-height: 1.7; color: var(--device-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.codex-entry-copy small { color: var(--codex-accent); font-size: 12px; }
+.codex-entry-copy strong { font-size: 13px; line-height: 1.6; font-weight: 700; overflow-wrap: anywhere; }
+.codex-entry-copy > span { font-size: 12px; line-height: 1.7; color: var(--device-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .codex-entry-end { display: flex; flex-direction: column; align-items: flex-end; gap: 17px; color: var(--codex-accent); }
-.codex-status { border: 1px solid #c6b1ff30; padding: 3px 6px; border-radius: 4px; font-size: 8px; color: var(--device-muted); }
-.codex-back, .codex-empty button, .codex-message button { padding: 8px 10px; border: 1px solid #c6b1ff40; border-radius: 5px; background: #c6b1ff08; color: #c6b1ff; font-size: 11px; }
+.codex-status { border: 1px solid #c6b1ff30; padding: 3px 6px; border-radius: 4px; font-size: 12px; color: var(--device-muted); }
+.codex-back, .codex-empty button, .codex-message button { padding: 8px 10px; border: 1px solid #c6b1ff40; border-radius: 5px; background: #c6b1ff08; color: #c6b1ff; font-size: 12px; }
 .codex-detail-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 30px; }
-.codex-detail h2 { font-size: 25px; font-weight: 400; line-height: 1.45; overflow-wrap: anywhere; margin: 14px 0 20px; }
+.codex-detail h2 { font-size: 25px; font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; margin: 14px 0 20px; }
 .codex-detail h2:focus { outline: none; }
-.codex-facts { font-size: 10px; color: var(--device-muted); }
+.codex-facts { font-size: 12px; color: var(--device-muted); }
 .codex-prose { border-top: 1px solid #c6b1ff26; margin-top: 22px; padding-top: 10px; font: 15px/1.85 Georgia, serif; color: #c8dbdd; overflow-wrap: anywhere; }
 .codex-prose p { white-space: pre-line; }
-.codex-prose h3 { font-family: inherit; font-size: 18px; color: #e3e1f1; font-weight: 400; margin: 24px 0 10px; }
+.codex-prose h3 { font-family: inherit; font-size: 18px; color: #e3e1f1; font-weight: 700; margin: 24px 0 10px; }
 .codex-prose blockquote { margin: 22px 0; padding: 4px 18px; border-left: 2px solid #c6b1ff80; color: #c6b1ff; font-style: italic; }
 .codex-related { margin-top: 30px; border-top: 1px solid #c6b1ff26; padding-top: 14px; }
-.codex-related h3 { font-size: 11px; font-weight: 400; }
+.codex-related h3 { font-size: 12px; font-weight: 700; }
 .codex-related h3 span { margin-left: 8px; color: var(--device-muted); }
 .codex-related li { font-size: 12px; line-height: 2; }
 .codex-connections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.codex-connections button { display: flex; justify-content: space-between; gap: 12px; text-align: left; border: 1px solid #c6b1ff26; border-radius: 6px; background: #c6b1ff06; color: var(--device-text); padding: 12px; font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+.codex-connections button { display: flex; justify-content: space-between; gap: 12px; text-align: left; border: 1px solid #c6b1ff26; border-radius: 6px; background: #c6b1ff06; color: var(--device-text); padding: 12px; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
 .codex-connections button:hover { border-color: #c6b1ff90; }
-.codex-connections small { display: block; color: var(--codex-accent); font-size: 9px; margin-bottom: 6px; }
+.codex-connections small { display: block; color: var(--codex-accent); font-size: 12px; margin-bottom: 6px; }
 .codex-empty, .codex-message { padding: 30px 12px; color: var(--device-muted); font-size: 12px; line-height: 1.8; }
 .codex-message { padding: 30px; }
-.codex-empty h3, .codex-message h2 { font-size: 15px; color: var(--device-text); font-weight: 400; }
+.codex-empty h3, .codex-message h2 { font-size: 15px; color: var(--device-text); font-weight: 700; }
 .codex .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media (max-width: 800px) { .codex { padding: 20px; } .codex-types { grid-template-columns: repeat(2, minmax(0, 1fr)); } .codex-list-heading { align-items: stretch; flex-direction: column; } .codex-search { flex: auto; } }
 @media (max-width: 600px) { .codex { padding: 18px; } .codex-intro h2 { font-size: 19px; } .codex-connections { grid-template-columns: 1fr; } .codex-entry { gap: 10px; } .codex-entry-mark { display: none; } .codex-detail h2 { font-size: 21px; } }

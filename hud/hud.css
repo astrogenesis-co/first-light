@@ -62,17 +62,17 @@
   -webkit-backdrop-filter: blur(16px);
 }
 .device-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 19px 25px; border-bottom: 1px solid var(--device-line); }
-.device-brand { display: flex; align-items: center; gap: 12px; font: 10px monospace; letter-spacing: .14em; text-transform: uppercase; }
+.device-brand { display: flex; align-items: center; gap: 12px; font: 12px monospace; letter-spacing: .14em; text-transform: uppercase; }
 .device-brand-divider { padding: 0 9px; color: #777773; }
 .device-close { display: grid; place-items: center; border: 1px solid var(--device-line); border-radius: 6px; width: 32px; height: 32px; color: var(--device-muted); background: #ffffff03; cursor: pointer; }
 .device-close:hover { background: #ffffff10; color: var(--device-text); }
 .device-close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.3; }
 .device-body { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 18px; min-height: 0; }
 .device-sidebar { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; padding: 29px 16px 25px; border-right: 1px solid var(--device-line); }
-.device-eyebrow { font: 9px monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--device-muted); }
+.device-eyebrow { font: 12px monospace; letter-spacing: .15em; text-transform: uppercase; color: var(--device-muted); }
 .device-sidebar > .device-eyebrow { padding: 0 12px; margin-bottom: 22px; }
 .device-apps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 8px; }
-.device-app { --app-accent: var(--device-amber); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px; border: 0; border-radius: 10px; background: transparent; color: var(--device-muted); font-family: inherit; font-size: 11px; cursor: pointer; }
+.device-app { --app-accent: var(--device-amber); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px; border: 0; border-radius: 10px; background: transparent; color: var(--device-muted); font-family: inherit; font-size: 12px; cursor: pointer; }
 .device-app-icon { display: grid; place-items: center; width: 52px; height: 52px; box-sizing: border-box; border: 1px solid var(--device-line); border-radius: 15px; background: linear-gradient(145deg, #143c43, #091721); box-shadow: inset 0 1px #ffffff12, 0 4px 10px #0003; color: var(--app-accent); transition: transform .18s, border-color .18s, background .18s; }
 .device-app-icon svg { width: 25px; height: 25px; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
 .device-app-codex { --app-accent: #c6b1ff; }
@@ -86,27 +86,27 @@
 .device-app:disabled { opacity: .35; cursor: default; }
 .device-sidebar-note { margin-top: auto; padding: 50px 12px 0; }
 .device-sidebar-note p { color: var(--device-muted); font-size: 12px; line-height: 1.7; }
-.device-serial { display: block; margin-top: 25px; color: #777873; font: 9px monospace; letter-spacing: .15em; }
+.device-serial { display: block; margin-top: 25px; color: #777873; font: 12px monospace; letter-spacing: .15em; }
 .device-content { min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .device-content, .device-sidebar { scrollbar-width: thin; scrollbar-color: #68ffe155 transparent; }
 .device-header-heading { min-width: 0; }
 .device-header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 22px; }
 .device-header-actions .device-close { flex-shrink: 0; }
-.device-header-heading h1 { margin: 8px 0 0; font-size: 28px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; text-shadow: 0 0 22px #68ffe145; }
-.device-status { display: flex; gap: 7px; align-items: center; color: var(--device-muted); font: 9px monospace; }
+.device-header-heading h1 { margin: 8px 0 0; font-size: 28px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-shadow: 0 0 22px #68ffe145; }
+.device-status { display: flex; gap: 7px; align-items: center; color: var(--device-muted); font: 12px monospace; }
 .device-view { overflow: hidden; }
-.device-view-heading, .device-view-caption { display: flex; justify-content: space-between; gap: 12px; padding: 16px 18px; color: var(--device-muted); font: 9px monospace; }
+.device-view-heading, .device-view-caption { display: flex; justify-content: space-between; gap: 12px; padding: 16px 18px; color: var(--device-muted); font: 12px monospace; }
 .device-orbit { display: block; width: 100%; height: 205px; }
 .device-grid { stroke: #68ffe125; stroke-width: .8; }
 .device-orbit-line { stroke: #68ffe1; stroke-width: .8; }
 .device-orbit-core { stroke: #68ffe1; stroke-width: 1; fill: #0a0d1280; }
 .device-orbit-point { fill: #68ffe1; }
 .device-view-caption { align-items: center; padding-top: 7px; }
-.device-view-caption > span:first-child { font: 10px monospace; color: #8aacae; }
+.device-view-caption > span:first-child { font: 12px monospace; color: #8aacae; }
 .device-notes { padding: 18px 22px; border-top: 1px solid var(--device-line); }
-.device-notes h2 { font-size: 15px; font-weight: 400; margin: 9px 0 7px; }
+.device-notes h2 { font-size: 15px; font-weight: 700; margin: 9px 0 7px; }
 .device-notes p { color: var(--device-muted); font-size: 12px; margin: 0; line-height: 1.6; }
-.device-footer { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 15px 27px; border-top: 1px solid var(--device-line); color: var(--device-muted); font: 9px monospace; }
+.device-footer { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 15px 27px; border-top: 1px solid var(--device-line); color: var(--device-muted); font: 12px monospace; }
 .device-footer > span { display: flex; align-items: center; gap: 8px; }
 .device-footer kbd { margin-left: 5px; padding: 3px 5px; border: 1px solid var(--device-line); border-radius: 3px; font: inherit; }
 @keyframes device-appear { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
@@ -114,7 +114,7 @@
   .device-dialog { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); }
   .device-shell { height: calc(100dvh - 24px); }
   .device-header { padding: 15px 18px; }
-  .device-brand { font-size: 8px; letter-spacing: .08em; gap: 8px; }
+  .device-brand { font-size: 12px; letter-spacing: .08em; gap: 8px; }
   .device-brand-divider { padding: 0 4px; }
   .device-body { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); min-height: 0; }
   .device-sidebar { flex-direction: row; gap: 6px; padding: 12px 10px; border-bottom: 1px solid var(--device-line); }
@@ -123,13 +123,13 @@
   .device-app { gap: 5px; }
   .device-app-icon { width: 42px; height: 42px; border-radius: 12px; }
   .device-header-actions { flex-direction: column-reverse; align-items: flex-end; gap: 10px; }
-  .device-header-actions .device-status { font-size: 8px; white-space: nowrap; }
+  .device-header-actions .device-status { font-size: 12px; white-space: nowrap; }
   .device-header-heading h1 { font-size: 24px; }
   .device-view-heading { flex-wrap: wrap; }
   .device-body { gap: 10px; }
   .device-shell { gap: 10px; }
   .device-orbit { height: 170px; }
-  .device-footer { padding: 13px 18px; font-size: 8px; }
+  .device-footer { padding: 13px 18px; font-size: 12px; }
   .device-launcher { bottom: max(20px, env(safe-area-inset-bottom)); left: max(20px, env(safe-area-inset-left)); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -139,7 +139,7 @@
 
 .galaxy-map { display: block; width: 100%; height: auto; }
 .map-scopes, .map-destinations { display: flex; gap: 5px; flex-wrap: wrap; }
-.map-scopes button, .map-destinations button { border: 1px solid var(--device-line); border-radius: 6px; padding: 6px 9px; background: transparent; color: var(--device-muted); font: 10px monospace; cursor: pointer; }
+.map-scopes button, .map-destinations button { border: 1px solid var(--device-line); border-radius: 6px; padding: 6px 9px; background: transparent; color: var(--device-muted); font: 12px monospace; cursor: pointer; }
 .map-scopes button[aria-pressed="true"], .map-destinations button[aria-pressed="true"] { color: var(--device-amber); background: #68ffe118; }
 .map-scopes button:focus-visible, .map-destinations button:focus-visible { outline: 2px solid var(--device-amber); outline-offset: 2px; }
 .map-orbit { fill: none; stroke: #68ffe140; stroke-width: 1; stroke-dasharray: 3 6; }
@@ -149,7 +149,7 @@
 .map-dot-blackhole { fill: #020308; stroke: #68ffe1; stroke-width: 2; }
 .map-dot-planet { fill: #87bcd2; }
 .map-selection { fill: none; stroke: #ddfff8; stroke-width: 1; }
-.map-body text { fill: var(--device-text); font: 11px monospace; }
+.map-body text { fill: var(--device-text); font: 12px monospace; }
 .map-body:hover .map-hit, .map-body:focus-visible .map-hit { fill: #68ffe125; stroke: #68ffe1; }
 .map-destinations { margin: 0; gap: 7px; padding: 16px 18px; }
 .map-coordinates { font-family: monospace; padding-bottom: 7px; }
@@ -178,18 +178,18 @@ main:has(.device-dialog[open]) :is(.journey-hud, .journey-controls, .journey-dev
 
 .journey-overview { padding: 22px; border-bottom: 1px solid var(--device-line); background: linear-gradient(110deg, #68ffe10b, transparent); }
 .journey-status-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.journey-overview h2 { font-size: clamp(18px, 3vw, 24px); font-weight: 400; margin: 16px 0 8px; }
-.journey-overview p { color: var(--device-muted); font-size: 11px; line-height: 1.6; margin: 0; }
+.journey-overview h2 { font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin: 16px 0 8px; }
+.journey-overview p { color: var(--device-muted); font-size: 12px; line-height: 1.6; margin: 0; }
 .journey-overview progress { display: block; width: 100%; height: 3px; margin-top: 16px; accent-color: var(--device-amber); }
-.journey-link { border: 0; background: transparent; padding: 5px 0; color: var(--device-amber); font: 10px monospace; cursor: pointer; }
+.journey-link { border: 0; background: transparent; padding: 5px 0; color: var(--device-amber); font: 12px monospace; cursor: pointer; }
 .journey-link:hover { text-decoration: underline; }
 .journey-link:focus-visible, .journey-summary button:focus-visible { outline: 2px solid var(--device-amber); outline-offset: 3px; }
-.journey-summary { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 22px; color: var(--device-muted); font-size: 10px; }
-.journey-summary strong { color: var(--device-text); font-size: 19px; font-weight: 400; }
+.journey-summary { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 22px; color: var(--device-muted); font-size: 12px; }
+.journey-summary strong { color: var(--device-text); font-size: 19px; font-weight: 700; }
 .journey-summary small { color: var(--device-muted); font-size: 12px; }
 .journey-summary button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; text-align: left; }
 .journey-summary button:hover { color: var(--device-amber); }
-.journey-map-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 8px 18px; color: var(--device-muted); font: 9px monospace; }
+.journey-map-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 8px 18px; color: var(--device-muted); font: 12px monospace; }
 .journey-map-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .journey-map-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; box-sizing: border-box; }
 .legend-location { border: 2px solid #68ffe1; }
@@ -200,9 +200,9 @@ main:has(.device-dialog[open]) :is(.journey-hud, .journey-controls, .journey-dev
 .map-next { fill: none; stroke: #f4ce83; stroke-width: 1.5; stroke-dasharray: 3 2; }
 .map-dot.map-visited { fill: #68ffe1; }
 .map-destinations button { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
-.map-destinations small { font: 8px monospace; color: var(--device-muted); }
+.map-destinations small { font: 12px monospace; color: var(--device-muted); }
 .journey-discoveries { margin-top: 12px; }
-.journey-codex-scope { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-bottom: 20px; color: var(--device-muted); font-size: 11px; }
+.journey-codex-scope { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-bottom: 20px; color: var(--device-muted); font-size: 12px; }
 .journey-codex-scope .codex-back { margin: 0; }
 @media (max-width: 600px) {
   .journey-overview { padding: 18px; }
