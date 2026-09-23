@@ -31,12 +31,14 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
   const [catalog, setEntries] = useState<Entry[] | null>(null)
   const [error, setError] = useState(false)
   const [attempt, setAttempt] = useState(0)
-  const [group, setGroup] = useState<string>('all')
+  const [group, setGroup] = useState<typeof collections[number]['group'] | null>(null)
   const [query, setQuery] = useState('')
   const [history, setHistory] = useState<string[]>([])
   const heading = useRef<HTMLHeadingElement>(null)
   const returnKey = useRef<string | null>(null)
   const list = useRef<HTMLDivElement>(null)
+  const types = useRef<HTMLElement>(null)
+  const returnGroup = useRef<string | null>(null)
   const entries = catalog ? discoveredCatalog(catalog, unlockedKeys) : null
   const availableKeys = new Set(entries?.map(entry => entry.key))
   const availableHistory = history.filter(key => availableKeys.has(key))
@@ -63,13 +65,17 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
 
   useEffect(() => {
     if (selectedKey) heading.current?.focus()
-    else if (returnKey.current) {
+    else if (group && returnKey.current) {
       const button = Array.from(list.current?.querySelectorAll<HTMLButtonElement>('button[data-key]') ?? [])
         .find(item => item.dataset.key === returnKey.current)
       button?.focus()
       returnKey.current = null
+    } else if (group) heading.current?.focus()
+    else if (returnGroup.current) {
+      types.current?.querySelector<HTMLButtonElement>(`button[data-group="${returnGroup.current}"]`)?.focus()
+      returnGroup.current = null
     }
-  }, [selectedKey])
+  }, [selectedKey, group])
 
   useEffect(() => {
     const unlocked = new Set(unlockedKeys)
@@ -81,7 +87,7 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
 
   const collection = collections.find(item => item.group === group)
   const search = query.trim().toLowerCase()
-  const visible = entries.filter(entry => (group === 'all' || entry.group === group)
+  const visible = entries.filter(entry => entry.group === group
     && `${entry.title} ${entry.type} ${entry.excerpt}`.toLowerCase().includes(search))
     .sort((a, b) => group === 'tracks' ? (a.trackNumber ?? 0) - (b.trackNumber ?? 0) : a.title.localeCompare(b.title))
 
@@ -95,7 +101,7 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
     <div className="codex">
       {selected ? (
         <article className="codex-detail">
-          <button className="codex-back" onClick={() => setHistory(availableHistory.slice(0, -1))}>← {availableHistory.length > 1 ? 'Previous entry' : 'Back to entries'}</button>
+          <button className="codex-back" onClick={() => setHistory(availableHistory.slice(0, -1))}>← {availableHistory.length > 1 ? 'Previous entry' : `Back to ${collection?.label.toLowerCase() ?? 'entries'}`}</button>
           <div className="codex-detail-meta"><span className="device-eyebrow">{selected.type === 'AlbumTrack' ? 'Album track' : selected.type}</span><span className="codex-status">{selected.status}</span></div>
           <h2 ref={heading} tabIndex={-1}>{selected.title}</h2>
           {(selected.progress || selected.trackNumber || selected.duration) && <p className="codex-facts">{[
@@ -108,20 +114,24 @@ export default function Codex({ onPlayAudio }: { onPlayAudio: (track: AudioTrack
           {selected.channels.length > 0 && <section className="codex-related"><h3>Channels</h3><ul>{selected.channels.map(channel => <li key={channel.label}>{channel.label}</li>)}</ul></section>}
           {selected.links.length > 0 && <section className="codex-related"><h3>Connected entries <span>{selected.links.length}</span></h3><div className="codex-connections">{selected.links.map(link => <button key={link.key} onClick={() => openEntry(link.key)}><span><small>{link.label}</small>{link.title}</span><span aria-hidden="true">↗</span></button>)}</div></section>}
         </article>
-      ) : (
+      ) : collection ? (
         <>
-          <header className="codex-intro"><div><span className="device-eyebrow">Your collection</span><h2>A record of discovery.</h2><p>Your collection grows as you travel. Reach new worlds and listen for discoveries in transit.</p></div><span className="codex-total"><strong>{entries.length} <small>/ {catalog.length}</small></strong>entries discovered</span></header>
-          <nav className="codex-types" aria-label="Entry types">
-            <button aria-pressed={group === 'all'} onClick={() => setGroup('all')}><span className="codex-type-mark" aria-hidden="true">✧</span><span>All entries</span><b>{entries.length}</b></button>
-            {collections.map(item => <button key={item.group} aria-pressed={group === item.group} onClick={() => setGroup(item.group)}><span className="codex-type-mark" aria-hidden="true">{item.mark}</span><span>{item.label}</span><b>{entries.filter(entry => entry.group === item.group).length}</b></button>)}
-          </nav>
-          <section className="codex-results" aria-label={collection?.label ?? 'All entries'}>
-            <div className="codex-list-heading"><div><h3>{collection?.label ?? 'All entries'}</h3><p>{collection?.description ?? 'Every available entry in your Codex.'}</p></div><label className="codex-search"><span className="sr-only">Search entries</span><input type="search" placeholder="Search entries…" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
-            <p className="codex-result-count" role="status">{visible.length} {visible.length === 1 ? 'entry' : 'entries'}{search ? ' found' : ' available'}</p>
+          <button className="codex-back" onClick={() => { returnGroup.current = collection.group; setGroup(null); setQuery('') }}>← All types</button>
+          <header className="codex-intro codex-collection-intro"><div><span className="codex-type-mark" aria-hidden="true">{collection.mark}</span><h2 ref={heading} tabIndex={-1}>{collection.label}</h2><p>{collection.description}</p></div></header>
+          <section className="codex-results" aria-label={`Unlocked ${collection.label.toLowerCase()}`}>
+            <div className="codex-list-heading"><h3>Unlocked entries</h3><label className="codex-search"><span className="sr-only">Search {collection.label.toLowerCase()}</span><input type="search" placeholder="Search entries…" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
+            <p className="codex-result-count" role="status">{visible.length} {visible.length === 1 ? 'entry' : 'entries'}{search ? ' found' : ' unlocked'}</p>
             <div className="codex-entries" ref={list}>{visible.map(entry => <button data-key={entry.key} className="codex-entry" key={entry.key} onClick={() => openEntry(entry.key)}><span className="codex-entry-mark" aria-hidden="true">{collections.find(item => item.group === entry.group)?.mark}</span><span className="codex-entry-copy"><small>{entry.type === 'AlbumTrack' ? `Album track ${entry.trackNumber}` : entry.type}</small><strong>{entry.title}</strong><span>{entry.excerpt}</span></span><span className="codex-entry-end"><span className="codex-status">{entry.status}</span><span aria-hidden="true">↗</span></span></button>)}</div>
-            {visible.length === 0 && <div className="codex-empty"><h3>{search ? 'No matching entries' : 'Nothing here yet'}</h3><p>{search ? 'Try a different title or search another type.' : 'Continue your journey to discover entries of this type.'}</p>{search && <button onClick={() => setQuery('')}>Clear search</button>}</div>}
+            {visible.length === 0 && <div className="codex-empty"><h3>{search ? 'No matching entries' : 'Nothing here yet'}</h3><p>{search ? 'Try a different title or clear your search.' : 'Continue your journey to discover entries of this type.'}</p>{search && <button onClick={() => setQuery('')}>Clear search</button>}</div>}
           </section>
         </>
+      ) : (
+        <nav className="codex-types" aria-label="Entry types" ref={types}>
+          {collections.map(item => {
+            const count = entries.filter(entry => entry.group === item.group).length
+            return <button key={item.group} data-group={item.group} onClick={() => { setGroup(item.group); setQuery('') }}><span className="codex-type-mark" aria-hidden="true">{item.mark}</span><strong>{item.label}</strong><span className="codex-type-count">{count} unlocked</span><span className="codex-type-arrow" aria-hidden="true">→</span></button>
+          })}
+        </nav>
       )}
     </div>
   )
